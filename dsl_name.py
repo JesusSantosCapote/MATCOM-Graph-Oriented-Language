@@ -42,11 +42,16 @@ class DSL:
             print(tok)
 
 
-    def error(self, line_number, message):
-        self.report(self, line_number, "", message)
-
-
-    def report(self, line_number, where, message):
+    @staticmethod
+    def report(line_number, where, message): #TODO check if this work
         print("[line " + line_number + "] Error" + where + ": " + message)
-        self.had_error = True
+        DSL.had_error = True
+
+
+    @staticmethod
+    def error(line_number, message):
+        DSL.report(line_number, "", message)
+
+
+    
 

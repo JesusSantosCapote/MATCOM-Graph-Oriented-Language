@@ -1,4 +1,5 @@
 from token_type import TokenType, Token
+from dsl_name import DSL
 
 
 class Scanner():
@@ -11,15 +12,12 @@ class Scanner():
         self.line = 1
 
         self.fixed_tokens = {
-        '+'  :   Token( '+'           , TokenType.plus  ),
-        '-'  :   Token( '-'           , TokenType.minus ),
-        '*'  :   Token( '*'           , TokenType.star  ),
-        '/'  :   Token( '/'           , TokenType.div   ),
-        '('  :   Token( '('           , TokenType.opar  ),
-        ')'  :   Token( ')'           , TokenType.cpar  ),
-        'pi' :   Token( 3.14159265359 , TokenType.num   ),
-        'e'  :   Token( 2.71828182846 , TokenType.num   ),
-        'phi':   Token( 1.61803398875 , TokenType.num   ),
+        '+'  :   self.add_token(TokenType.plus),
+        '-'  :   self.add_token(TokenType.minus),
+        '*'  :   self.add_token(TokenType.star),
+        '/'  :   self.add_token(TokenType.div),
+        '('  :   self.add_token(TokenType.opar),
+        ')'  :   self.add_token(TokenType.cpar),
         }
 
     
@@ -36,13 +34,24 @@ class Scanner():
 
 
     def scan_token(self):
-        c = advance()
+        c = self.advance()
 
-        self.fixed_tokens[c]
+        try:
+            self.fixed_tokens[c]
+        except KeyError:
+            DSL.error(self.line, "Unexpected character") #TODO check if this work
 
     
     def add_token(self, token_type, literal = None):
         text = self.source[self.start, self.current] #TODO check if the index of the slice are fine
         new_token = Token(token_type, text, literal, self.line)
         self.tokens.append(new_token)
+
+
+    def advance(self):
+        try:
+            self.current += 1
+            return self.source[self.current - 1]
+        except IndexError:
+            return None
     
