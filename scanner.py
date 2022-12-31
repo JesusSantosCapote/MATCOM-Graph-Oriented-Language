@@ -1,12 +1,6 @@
-from token_type import TokenType, Token
-from dsl_name import DSL
+from token_type import Token
 import re
-
-
-class ScannerError(Exception):
-    def __init__(self, line) -> None:
-        self.line = line
-
+from exceptions import ScannerError
 
 class Scanner():
     

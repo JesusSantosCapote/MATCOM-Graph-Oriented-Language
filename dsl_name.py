@@ -1,4 +1,5 @@
 import sys
+from scanner import Scanner
 
 class DSL:
 
