@@ -1,5 +1,11 @@
 from token_type import TokenType, Token
 from dsl_name import DSL
+import re
+
+
+class ScannerError(Exception):
+    def __init__(self, line) -> None:
+        self.line = line
 
 
 class Scanner():
@@ -7,51 +13,80 @@ class Scanner():
     def __init__(self, source:str) -> None:
         self.source = source
         self.tokens = []
-        self.start = 0
         self.current = 0
         self.line = 1
 
-        self.fixed_tokens = {
-        '+'  :   self.add_token(TokenType.plus),
-        '-'  :   self.add_token(TokenType.minus),
-        '*'  :   self.add_token(TokenType.star),
-        '/'  :   self.add_token(TokenType.div),
-        '('  :   self.add_token(TokenType.opar),
-        ')'  :   self.add_token(TokenType.cpar),
+        #Each keyword must have its own regular expression(Token Type)
+        self._token_regex = r"""(?xm)
+        (?P<string> ".*?"         ) |
+        (?P<float>  \d+\.\d+      ) |
+        (?P<int>    (\d+)         ) |
+        (?P<id>     [a-zA-Z_]+\w* ) |
+        (?P<plus>   \+            ) |
+        (?P<minus>  \-            ) |
+        (?P<star>   \*            ) |
+        (?P<div>    /             ) |
+        (?P<opar>   \(            ) |
+        (?P<cpar>   \)            ) |
+        (?P<nline>  \n            ) |
+        (?P<equal>  =             ) 
+        """
+        self.regex = re.compile(self._token_regex)
+
+        self.fixed_literals = {
+            'string' : lambda x: str(x),
+            'float'  : lambda x: float(x),
+            'int'    : lambda x: int(x),
         }
 
+        self.re_ws_skip = re.compile('[^ \t\r\f\v]')
+        
     
-    def scan_tokens(self):
+    def get_tokens(self):
         while not self.is_at_end():
-            self.start = self.current
-            self.scan_token()
+            match = self.re_ws_skip.search(self.source, self.current)
+            self.current = match.start()
 
-        self.tokens.append(Token(TokenType.eof, '', None, self.line))
+            match = self.regex.match(self.source, self.current)
+
+            if match:
+                if match.lastgroup == 'nline':
+                    self.line += 1
+                    self.current = match.end()
+                else:
+                    try:
+                        literal = self.fixed_literals[match.lastgroup](match[0])
+                    except KeyError:
+                        literal = None
+                    
+                    token = Token(match.lastgroup, match[0], literal, self.line)
+                    self.tokens.append(token)
+                    self.current = match.end()
+
+            else:
+                raise ScannerError(self.line)
+            
+
+        self.tokens.append(Token('eof', '', None, self.line))
+
+        return self.tokens
 
     
     def is_at_end(self):
         return self.current >= len(self.source)
 
 
-    def scan_token(self):
-        c = self.advance()
+# text = """
+# x =    -2   + 4 /    2 -   3.0  + 0.83 
+# print(hello2)  
+# build_graph(x  *2 )
 
-        try:
-            self.fixed_tokens[c]
-        except KeyError:
-            DSL.error(self.line, "Unexpected character") #TODO check if this work
+# name = "chuchi"
+# """
 
-    
-    def add_token(self, token_type, literal = None):
-        text = self.source[self.start, self.current] #TODO check if the index of the slice are fine
-        new_token = Token(token_type, text, literal, self.line)
-        self.tokens.append(new_token)
+# scanner = Scanner(text)
 
+# tokens = scanner.get_tokens()
 
-    def advance(self):
-        try:
-            self.current += 1
-            return self.source[self.current - 1]
-        except IndexError:
-            return None
-    
+# for tok in tokens:
+#     print(tok)
