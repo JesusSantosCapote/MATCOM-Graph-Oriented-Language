@@ -23,7 +23,21 @@ class Scanner():
         (?P<opar>   \(            ) |
         (?P<cpar>   \)            ) |
         (?P<nline>  \n            ) |
-        (?P<equal>  =             ) 
+        (?P<equal>  =             ) |
+        (?P<graph>  graph         ) |
+        (?P<digraph> digraph      ) |
+        (?P<multigraph> multigraph) |
+        (?P<pseudograph> pseudograph) |
+        (?P<if> if) |
+        (?P<elif> elif) |
+        (?P<else> else) |
+        (?P<while> while) |
+        (?P<end> end) |
+        (?P<plot> plot) |
+        (?P<grater> >) |
+        (?P<less> <) |
+        (?P<gratereq> >=) |
+
         """
         self.regex = re.compile(self._token_regex)
 
@@ -76,6 +90,10 @@ class Scanner():
 # build_graph(x  *2 )
 
 # name = "chuchi"
+
+
+
+
 # """
 
 # scanner = Scanner(text)
