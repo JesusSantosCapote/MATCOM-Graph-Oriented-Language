@@ -2,6 +2,7 @@ from token_type import Token
 import re
 from exceptions import ScannerError
 
+
 class Scanner():
     
     def __init__(self, source:str) -> None:
