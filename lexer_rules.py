@@ -6,7 +6,10 @@ keywords = {
     'if' : 'IF',
     'else' : 'ELSE',
     'elif' : 'ELIF',
-    'edge' : 'EDGE'
+    'edge' : 'EDGE',
+    'plot' : 'PLOT',
+    'foredge' : 'FOREDGE',
+    'forvertex' : 'FORVERTEX'
 }
 
 tokens = [
@@ -26,7 +29,8 @@ tokens = [
     'NEQUAL',
     'INT',
     'FLOAT',
-    'STRING'
+    'STRING',
+    'COMMA'
  ] + list(keywords.values())
 
 #TOKENS
@@ -44,6 +48,7 @@ t_EQUAL = r'=='
 t_GREATEREQ = r'>='
 t_LESSEQ = r'<='
 t_NEQUAL = r'!='
+t_COMMA = r','
 
 def t_FLOAT (t):
     r'\d+\.\d+'
