@@ -36,6 +36,8 @@ class Assign(Node) :
         self.graph_type = graph_type
         self.vertex = vertex
         self.edges_expression = edges_expression
+    
+
 
 class If(Node) : 
     '''
