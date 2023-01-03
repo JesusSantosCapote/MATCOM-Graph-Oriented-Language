@@ -1,3 +1,6 @@
+from ply import lex
+
+
 keywords = {
     'graph' : 'GRAPH',
     'multigraph' : 'MULTIGRAPH',
@@ -93,20 +96,5 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-from ply import lex
-lexer = lex.lex()
-text = '''
-a = graph (2   , (2,3)   )
-"hola" digraph multigraph
-2.5 < 3.1
-"k" >= "p"
-!=     == <=
-+ - * /
-'''
-lexer.input(text)
 
-while True :
-    tok = lexer.token()
-    if not tok:
-        break
-    print(tok)
+lexer = lex.lex(debug=True)
