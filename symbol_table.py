@@ -40,3 +40,6 @@ class SymbolTable():
             raise Exception('Error: variable ', symbol.id, ' not defined.')
         else :
             self.symbols[symbol.id] = symbol
+
+    def Clone(self) :
+        return SymbolTable(self.symbols.copy())

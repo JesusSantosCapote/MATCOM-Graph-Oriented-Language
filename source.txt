@@ -1,1 +1,7 @@
-if (5<10) begin variable = graph(3,(0,1)(1,2)) end
+this_exist = graph(5, (0,1) (1,2) (0,3))
+plot(this_exist)
+if(5==5)
+begin
+this_not = graph(3, (1,0) (0,2) (1,2))
+plot(this_not)
+end
