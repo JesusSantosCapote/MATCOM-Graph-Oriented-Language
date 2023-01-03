@@ -10,6 +10,7 @@ class Node(ABC):
     def evaluate(self, st):
         pass       
 
+#TODO que todos reciban una linea la crearse
 
 class Instructions(Node):
     def __init__(self, node_list) -> None:
@@ -42,6 +43,22 @@ class Assign(Node) :
         self.vertex = vertex
         self.edges_expression = edges_expression
 
+    
+    def build_graph(self):
+        graph = None
+        if self.graph_type == "MULTIGRAPH":
+            graph = nx.MultiGraph()
+        elif self.graph_type == "DIGRAPH":
+            graph = nx.DiGraph()
+        else:
+            graph = nx.Graph()
+        
+        graph.add_nodes_from(range(self.vertex))
+        graph.add_edges_from(self.edges_expression)
+
+        return graph
+
+
     def evaluate(self, symbol_table : SymbolTable):
         
         for edge in self.edges_expression: #TODO:This need to be fixed. For the iterations checking multiple-edges
@@ -59,10 +76,10 @@ class Assign(Node) :
                     if remain_edge[0] == edge[1] and remain_edge[1] == edge[0]:
                         raise Exception(f"{self.graph_type} can not have multiple edges")
             
+        graph = self.build_graph()
 
         if id in symbol_table.symbols.keys():
-            symbol_table.update(Symbol(self.id,self.graph_type,[self.vertex, self.edges_expression])) 
+            symbol_table.update(Symbol(self.id, self.graph_type, graph)) 
         else:
-            symbol_table.add(Symbol(self.id,self.graph_type,[self.vertex, self.edges_expression])) 
-
+            symbol_table.add(Symbol(self.id, self.graph_type, graph)) 
 
