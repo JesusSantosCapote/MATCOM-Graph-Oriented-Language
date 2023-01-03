@@ -3,7 +3,7 @@ import networkx as nx
 from symbol_table import DataType
 from exceptions import SemanticException
 from symbol_table import *
-
+import matplotlib.pyplot as plt
 
 class Node(ABC):
     @abstractmethod
@@ -28,11 +28,13 @@ class Plot(Node) :
         self.line = line
 
     def evaluate(self, symbol_table): #TODO not implemented
-        symbol = symbol_table[self.graph_id]
-        if symbol.data_type not in [DataType.DIGRAPH, DataType.GRAPH, DataType.PSEUDOGRAPH]:
+        symbol = symbol_table.symbols[self.graph_id]
+        if symbol.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
             raise SemanticException(self.line, 'plot error : plot argument must be a type of graph')
 
         nx.draw(symbol.value, with_labels=True, font_weight='bold')
+        plt.show()
+        
 
 
 class Assign(Node) :
@@ -46,15 +48,18 @@ class Assign(Node) :
     
     def build_graph(self):
         graph = None
-        if self.graph_type == "MULTIGRAPH":
+        if self.graph_type == "multigraph":
             graph = nx.MultiGraph()
-        elif self.graph_type == "DIGRAPH":
+        elif self.graph_type == "digraph":
             graph = nx.DiGraph()
         else:
             graph = nx.Graph()
         
         graph.add_nodes_from(range(self.vertex))
-        graph.add_edges_from(self.edges_expression)
+
+        for edge in self.edges_expression:
+            graph.add_edge(edge[0], edge[1])
+            graph[edge[0]][edge[1]]['weight'] = edge[2]
 
         return graph
 
@@ -64,14 +69,14 @@ class Assign(Node) :
         for edge in range (len(self.edges_expression)):
             if self.edges_expression[edge][0] >= self.vertex or self.edges_expression[edge][0] < 0 or self.edges_expression[edge][1] >= self.vertex or self.edges_expression[edge][1] < 0:
                 raise Exception("Edge non-existent")
-            if self.graph_type != "PSEUDOGRAPH":
+            if self.graph_type != "pseudograph":
                 if self.edges_expression[edge][0] == self.edges_expression[edge][1]:
                     raise Exception(f"{self.graph_type} can not have loop edges")
-            if self.graph_type != "MULTIGRAPH":
+            if self.graph_type != "multigraph":
                 for remain_edge in range(edge + 1, len(self.edges_expression)):
                     if self.edges_expression[remain_edge][0] == self.edges_expression[edge][0] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][1]:
                         raise Exception(f"{self.graph_type} can not have multiple edges")
-            if self.graph_type != "DIGRAPH":
+            if self.graph_type != "digraph":
                 for remain_edge in range(edge + 1,len(self.edges_expression)):
                     if self.edges_expression[remain_edge][0] == self.edges_expression[edge][1] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][0]:
                         raise Exception(f"{self.graph_type} can not have multiple edges")
@@ -82,6 +87,8 @@ class Assign(Node) :
             symbol_table.update(Symbol(self.id, self.graph_type, graph)) 
         else:
             symbol_table.add(Symbol(self.id, self.graph_type, graph)) 
+
+
 class If(Node) :
     def __init__(self,  logic_expression, node_list) :
         self.logic_expression = logic_expression

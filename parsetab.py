@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftMULDIVASSIGN COMMA CPAR DIGRAPH DIV EDGE ELIF ELSE EQUAL FLOAT FOREDGE FORVERTEX GRAPH GREATER GREATEREQ ID IF INT LESS LESSEQ MINUS MUL MULTIGRAPH NEQUAL OPAR PLOT PLUS PSEUDOGRAPH STRINGInstructions    : Instructions InstructionInstructions    : Instruction Instruction      : Plot_instr\n                        | Assign_instrPlot_instr    : PLOT OPAR ID CPARAssign_instr     : ID ASSIGN GRAPH OPAR INT COMMA edge_expression CPAR  \n                        | ID ASSIGN DIGRAPH OPAR INT COMMA edge_expression CPAR\n                        | ID ASSIGN MULTIGRAPH OPAR INT COMMA edge_expression CPAR\n                        | ID ASSIGN PSEUDOGRAPH OPAR INT COMMA edge_expression CPAR                     \n                    edge_expression  : edge_expression OPAR INT COMMA INT CPAR\n                        | OPAR INT COMMA INT CPAR\n                        | edge_expression OPAR INT COMMA INT COMMA INT CPAR\n                        | OPAR INT COMMA INT COMMA INT CPAR\n                        | edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR \n                        | OPAR INT COMMA INT COMMA FLOAT CPAR\n                        '
+_lr_signature = 'leftPLUSMINUSleftMULDIVrightUMINUSASSIGN BEGIN COMMA CPAR DIGRAPH DIV EDGE ELIF ELSE END EQUAL FLOAT FOREDGE FORVERTEX GRAPH GREATER GREATEREQ ID IF INT LESS LESSEQ MINUS MUL MULTIGRAPH NEQUAL OPAR PLOT PLUS PSEUDOGRAPH STRINGInstructions    : Instructions InstructionInstructions    : Instruction Instruction      : Plot_instr\n                        | If_instr\n                        | Assign_instrIf_instr         : IF OPAR logic_expression CPAR BEGIN Instructions ENDPlot_instr    : PLOT OPAR ID CPARAssign_instr     : ID ASSIGN GRAPH OPAR INT COMMA edge_expression CPAR  \n                        | ID ASSIGN DIGRAPH OPAR INT COMMA edge_expression CPAR\n                        | ID ASSIGN MULTIGRAPH OPAR INT COMMA edge_expression CPAR\n                        | ID ASSIGN PSEUDOGRAPH OPAR INT COMMA edge_expression CPAR                     \n                    edge_expression  : edge_expression OPAR INT COMMA INT CPAR\n                        | OPAR INT COMMA INT CPAR\n                        | edge_expression OPAR INT COMMA INT COMMA INT CPAR\n                        | OPAR INT COMMA INT COMMA INT CPAR\n                        | edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR \n                        | OPAR INT COMMA INT COMMA FLOAT CPAR\n                        logic_expression     : value_expression EQUAL value_expression\n                            | value_expression GREATER value_expression\n                            | value_expression LESS value_expression\n                            | value_expression GREATEREQ value_expression\n                            | value_expression LESSEQ value_expression\n                            | value_expression NEQUAL value_expressionvalue_expression     : algebraic_expressionalgebraic_expression     : INT\n                                | FLOAT\n                                | algebraic_expression PLUS algebraic_expression\n                                | algebraic_expression MINUS algebraic_expression\n                                | algebraic_expression MUL algebraic_expression\n                                | algebraic_expression DIV algebraic_expression\n                                | MINUS algebraic_expression %prec UMINUS\n                                '
     
-_lr_action_items = {'PLOT':([0,1,2,3,4,7,15,35,36,37,38,],[5,5,-2,-3,-4,-1,-5,-6,-7,-8,-9,]),'ID':([0,1,2,3,4,7,8,15,35,36,37,38,],[6,6,-2,-3,-4,-1,10,-5,-6,-7,-8,-9,]),'$end':([1,2,3,4,7,15,35,36,37,38,],[0,-2,-3,-4,-1,-5,-6,-7,-8,-9,]),'OPAR':([5,11,12,13,14,24,25,26,27,29,30,31,32,44,49,50,51,54,55,],[8,16,17,18,19,28,28,28,28,34,34,34,34,-11,-10,-13,-15,-12,-14,]),'ASSIGN':([6,],[9,]),'GRAPH':([9,],[11,]),'DIGRAPH':([9,],[12,]),'MULTIGRAPH':([9,],[13,]),'PSEUDOGRAPH':([9,],[14,]),'CPAR':([10,29,30,31,32,41,44,45,46,47,49,50,51,52,53,54,55,],[15,35,36,37,38,44,-11,49,50,51,-10,-13,-15,54,55,-12,-14,]),'INT':([16,17,18,19,28,34,39,42,43,48,],[20,21,22,23,33,40,41,45,46,52,]),'COMMA':([20,21,22,23,33,40,41,45,],[24,25,26,27,39,42,43,48,]),'FLOAT':([43,48,],[47,53,]),}
+_lr_action_items = {'PLOT':([0,1,2,3,4,5,9,24,45,60,66,69,70,71,72,],[6,6,-2,-3,-4,-5,-1,-7,6,6,-6,-8,-9,-10,-11,]),'IF':([0,1,2,3,4,5,9,24,45,60,66,69,70,71,72,],[8,8,-2,-3,-4,-5,-1,-7,8,8,-6,-8,-9,-10,-11,]),'ID':([0,1,2,3,4,5,9,10,24,45,60,66,69,70,71,72,],[7,7,-2,-3,-4,-5,-1,13,-7,7,7,-6,-8,-9,-10,-11,]),'$end':([1,2,3,4,5,9,24,66,69,70,71,72,],[0,-2,-3,-4,-5,-1,-7,-6,-8,-9,-10,-11,]),'END':([2,3,4,5,9,24,60,66,69,70,71,72,],[-2,-3,-4,-5,-1,-7,66,-6,-8,-9,-10,-11,]),'OPAR':([6,8,14,15,16,17,56,57,58,59,62,63,64,65,78,83,84,85,88,89,],[10,12,25,26,27,28,61,61,61,61,68,68,68,68,-13,-12,-15,-17,-14,-16,]),'ASSIGN':([7,],[11,]),'GRAPH':([11,],[14,]),'DIGRAPH':([11,],[15,]),'MULTIGRAPH':([11,],[16,]),'PSEUDOGRAPH':([11,],[17,]),'INT':([12,23,25,26,27,28,30,31,32,33,34,35,36,37,38,39,61,68,73,76,77,82,],[21,21,41,42,43,44,21,21,21,21,21,21,21,21,21,21,67,74,75,79,80,86,]),'FLOAT':([12,23,30,31,32,33,34,35,36,37,38,39,77,82,],[22,22,22,22,22,22,22,22,22,22,22,22,81,87,]),'MINUS':([12,20,21,22,23,30,31,32,33,34,35,36,37,38,39,40,52,53,54,55,],[23,37,-25,-26,23,23,23,23,23,23,23,23,23,23,23,-31,-27,-28,-29,-30,]),'CPAR':([13,18,20,21,22,40,46,47,48,49,50,51,52,53,54,55,62,63,64,65,75,78,79,80,81,83,84,85,86,87,88,89,],[24,29,-24,-25,-26,-31,-18,-19,-20,-21,-22,-23,-27,-28,-29,-30,69,70,71,72,78,-13,83,84,85,-12,-15,-17,88,89,-14,-16,]),'EQUAL':([19,20,21,22,40,52,53,54,55,],[30,-24,-25,-26,-31,-27,-28,-29,-30,]),'GREATER':([19,20,21,22,40,52,53,54,55,],[31,-24,-25,-26,-31,-27,-28,-29,-30,]),'LESS':([19,20,21,22,40,52,53,54,55,],[32,-24,-25,-26,-31,-27,-28,-29,-30,]),'GREATEREQ':([19,20,21,22,40,52,53,54,55,],[33,-24,-25,-26,-31,-27,-28,-29,-30,]),'LESSEQ':([19,20,21,22,40,52,53,54,55,],[34,-24,-25,-26,-31,-27,-28,-29,-30,]),'NEQUAL':([19,20,21,22,40,52,53,54,55,],[35,-24,-25,-26,-31,-27,-28,-29,-30,]),'PLUS':([20,21,22,40,52,53,54,55,],[36,-25,-26,-31,-27,-28,-29,-30,]),'MUL':([20,21,22,40,52,53,54,55,],[38,-25,-26,-31,38,38,-29,-30,]),'DIV':([20,21,22,40,52,53,54,55,],[39,-25,-26,-31,39,39,-29,-30,]),'BEGIN':([29,],[45,]),'COMMA':([41,42,43,44,67,74,75,79,],[56,57,58,59,73,76,77,82,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'Instructions':([0,],[1,]),'Instruction':([0,1,],[2,7,]),'Plot_instr':([0,1,],[3,3,]),'Assign_instr':([0,1,],[4,4,]),'edge_expression':([24,25,26,27,],[29,30,31,32,]),}
+_lr_goto_items = {'Instructions':([0,45,],[1,60,]),'Instruction':([0,1,45,60,],[2,9,2,9,]),'Plot_instr':([0,1,45,60,],[3,3,3,3,]),'If_instr':([0,1,45,60,],[4,4,4,4,]),'Assign_instr':([0,1,45,60,],[5,5,5,5,]),'logic_expression':([12,],[18,]),'value_expression':([12,30,31,32,33,34,35,],[19,46,47,48,49,50,51,]),'algebraic_expression':([12,23,30,31,32,33,34,35,36,37,38,39,],[20,40,20,20,20,20,20,20,52,53,54,55,]),'edge_expression':([56,57,58,59,],[62,63,64,65,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,19 +27,35 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> Instructions","S'",1,None,None,None),
-  ('Instructions -> Instructions Instruction','Instructions',2,'p_instructions_list','parser_rules.py',11),
-  ('Instructions -> Instruction','Instructions',1,'p_instructions_instruction','parser_rules.py',17),
-  ('Instruction -> Plot_instr','Instruction',1,'p_instruction','parser_rules.py',22),
-  ('Instruction -> Assign_instr','Instruction',1,'p_instruction','parser_rules.py',23),
-  ('Plot_instr -> PLOT OPAR ID CPAR','Plot_instr',4,'p_Plot_instr','parser_rules.py',28),
-  ('Assign_instr -> ID ASSIGN GRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',33),
-  ('Assign_instr -> ID ASSIGN DIGRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',34),
-  ('Assign_instr -> ID ASSIGN MULTIGRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',35),
-  ('Assign_instr -> ID ASSIGN PSEUDOGRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',36),
-  ('edge_expression -> edge_expression OPAR INT COMMA INT CPAR','edge_expression',6,'p_edge_expression','parser_rules.py',41),
-  ('edge_expression -> OPAR INT COMMA INT CPAR','edge_expression',5,'p_edge_expression','parser_rules.py',42),
-  ('edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR','edge_expression',8,'p_edge_expression','parser_rules.py',43),
-  ('edge_expression -> OPAR INT COMMA INT COMMA INT CPAR','edge_expression',7,'p_edge_expression','parser_rules.py',44),
-  ('edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR','edge_expression',8,'p_edge_expression','parser_rules.py',45),
-  ('edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR','edge_expression',7,'p_edge_expression','parser_rules.py',46),
+  ('Instructions -> Instructions Instruction','Instructions',2,'p_instructions_list','parser_rules.py',13),
+  ('Instructions -> Instruction','Instructions',1,'p_instructions_instruction','parser_rules.py',20),
+  ('Instruction -> Plot_instr','Instruction',1,'p_instruction','parser_rules.py',26),
+  ('Instruction -> If_instr','Instruction',1,'p_instruction','parser_rules.py',27),
+  ('Instruction -> Assign_instr','Instruction',1,'p_instruction','parser_rules.py',28),
+  ('If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END','If_instr',7,'p_if_instr','parser_rules.py',34),
+  ('Plot_instr -> PLOT OPAR ID CPAR','Plot_instr',4,'p_Plot_instr','parser_rules.py',39),
+  ('Assign_instr -> ID ASSIGN GRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',44),
+  ('Assign_instr -> ID ASSIGN DIGRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',45),
+  ('Assign_instr -> ID ASSIGN MULTIGRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',46),
+  ('Assign_instr -> ID ASSIGN PSEUDOGRAPH OPAR INT COMMA edge_expression CPAR','Assign_instr',8,'p_assign_instr','parser_rules.py',47),
+  ('edge_expression -> edge_expression OPAR INT COMMA INT CPAR','edge_expression',6,'p_edge_expression','parser_rules.py',52),
+  ('edge_expression -> OPAR INT COMMA INT CPAR','edge_expression',5,'p_edge_expression','parser_rules.py',53),
+  ('edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR','edge_expression',8,'p_edge_expression','parser_rules.py',54),
+  ('edge_expression -> OPAR INT COMMA INT COMMA INT CPAR','edge_expression',7,'p_edge_expression','parser_rules.py',55),
+  ('edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR','edge_expression',8,'p_edge_expression','parser_rules.py',56),
+  ('edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR','edge_expression',7,'p_edge_expression','parser_rules.py',57),
+  ('logic_expression -> value_expression EQUAL value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',71),
+  ('logic_expression -> value_expression GREATER value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',72),
+  ('logic_expression -> value_expression LESS value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',73),
+  ('logic_expression -> value_expression GREATEREQ value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',74),
+  ('logic_expression -> value_expression LESSEQ value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',75),
+  ('logic_expression -> value_expression NEQUAL value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',76),
+  ('value_expression -> algebraic_expression','value_expression',1,'p_value_expression','parser_rules.py',81),
+  ('algebraic_expression -> INT','algebraic_expression',1,'p_algebraic_expression','parser_rules.py',86),
+  ('algebraic_expression -> FLOAT','algebraic_expression',1,'p_algebraic_expression','parser_rules.py',87),
+  ('algebraic_expression -> algebraic_expression PLUS algebraic_expression','algebraic_expression',3,'p_algebraic_expression','parser_rules.py',88),
+  ('algebraic_expression -> algebraic_expression MINUS algebraic_expression','algebraic_expression',3,'p_algebraic_expression','parser_rules.py',89),
+  ('algebraic_expression -> algebraic_expression MUL algebraic_expression','algebraic_expression',3,'p_algebraic_expression','parser_rules.py',90),
+  ('algebraic_expression -> algebraic_expression DIV algebraic_expression','algebraic_expression',3,'p_algebraic_expression','parser_rules.py',91),
+  ('algebraic_expression -> MINUS algebraic_expression','algebraic_expression',2,'p_algebraic_expression','parser_rules.py',92),
 ]
