@@ -103,5 +103,23 @@ class If(Node) :
                 instruction.evaluate(new_st)
             for key in st.symbols.keys():
                 st.update(new_st.symbols[key])
-    
+
+
+class If_else(Node) :
+    def __init__(self,  logic_expression, instructions_if_true, instructions_if_false) :
+        self.logic_expression = logic_expression
+        self.instructions_if_true = instructions_if_true
+        self.instructions_if_false = instructions_if_false
+
+    def evaluate(self, st): #TODO Implement local symbol_table for if instruction
+        if self.logic_expression:
+            instructions = self.instructions_if_true
+        else:
+            instructions = self.instructions_if_false
+        new_st = st.Clone()
+        for instruction in instructions.node_list:
+            instruction.evaluate(new_st)
+        for key in st.symbols.keys():
+            st.update(new_st.symbols[key])
+
 
