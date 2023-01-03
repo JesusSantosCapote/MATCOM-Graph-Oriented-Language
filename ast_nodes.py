@@ -1,16 +1,31 @@
 from abc import ABC, abstractmethod
 
-class Instruction ():
-    '''This is an abstract class'''
+
+class Node(ABC):
+    @abstractmethod
+    def evaluate(self):
+        pass       
 
 
-class Plot(Instruction) :
+class Instructions(Node):
+    def __init__(self, node_list) -> None:
+        self.node_list = node_list
+
+    def evaluate(self):
+        for instruction in self.node_list:
+            instruction.evaluate
+
+
+class Plot(Node) :
 
     def __init__(self,  graph) :
         self.graph = graph
 
+    def evaluate(self): #TODO not implemented
+        pass
 
-class Assign(Instruction) :
+
+class Assign(Node) :
     '''
         Esta clase representa la instrucción de asignación de variables
         Recibe como parámetro el identificador a asignar y el valor que será asignado.
@@ -22,7 +37,7 @@ class Assign(Instruction) :
         self.vertex = vertex
         self.edges_expression = edges_expression
 
-class If(Instruction) : 
+class If(Node) : 
     '''
         Esta clase representa la instrucción if.
         La instrucción if recibe como parámetro una expresión lógica y la lista
@@ -33,7 +48,7 @@ class If(Instruction) :
         self.expLogica = expLogica
         self.instrucciones = instrucciones
 
-class IfElse(Instruction) : 
+class IfElse(Node) : 
     '''
         Esta clase representa la instrucción if-else.
         La instrucción if-else recibe como parámetro una expresión lógica y la lista

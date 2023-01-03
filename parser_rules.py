@@ -1,6 +1,7 @@
 from lexer_rules import tokens
 from ast_nodes import *
 
+
 precedence = (
     ('left','PLUS','MINUS'),
     ('left','MUL','DIV')
@@ -15,12 +16,12 @@ precedence = (
 def p_instructions_list(t) :
     'Instructions    : Instructions Instruction'
     t[1].append(t[2])
-    t[0] = t[1]
+    t[0] = Instructions(t[1])
 
 
 def p_instructions_instruction(t) :
     'Instructions    : Instruccion '
-    t[0] = [t[1]]
+    t[0] = Instructions([t[1]])
 
 
 def p_instruction(t) :
