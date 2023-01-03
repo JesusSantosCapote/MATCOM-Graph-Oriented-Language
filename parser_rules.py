@@ -78,7 +78,8 @@ def p_logic_expression(t):
 
 #TODO add function to this production
 def p_value_expression(t):
-    '''value_expression     : algebraic_expression'''
+    'value_expression     : algebraic_expression'
+    #                        |function'''
     t[0] = t[1]
 
 
@@ -99,6 +100,6 @@ def p_algebraic_expression(t):
         t[0] = -t[2]
 
 
-# def p_function(t):
-#     '''function     : '''
+#def p_function(t):
+#    '''function     : '''
 parser = yacc.yacc(debug=True)

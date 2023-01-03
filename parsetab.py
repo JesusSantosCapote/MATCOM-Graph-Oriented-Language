@@ -50,7 +50,7 @@ _lr_productions = [
   ('logic_expression -> value_expression GREATEREQ value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',74),
   ('logic_expression -> value_expression LESSEQ value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',75),
   ('logic_expression -> value_expression NEQUAL value_expression','logic_expression',3,'p_logic_expression','parser_rules.py',76),
-  ('value_expression -> algebraic_expression','value_expression',1,'p_value_expression','parser_rules.py',81),
+  ('value_expression -> algebraic_expression','value_expression',1,'p_value_expression','parser_rules.py',80),
   ('algebraic_expression -> INT','algebraic_expression',1,'p_algebraic_expression','parser_rules.py',86),
   ('algebraic_expression -> FLOAT','algebraic_expression',1,'p_algebraic_expression','parser_rules.py',87),
   ('algebraic_expression -> algebraic_expression PLUS algebraic_expression','algebraic_expression',3,'p_algebraic_expression','parser_rules.py',88),

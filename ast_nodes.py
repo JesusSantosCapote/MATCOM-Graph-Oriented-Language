@@ -90,9 +90,12 @@ class Assign(Node) :
 
 
 class If(Node) :
-    def __init__(self,  logic_expression, node_list) :
+    def __init__(self,  logic_expression, instructions) :
         self.logic_expression = logic_expression
-        self.node_list = node_list
+        self.instructions = instructions
 
-    def evaluate(self, st): #TODO not implemented
-        pass
+    def evaluate(self, st): #TODO Implement local symbol_table for if instruction
+        if self.logic_expression:
+            for instruction in self.instructions.node_list:
+                instruction.evaluate(st)
+
