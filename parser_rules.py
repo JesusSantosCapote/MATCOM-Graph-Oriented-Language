@@ -7,12 +7,6 @@ precedence = (
     ('left','MUL','DIV')
     )
 
-
-# def p_init(t) :
-#     'Init            : Instructions'
-#     t[0] = t[1]
-
-
 def p_instructions_list(t) :
     'Instructions    : Instructions Instruction'
     t[1].append(t[2])
@@ -20,7 +14,7 @@ def p_instructions_list(t) :
 
 
 def p_instructions_instruction(t) :
-    'Instructions    : Instruccion '
+    'Instructions    : Instruction '
     t[0] = Instructions([t[1]])
 
 
@@ -46,3 +40,20 @@ def p_assign_instr(t) :
                         | ID EQUAL PSEUDOGRAPH OPAR INT COMMA edges_expression CPAR                     
                     '''
     t[0] = Assign(t[1], t[3], t[5], t[7])
+
+def p_edge_expression(t) :
+    '''edge_expression  : OPAR INT COMMA INT CPAR edge_expression
+                        | OPAR INT COMMA INT CPAR
+                        | OPAR INT COMMA INT COMMA INT CPAR edge_expression
+                        | OPAR INT COMMA INT COMMA INT CPAR
+                        | OPAR INT COMMA INT COMMA FLOAT CPAR edge_expression
+                        | OPAR INT COMMA INT COMMA FLOAT CPAR
+                        '''
+    if len(t) == 7:
+        t[0] = t[6].append((t[2], t[4], 0))
+    elif len(t) == 6:
+        t[0] = [(t[2], t[4], 0)]
+    elif len(t) == 9:
+        t[0] =t[8].append((t[2], t[4], t[6]))
+    else:
+        t[0] = [(t[2], t[4], t[6])]
