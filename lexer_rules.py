@@ -12,7 +12,9 @@ keywords = {
     'edge' : 'EDGE',
     'plot' : 'PLOT',
     'foredge' : 'FOREDGE',
-    'forvertex' : 'FORVERTEX'
+    'forvertex' : 'FORVERTEX',
+    'begin' : 'BEGIN',
+    'end' : 'END'
 }
 
 tokens = [

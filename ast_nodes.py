@@ -36,25 +36,31 @@ class Assign(Node) :
 
     def evaluate(self, symbol_table : SymbolTable):
         
-        for edge in self.edges_expression: #TODO:This need to be fixed. For the iterations checking multiple-edges
-            if edge[0] >= self.vertex or edge[0] < 0 or edge[1] >= self.vertex or edge[1] < 0:
+        for edge in range (len(self.edges_expression)):
+            if self.edges_expression[edge][0] >= self.vertex or self.edges_expression[edge][0] < 0 or self.edges_expression[edge][1] >= self.vertex or self.edges_expression[edge][1] < 0:
                 raise Exception("Edge non-existent")
             if self.graph_type != "PSEUDOGRAPH":
-                if edge[0] == edge[1]:
+                if self.edges_expression[edge][0] == self.edges_expression[edge][1]:
                     raise Exception(f"{self.graph_type} can not have loop edges")
             if self.graph_type != "MULTIGRAPH":
-                for remain_edge in range(edge,len(self.edges_expression)):
-                    if remain_edge[0] == edge[0] and remain_edge[1] == edge[1]:
+                for remain_edge in range(edge + 1, len(self.edges_expression)):
+                    if self.edges_expression[remain_edge][0] == self.edges_expression[edge][0] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][1]:
                         raise Exception(f"{self.graph_type} can not have multiple edges")
             if self.graph_type != "DIGRAPH":
-                for remain_edge in range(edge,len(self.edges_expression)):
-                    if remain_edge[0] == edge[1] and remain_edge[1] == edge[0]:
+                for remain_edge in range(edge + 1,len(self.edges_expression)):
+                    if self.edges_expression[remain_edge][0] == self.edges_expression[edge][1] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][0]:
                         raise Exception(f"{self.graph_type} can not have multiple edges")
             
 
-        if id in symbol_table.symbols.keys():
+        if id in symbol_table.symbols.keys(): #TODO: Create an object of type networkx
             symbol_table.update(Symbol(self.id,self.graph_type,[self.vertex, self.edges_expression])) 
         else:
             symbol_table.add(Symbol(self.id,self.graph_type,[self.vertex, self.edges_expression])) 
 
+class If(Node) :
+    def __init__(self,  logic_expression, node_list) :
+        self.logic_expression = logic_expression
+        self.node_list = node_list
 
+    def evaluate(self, st): #TODO not implemented
+        pass

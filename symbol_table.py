@@ -14,6 +14,9 @@ class Symbol():
         self.id = id
         self.data_type = data_type
         self.value = value
+    def __str__(self):
+        string = f"{self.id} {self.data_type} {self.value}"
+        return string
 
 
 class SymbolTable():

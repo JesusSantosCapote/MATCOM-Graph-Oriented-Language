@@ -18,10 +18,17 @@ def p_instructions_instruction(t) :
     t[0] = Instructions([t[1]])
 
 
-def p_instruction(t) :
+def p_instruction(t) : #TODO: Put some more Instructions here
     '''Instruction      : Plot_instr
+                        | If_instr
                         | Assign_instr'''
+                        
     t[0] = t[1]
+
+
+def p_if_instr(t):
+    'IF_instr         : IF OPAR logic_expression CPAR BEGIN Instructions END'
+    t[0] = If(t[3], t[6])
 
 
 def p_Plot_instr(t):
@@ -61,4 +68,6 @@ def p_edge_expression(t) :
         t[0] = [(t[2], t[4], t[6])]
     print(t[0])
 
+def p_logic_expression(t):
+    '''logic_expression     :'''
 parser = yacc.yacc(debug=True)
