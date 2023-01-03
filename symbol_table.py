@@ -27,13 +27,13 @@ class SymbolTable():
 
     def get(self, id):
         if not id in self.symbols:
-            print('Error: variable ', id, ' not defined.')
+            raise Exception('Error: variable ', id, ' not defined.')
 
         return self.symbols[id]
 
 
     def update(self, symbol) :
         if not symbol.id in self.symbols :
-            print('Error: variable ', symbol.id, ' not defined.')
+            raise Exception('Error: variable ', symbol.id, ' not defined.')
         else :
             self.symbols[symbol.id] = symbol

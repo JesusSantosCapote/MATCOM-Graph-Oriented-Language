@@ -1,5 +1,4 @@
 import sys
-from scanner import Scanner
 
 class DSL:
 
@@ -35,12 +34,8 @@ class DSL:
 
     
     def run(source):
-        scanner = Scanner(source)
-        tokens = scanner.get_tokens()
+        pass
 
-        #for now only print
-        for tok in tokens:
-            print(tok)
 
 
     @staticmethod

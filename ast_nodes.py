@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+import networkx as nx
+from symbol_table import DataType
+from exceptions import SemanticException
 
 
 class Node(ABC):
@@ -18,11 +21,16 @@ class Instructions(Node):
 
 class Plot(Node) :
 
-    def __init__(self,  graph) :
-        self.graph = graph
+    def __init__(self, graph_id, line) :
+        self.graph_id = graph_id
+        self.line = line
 
-    def evaluate(self): #TODO not implemented
-        pass
+    def evaluate(self, symbol_table): #TODO not implemented
+        symbol = symbol_table[self.graph_id]
+        if symbol.data_type not in [DataType.DIGRAPH, DataType.GRAPH, DataType.PSEUDOGRAPH]:
+            raise SemanticException(self.line, 'plot error : plot argument must be a type of graph')
+
+        nx.draw(symbol.value, with_labels=True, font_weight='bold')
 
 
 class Assign(Node) :
