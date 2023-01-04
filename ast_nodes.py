@@ -40,8 +40,8 @@ class Plot(Node) :
 class Graph_operation(Node):
     
     def __init__(self, graph_expression_object1, graph_expression_object2, operation, line):
-        self.graph1 = graph_expression_object1
-        self.graph2 = graph_expression_object2
+        self.graph_expression_object1 = graph_expression_object1
+        self.graph_expression_object2 = graph_expression_object2
         self.operation = operation
         self.line = line
     
@@ -49,7 +49,7 @@ class Graph_operation(Node):
         graph1 = self.graph_expression_object1.evaluate(st)
         graph2 = self.graph_expression_object2.evaluate(st)
         if graph1.is_directed() == graph2.is_directed():
-            return Bool_Operations(self.operation)(graph1, graph2)
+            return Graph_Operations[self.operation](graph1, graph2)
         else:
             raise TypeError(f"At line: {self.line}. The graph variables has different types")
 
