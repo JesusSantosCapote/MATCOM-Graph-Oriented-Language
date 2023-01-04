@@ -94,6 +94,49 @@ class Create_graph(Node) :
         graph = self.build_graph()  
         return graph
 
+
+class Create_graph_with_vertex(Node):
+    def __init__(self, graph_type, vertexs_expression, edges_expression, line ) :
+        self.graph_type = graph_type
+        self.vertexs_expression = vertexs_expression
+        self.edges_expression = edges_expression
+        self.line = line
+
+
+    def build_graph(self):
+        graph = None
+        if self.graph_type == "digraph":
+            graph = nx.DiGraph()
+        else:
+            graph = nx.Graph()
+        
+        graph.add_nodes_from(self.vertexs_expression)
+
+        for edge in self.edges_expression:
+            graph.add_edge(edge[0], edge[1])
+            graph[edge[0]][edge[1]]['weight'] = edge[2]
+
+        return graph
+
+
+    def evaluate(self, st):
+        for edge in range (len(self.edges_expression)):
+            if not self.edges_expression[edge][0] in self.vertexs_expression or not self.edges_expression[edge][1] in self.vertexs_expression:
+                raise Exception(f"At line {self.line}. Edge non-existent")
+            if self.edges_expression[edge][0] == self.edges_expression[edge][1]:
+                raise Exception(f"At line {self.line}. {self.graph_type} can not have loop edges")
+            for remain_edge in range(edge + 1, len(self.edges_expression)):
+                if self.edges_expression[remain_edge][0] == self.edges_expression[edge][0] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][1]:
+                    raise Exception(f"At line {self.line}.{self.graph_type} can not have multiple edges")
+            if self.graph_type != "digraph":
+                for remain_edge in range(edge + 1,len(self.edges_expression)):
+                    if self.edges_expression[remain_edge][0] == self.edges_expression[edge][1] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][0]:
+                        raise Exception(f"At line {self.line}. {self.graph_type} can not have multiple edges")
+            
+        graph = self.build_graph()  
+        return graph
+
+
 class Assign(Node) :
 
     def __init__(self, id, graph_expression_object) :
