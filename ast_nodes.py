@@ -34,7 +34,6 @@ class Plot(Node) :
 
         nx.draw(symbol.value, with_labels=True, font_weight='bold')
         plt.show()
-        
 
 
 class Assign(Node) :
@@ -63,7 +62,7 @@ class Assign(Node) :
 
         return graph
 
-
+#TODO Hasta ahora solo podemos crear grafos normales
     def evaluate(self, symbol_table : SymbolTable):
         
         for edge in range (len(self.edges_expression)):
@@ -98,4 +97,29 @@ class If(Node) :
         if self.logic_expression:
             for instruction in self.instructions.node_list:
                 instruction.evaluate(st)
+
+
+class GraphOperAssign(Node):
+    def __init__(self, operation, id1, id2, store_id, line) -> None:
+        self.id1 = id1
+        self.id2 = id2
+        self.operation = operation
+        self.line = line
+        self.store_id = store_id
+
+
+    def evaluate(self, st):
+        symbol1 = st.symbols[self.id1]
+        if symbol1.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
+            raise TypeError(f"{self.operation} error at line {self.line}: variable {self.id1} must hava a type of graph")
+
+        symbol2 = st.symbols[self.id2]
+        if symbol2.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
+            raise TypeError(f"{self.operation} error at line {self.line}: variable {self.id2} must hava a type of graph")
+
+        if symbol1.data_type != symbol2.data_type:
+            raise TypeError(f"{self.operation} error at line {self.line}: {self.id1} and {self.id2} they are not the same type of graph")
+
+        
+
 
