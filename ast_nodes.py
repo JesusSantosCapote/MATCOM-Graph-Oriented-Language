@@ -215,7 +215,8 @@ class If(Node) :
         self.instructions = instructions
 
     def evaluate(self, st):
-        if self.logic_expression:
+        solved_logic_expression = self.logic_expression.evaluate(st)
+        if solved_logic_expression:
             new_st = st.Clone()
             for instruction in self.instructions.node_list:
                 instruction.evaluate(new_st)
@@ -230,7 +231,8 @@ class If_else(Node) :
         self.instructions_if_false = instructions_if_false
 
     def evaluate(self, st):
-        if self.logic_expression:
+        solved_logic_expression = self.logic_expression.evaluate(st)
+        if solved_logic_expression:
             instructions = self.instructions_if_true
         else:
             instructions = self.instructions_if_false
@@ -285,3 +287,45 @@ class For_edge(Node) :
                 new_st = st.Clone()
         else:
             raise TypeError(f"At line: {self.line}. {self.graph} is a {graph_data.data_type} variable, a graph variable was expected")
+
+
+class Numerical_value(Node):
+
+    def __init__(self, value) :
+        self.value = value
+
+    def evaluate(self, st):
+        return self.value
+
+class Algebraic_expression(Node):
+
+    def __init__(self, exp1, exp2, operation) :
+        self.exp1 = exp1
+        self.exp2 = exp2
+        self.operation = operation
+
+    def evaluate(self, st):
+        solved_exp1 = self.exp1.evaluate(st)
+        solved_exp2 = self.exp2.evaluate(st)
+        return Arithmetic_Operations[self.operation](solved_exp1,solved_exp2)
+
+class Minus_operation(Node):
+
+    def __init__(self, exp) :
+        self.exp = exp
+
+    def evaluate(self, st):
+        value = self.exp.evaluate(st)
+        return -value
+
+class Bool_Operation(Node):
+
+    def __init__(self, exp1, exp2, operator) :
+        self.exp1 = exp1
+        self.exp2 = exp2
+        self.operator = operator
+
+    def evaluate(self, st):
+        solved_exp1 = self.exp1.evaluate(st)
+        solved_exp2 = self.exp2.evaluate(st)
+        return Bool_Operations[self.operator](solved_exp1,solved_exp2)
