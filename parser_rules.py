@@ -69,7 +69,9 @@ def p_graph_expression(t) :
                             | GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
                             | DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
                             | graph_expression UNION graph_expression
-                            | graph_expression INTERSECTION graph_expression'''
+                            | graph_expression INTERSECTION graph_expression
+                            | graph_expression DIFFERENCE graph_expression
+                            '''
                             
     if len(t) == 7:
         t[0] = Create_graph(t[1], t[3], t[5], t.lineno(1))

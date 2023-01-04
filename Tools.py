@@ -61,7 +61,7 @@ Arithmetic_Operations={
 Graph_Operations={
     'union' : union,
     'intersection' : intersection,
-    'difference' : 3
+    'difference' : difference
 }
 
 

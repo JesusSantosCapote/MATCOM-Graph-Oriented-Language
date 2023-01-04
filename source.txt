@@ -1,2 +1,2 @@
-un_grafo = graph(3,)
+un_grafo = graph(3, (0,1)(1,2)(0,2)) difference graph(1,)
 plot(un_grafo)

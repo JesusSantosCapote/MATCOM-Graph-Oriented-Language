@@ -3,7 +3,6 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     COMPLEMENT
-    DIFFERENCE
     EDGE
     ELIF
     MULTIGRAPH
@@ -33,68 +32,69 @@ Rule 17    graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_e
 Rule 18    graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
 Rule 19    graph_expression -> graph_expression UNION graph_expression
 Rule 20    graph_expression -> graph_expression INTERSECTION graph_expression
-Rule 21    vertex_expression -> vertex_expression INT
-Rule 22    vertex_expression -> INT
-Rule 23    edge_expression -> edge_expression OPAR INT COMMA INT CPAR
-Rule 24    edge_expression -> OPAR INT COMMA INT CPAR
-Rule 25    edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR
-Rule 26    edge_expression -> OPAR INT COMMA INT COMMA INT CPAR
-Rule 27    edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
-Rule 28    edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR
-Rule 29    edge_expression -> empty
-Rule 30    logic_expression -> value_expression EQUAL value_expression
-Rule 31    logic_expression -> value_expression GREATER value_expression
-Rule 32    logic_expression -> value_expression LESS value_expression
-Rule 33    logic_expression -> value_expression GREATEREQ value_expression
-Rule 34    logic_expression -> value_expression LESSEQ value_expression
-Rule 35    logic_expression -> value_expression NEQUAL value_expression
-Rule 36    value_expression -> algebraic_expression
-Rule 37    algebraic_expression -> INT
-Rule 38    algebraic_expression -> FLOAT
-Rule 39    algebraic_expression -> algebraic_expression PLUS algebraic_expression
-Rule 40    algebraic_expression -> algebraic_expression MINUS algebraic_expression
-Rule 41    algebraic_expression -> algebraic_expression MUL algebraic_expression
-Rule 42    algebraic_expression -> algebraic_expression DIV algebraic_expression
-Rule 43    algebraic_expression -> MINUS algebraic_expression
-Rule 44    empty -> <empty>
+Rule 21    graph_expression -> graph_expression DIFFERENCE graph_expression
+Rule 22    vertex_expression -> vertex_expression INT
+Rule 23    vertex_expression -> INT
+Rule 24    edge_expression -> edge_expression OPAR INT COMMA INT CPAR
+Rule 25    edge_expression -> OPAR INT COMMA INT CPAR
+Rule 26    edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR
+Rule 27    edge_expression -> OPAR INT COMMA INT COMMA INT CPAR
+Rule 28    edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
+Rule 29    edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR
+Rule 30    edge_expression -> empty
+Rule 31    logic_expression -> value_expression EQUAL value_expression
+Rule 32    logic_expression -> value_expression GREATER value_expression
+Rule 33    logic_expression -> value_expression LESS value_expression
+Rule 34    logic_expression -> value_expression GREATEREQ value_expression
+Rule 35    logic_expression -> value_expression LESSEQ value_expression
+Rule 36    logic_expression -> value_expression NEQUAL value_expression
+Rule 37    value_expression -> algebraic_expression
+Rule 38    algebraic_expression -> INT
+Rule 39    algebraic_expression -> FLOAT
+Rule 40    algebraic_expression -> algebraic_expression PLUS algebraic_expression
+Rule 41    algebraic_expression -> algebraic_expression MINUS algebraic_expression
+Rule 42    algebraic_expression -> algebraic_expression MUL algebraic_expression
+Rule 43    algebraic_expression -> algebraic_expression DIV algebraic_expression
+Rule 44    algebraic_expression -> MINUS algebraic_expression
+Rule 45    empty -> <empty>
 
 Terminals, with rules where they appear
 
 ASSIGN               : 14
 BEGIN                : 9 10 10 11 12
 CBR                  : 17 18
-COMMA                : 15 16 17 18 23 24 25 25 26 26 27 27 28 28
+COMMA                : 15 16 17 18 24 25 26 26 27 27 28 28 29 29
 COMPLEMENT           : 
-CPAR                 : 9 10 13 15 16 17 18 23 24 25 26 27 28
-DIFFERENCE           : 
+CPAR                 : 9 10 13 15 16 17 18 24 25 26 27 28 29
+DIFFERENCE           : 21
 DIGRAPH              : 16 18
-DIV                  : 42
+DIV                  : 43
 EDGE                 : 
 ELIF                 : 
 ELSE                 : 10
 END                  : 9 10 10 11 12
-EQUAL                : 30
-FLOAT                : 27 28 38
+EQUAL                : 31
+FLOAT                : 28 29 39
 FOREDGE              : 12
 FORVERTEX            : 11
 GRAPH                : 15 17
-GREATER              : 31
-GREATEREQ            : 33
+GREATER              : 32
+GREATEREQ            : 34
 ID                   : 11 11 12 12 13 14
 IF                   : 9 10
 IN                   : 11 12
-INT                  : 15 16 21 22 23 23 24 24 25 25 25 26 26 26 27 27 28 28 37
+INT                  : 15 16 22 23 24 24 25 25 26 26 26 27 27 27 28 28 29 29 38
 INTERSECTION         : 20
-LESS                 : 32
-LESSEQ               : 34
-MINUS                : 40 43
-MUL                  : 41
+LESS                 : 33
+LESSEQ               : 35
+MINUS                : 41 44
+MUL                  : 42
 MULTIGRAPH           : 
-NEQUAL               : 35
+NEQUAL               : 36
 OBR                  : 17 18
-OPAR                 : 9 10 13 15 16 17 18 23 24 25 26 27 28
+OPAR                 : 9 10 13 15 16 17 18 24 25 26 27 28 29
 PLOT                 : 13
-PLUS                 : 39
+PLUS                 : 40
 PSEUDOGRAPH          : 
 STRING               : 
 UNION                : 19
@@ -110,13 +110,13 @@ If_instr             : 4
 Instruction          : 1 2
 Instructions         : 1 9 10 10 11 12 0
 Plot_instr           : 3
-algebraic_expression : 36 39 39 40 40 41 41 42 42 43
-edge_expression      : 15 16 17 18 23 25 27
-empty                : 29
-graph_expression     : 14 19 19 20 20
+algebraic_expression : 37 40 40 41 41 42 42 43 43 44
+edge_expression      : 15 16 17 18 24 26 28
+empty                : 30
+graph_expression     : 14 19 19 20 20 21 21
 logic_expression     : 9 10
-value_expression     : 30 30 31 31 32 32 33 33 34 34 35 35
-vertex_expression    : 17 18 21
+value_expression     : 31 31 32 32 33 33 34 34 35 35 36 36
+vertex_expression    : 17 18 22
 
 Parsing method: LALR
 
@@ -340,6 +340,7 @@ state 16
     (18) graph_expression -> . DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
     (19) graph_expression -> . graph_expression UNION graph_expression
     (20) graph_expression -> . graph_expression INTERSECTION graph_expression
+    (21) graph_expression -> . graph_expression DIFFERENCE graph_expression
 
     GRAPH           shift and go to state 22
     DIGRAPH         shift and go to state 23
@@ -350,20 +351,20 @@ state 17
 
     (9) If_instr -> IF OPAR . logic_expression CPAR BEGIN Instructions END
     (10) If_else_instr -> IF OPAR . logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
-    (30) logic_expression -> . value_expression EQUAL value_expression
-    (31) logic_expression -> . value_expression GREATER value_expression
-    (32) logic_expression -> . value_expression LESS value_expression
-    (33) logic_expression -> . value_expression GREATEREQ value_expression
-    (34) logic_expression -> . value_expression LESSEQ value_expression
-    (35) logic_expression -> . value_expression NEQUAL value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (31) logic_expression -> . value_expression EQUAL value_expression
+    (32) logic_expression -> . value_expression GREATER value_expression
+    (33) logic_expression -> . value_expression LESS value_expression
+    (34) logic_expression -> . value_expression GREATEREQ value_expression
+    (35) logic_expression -> . value_expression LESSEQ value_expression
+    (36) logic_expression -> . value_expression NEQUAL value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -399,6 +400,7 @@ state 21
     (14) Assign_instr -> ID ASSIGN graph_expression .
     (19) graph_expression -> graph_expression . UNION graph_expression
     (20) graph_expression -> graph_expression . INTERSECTION graph_expression
+    (21) graph_expression -> graph_expression . DIFFERENCE graph_expression
 
     PLOT            reduce using rule 14 (Assign_instr -> ID ASSIGN graph_expression .)
     IF              reduce using rule 14 (Assign_instr -> ID ASSIGN graph_expression .)
@@ -409,6 +411,7 @@ state 21
     END             reduce using rule 14 (Assign_instr -> ID ASSIGN graph_expression .)
     UNION           shift and go to state 33
     INTERSECTION    shift and go to state 34
+    DIFFERENCE      shift and go to state 35
 
 
 state 22
@@ -416,7 +419,7 @@ state 22
     (15) graph_expression -> GRAPH . OPAR INT COMMA edge_expression CPAR
     (17) graph_expression -> GRAPH . OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
 
-    OPAR            shift and go to state 35
+    OPAR            shift and go to state 36
 
 
 state 23
@@ -424,7 +427,7 @@ state 23
     (16) graph_expression -> DIGRAPH . OPAR INT COMMA edge_expression CPAR
     (18) graph_expression -> DIGRAPH . OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
 
-    OPAR            shift and go to state 36
+    OPAR            shift and go to state 37
 
 
 state 24
@@ -432,110 +435,110 @@ state 24
     (9) If_instr -> IF OPAR logic_expression . CPAR BEGIN Instructions END
     (10) If_else_instr -> IF OPAR logic_expression . CPAR BEGIN Instructions END ELSE BEGIN Instructions END
 
-    CPAR            shift and go to state 37
+    CPAR            shift and go to state 38
 
 
 state 25
 
-    (30) logic_expression -> value_expression . EQUAL value_expression
-    (31) logic_expression -> value_expression . GREATER value_expression
-    (32) logic_expression -> value_expression . LESS value_expression
-    (33) logic_expression -> value_expression . GREATEREQ value_expression
-    (34) logic_expression -> value_expression . LESSEQ value_expression
-    (35) logic_expression -> value_expression . NEQUAL value_expression
+    (31) logic_expression -> value_expression . EQUAL value_expression
+    (32) logic_expression -> value_expression . GREATER value_expression
+    (33) logic_expression -> value_expression . LESS value_expression
+    (34) logic_expression -> value_expression . GREATEREQ value_expression
+    (35) logic_expression -> value_expression . LESSEQ value_expression
+    (36) logic_expression -> value_expression . NEQUAL value_expression
 
-    EQUAL           shift and go to state 38
-    GREATER         shift and go to state 39
-    LESS            shift and go to state 40
-    GREATEREQ       shift and go to state 41
-    LESSEQ          shift and go to state 42
-    NEQUAL          shift and go to state 43
+    EQUAL           shift and go to state 39
+    GREATER         shift and go to state 40
+    LESS            shift and go to state 41
+    GREATEREQ       shift and go to state 42
+    LESSEQ          shift and go to state 43
+    NEQUAL          shift and go to state 44
 
 
 state 26
 
-    (36) value_expression -> algebraic_expression .
-    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (37) value_expression -> algebraic_expression .
+    (40) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (43) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    EQUAL           reduce using rule 36 (value_expression -> algebraic_expression .)
-    GREATER         reduce using rule 36 (value_expression -> algebraic_expression .)
-    LESS            reduce using rule 36 (value_expression -> algebraic_expression .)
-    GREATEREQ       reduce using rule 36 (value_expression -> algebraic_expression .)
-    LESSEQ          reduce using rule 36 (value_expression -> algebraic_expression .)
-    NEQUAL          reduce using rule 36 (value_expression -> algebraic_expression .)
-    CPAR            reduce using rule 36 (value_expression -> algebraic_expression .)
-    PLUS            shift and go to state 44
-    MINUS           shift and go to state 45
-    MUL             shift and go to state 46
-    DIV             shift and go to state 47
+    EQUAL           reduce using rule 37 (value_expression -> algebraic_expression .)
+    GREATER         reduce using rule 37 (value_expression -> algebraic_expression .)
+    LESS            reduce using rule 37 (value_expression -> algebraic_expression .)
+    GREATEREQ       reduce using rule 37 (value_expression -> algebraic_expression .)
+    LESSEQ          reduce using rule 37 (value_expression -> algebraic_expression .)
+    NEQUAL          reduce using rule 37 (value_expression -> algebraic_expression .)
+    CPAR            reduce using rule 37 (value_expression -> algebraic_expression .)
+    PLUS            shift and go to state 45
+    MINUS           shift and go to state 46
+    MUL             shift and go to state 47
+    DIV             shift and go to state 48
 
 
 state 27
 
-    (37) algebraic_expression -> INT .
+    (38) algebraic_expression -> INT .
 
-    PLUS            reduce using rule 37 (algebraic_expression -> INT .)
-    MINUS           reduce using rule 37 (algebraic_expression -> INT .)
-    MUL             reduce using rule 37 (algebraic_expression -> INT .)
-    DIV             reduce using rule 37 (algebraic_expression -> INT .)
-    EQUAL           reduce using rule 37 (algebraic_expression -> INT .)
-    GREATER         reduce using rule 37 (algebraic_expression -> INT .)
-    LESS            reduce using rule 37 (algebraic_expression -> INT .)
-    GREATEREQ       reduce using rule 37 (algebraic_expression -> INT .)
-    LESSEQ          reduce using rule 37 (algebraic_expression -> INT .)
-    NEQUAL          reduce using rule 37 (algebraic_expression -> INT .)
-    CPAR            reduce using rule 37 (algebraic_expression -> INT .)
+    PLUS            reduce using rule 38 (algebraic_expression -> INT .)
+    MINUS           reduce using rule 38 (algebraic_expression -> INT .)
+    MUL             reduce using rule 38 (algebraic_expression -> INT .)
+    DIV             reduce using rule 38 (algebraic_expression -> INT .)
+    EQUAL           reduce using rule 38 (algebraic_expression -> INT .)
+    GREATER         reduce using rule 38 (algebraic_expression -> INT .)
+    LESS            reduce using rule 38 (algebraic_expression -> INT .)
+    GREATEREQ       reduce using rule 38 (algebraic_expression -> INT .)
+    LESSEQ          reduce using rule 38 (algebraic_expression -> INT .)
+    NEQUAL          reduce using rule 38 (algebraic_expression -> INT .)
+    CPAR            reduce using rule 38 (algebraic_expression -> INT .)
 
 
 state 28
 
-    (38) algebraic_expression -> FLOAT .
+    (39) algebraic_expression -> FLOAT .
 
-    PLUS            reduce using rule 38 (algebraic_expression -> FLOAT .)
-    MINUS           reduce using rule 38 (algebraic_expression -> FLOAT .)
-    MUL             reduce using rule 38 (algebraic_expression -> FLOAT .)
-    DIV             reduce using rule 38 (algebraic_expression -> FLOAT .)
-    EQUAL           reduce using rule 38 (algebraic_expression -> FLOAT .)
-    GREATER         reduce using rule 38 (algebraic_expression -> FLOAT .)
-    LESS            reduce using rule 38 (algebraic_expression -> FLOAT .)
-    GREATEREQ       reduce using rule 38 (algebraic_expression -> FLOAT .)
-    LESSEQ          reduce using rule 38 (algebraic_expression -> FLOAT .)
-    NEQUAL          reduce using rule 38 (algebraic_expression -> FLOAT .)
-    CPAR            reduce using rule 38 (algebraic_expression -> FLOAT .)
+    PLUS            reduce using rule 39 (algebraic_expression -> FLOAT .)
+    MINUS           reduce using rule 39 (algebraic_expression -> FLOAT .)
+    MUL             reduce using rule 39 (algebraic_expression -> FLOAT .)
+    DIV             reduce using rule 39 (algebraic_expression -> FLOAT .)
+    EQUAL           reduce using rule 39 (algebraic_expression -> FLOAT .)
+    GREATER         reduce using rule 39 (algebraic_expression -> FLOAT .)
+    LESS            reduce using rule 39 (algebraic_expression -> FLOAT .)
+    GREATEREQ       reduce using rule 39 (algebraic_expression -> FLOAT .)
+    LESSEQ          reduce using rule 39 (algebraic_expression -> FLOAT .)
+    NEQUAL          reduce using rule 39 (algebraic_expression -> FLOAT .)
+    CPAR            reduce using rule 39 (algebraic_expression -> FLOAT .)
 
 
 state 29
 
-    (43) algebraic_expression -> MINUS . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (44) algebraic_expression -> MINUS . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
     MINUS           shift and go to state 29
 
-    algebraic_expression           shift and go to state 48
+    algebraic_expression           shift and go to state 49
 
 state 30
 
     (11) For_vertex_instr -> FORVERTEX ID IN . ID BEGIN Instructions END
 
-    ID              shift and go to state 49
+    ID              shift and go to state 50
 
 
 state 31
 
     (12) For_edge_instr -> FOREDGE ID IN . ID BEGIN Instructions END
 
-    ID              shift and go to state 50
+    ID              shift and go to state 51
 
 
 state 32
@@ -560,11 +563,12 @@ state 33
     (18) graph_expression -> . DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
     (19) graph_expression -> . graph_expression UNION graph_expression
     (20) graph_expression -> . graph_expression INTERSECTION graph_expression
+    (21) graph_expression -> . graph_expression DIFFERENCE graph_expression
 
     GRAPH           shift and go to state 22
     DIGRAPH         shift and go to state 23
 
-    graph_expression               shift and go to state 51
+    graph_expression               shift and go to state 52
 
 state 34
 
@@ -575,25 +579,33 @@ state 34
     (18) graph_expression -> . DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
     (19) graph_expression -> . graph_expression UNION graph_expression
     (20) graph_expression -> . graph_expression INTERSECTION graph_expression
+    (21) graph_expression -> . graph_expression DIFFERENCE graph_expression
 
     GRAPH           shift and go to state 22
     DIGRAPH         shift and go to state 23
 
-    graph_expression               shift and go to state 52
+    graph_expression               shift and go to state 53
 
 state 35
 
-    (15) graph_expression -> GRAPH OPAR . INT COMMA edge_expression CPAR
-    (17) graph_expression -> GRAPH OPAR . OBR vertex_expression CBR COMMA edge_expression CPAR
+    (21) graph_expression -> graph_expression DIFFERENCE . graph_expression
+    (15) graph_expression -> . GRAPH OPAR INT COMMA edge_expression CPAR
+    (16) graph_expression -> . DIGRAPH OPAR INT COMMA edge_expression CPAR
+    (17) graph_expression -> . GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
+    (18) graph_expression -> . DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
+    (19) graph_expression -> . graph_expression UNION graph_expression
+    (20) graph_expression -> . graph_expression INTERSECTION graph_expression
+    (21) graph_expression -> . graph_expression DIFFERENCE graph_expression
 
-    INT             shift and go to state 53
-    OBR             shift and go to state 54
+    GRAPH           shift and go to state 22
+    DIGRAPH         shift and go to state 23
 
+    graph_expression               shift and go to state 54
 
 state 36
 
-    (16) graph_expression -> DIGRAPH OPAR . INT COMMA edge_expression CPAR
-    (18) graph_expression -> DIGRAPH OPAR . OBR vertex_expression CBR COMMA edge_expression CPAR
+    (15) graph_expression -> GRAPH OPAR . INT COMMA edge_expression CPAR
+    (17) graph_expression -> GRAPH OPAR . OBR vertex_expression CBR COMMA edge_expression CPAR
 
     INT             shift and go to state 55
     OBR             shift and go to state 56
@@ -601,61 +613,32 @@ state 36
 
 state 37
 
-    (9) If_instr -> IF OPAR logic_expression CPAR . BEGIN Instructions END
-    (10) If_else_instr -> IF OPAR logic_expression CPAR . BEGIN Instructions END ELSE BEGIN Instructions END
+    (16) graph_expression -> DIGRAPH OPAR . INT COMMA edge_expression CPAR
+    (18) graph_expression -> DIGRAPH OPAR . OBR vertex_expression CBR COMMA edge_expression CPAR
 
-    BEGIN           shift and go to state 57
+    INT             shift and go to state 57
+    OBR             shift and go to state 58
 
 
 state 38
 
-    (30) logic_expression -> value_expression EQUAL . value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (9) If_instr -> IF OPAR logic_expression CPAR . BEGIN Instructions END
+    (10) If_else_instr -> IF OPAR logic_expression CPAR . BEGIN Instructions END ELSE BEGIN Instructions END
 
-    INT             shift and go to state 27
-    FLOAT           shift and go to state 28
-    MINUS           shift and go to state 29
+    BEGIN           shift and go to state 59
 
-    value_expression               shift and go to state 58
-    algebraic_expression           shift and go to state 26
 
 state 39
 
-    (31) logic_expression -> value_expression GREATER . value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
-
-    INT             shift and go to state 27
-    FLOAT           shift and go to state 28
-    MINUS           shift and go to state 29
-
-    value_expression               shift and go to state 59
-    algebraic_expression           shift and go to state 26
-
-state 40
-
-    (32) logic_expression -> value_expression LESS . value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (31) logic_expression -> value_expression EQUAL . value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -664,17 +647,17 @@ state 40
     value_expression               shift and go to state 60
     algebraic_expression           shift and go to state 26
 
-state 41
+state 40
 
-    (33) logic_expression -> value_expression GREATEREQ . value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (32) logic_expression -> value_expression GREATER . value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -683,17 +666,17 @@ state 41
     value_expression               shift and go to state 61
     algebraic_expression           shift and go to state 26
 
-state 42
+state 41
 
-    (34) logic_expression -> value_expression LESSEQ . value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (33) logic_expression -> value_expression LESS . value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -702,17 +685,17 @@ state 42
     value_expression               shift and go to state 62
     algebraic_expression           shift and go to state 26
 
-state 43
+state 42
 
-    (35) logic_expression -> value_expression NEQUAL . value_expression
-    (36) value_expression -> . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (34) logic_expression -> value_expression GREATEREQ . value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -721,50 +704,54 @@ state 43
     value_expression               shift and go to state 63
     algebraic_expression           shift and go to state 26
 
-state 44
+state 43
 
-    (39) algebraic_expression -> algebraic_expression PLUS . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (35) logic_expression -> value_expression LESSEQ . value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
     MINUS           shift and go to state 29
 
-    algebraic_expression           shift and go to state 64
+    value_expression               shift and go to state 64
+    algebraic_expression           shift and go to state 26
+
+state 44
+
+    (36) logic_expression -> value_expression NEQUAL . value_expression
+    (37) value_expression -> . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
+
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 28
+    MINUS           shift and go to state 29
+
+    value_expression               shift and go to state 65
+    algebraic_expression           shift and go to state 26
 
 state 45
 
-    (40) algebraic_expression -> algebraic_expression MINUS . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
-
-    INT             shift and go to state 27
-    FLOAT           shift and go to state 28
-    MINUS           shift and go to state 29
-
-    algebraic_expression           shift and go to state 65
-
-state 46
-
-    (41) algebraic_expression -> algebraic_expression MUL . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression PLUS . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -772,16 +759,16 @@ state 46
 
     algebraic_expression           shift and go to state 66
 
-state 47
+state 46
 
-    (42) algebraic_expression -> algebraic_expression DIV . algebraic_expression
-    (37) algebraic_expression -> . INT
-    (38) algebraic_expression -> . FLOAT
-    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (43) algebraic_expression -> . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression MINUS . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -789,54 +776,90 @@ state 47
 
     algebraic_expression           shift and go to state 67
 
+state 47
+
+    (42) algebraic_expression -> algebraic_expression MUL . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
+
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 28
+    MINUS           shift and go to state 29
+
+    algebraic_expression           shift and go to state 68
+
 state 48
 
-    (43) algebraic_expression -> MINUS algebraic_expression .
-    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (43) algebraic_expression -> algebraic_expression DIV . algebraic_expression
+    (38) algebraic_expression -> . INT
+    (39) algebraic_expression -> . FLOAT
+    (40) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (43) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (44) algebraic_expression -> . MINUS algebraic_expression
 
-    PLUS            reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    MINUS           reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    MUL             reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    DIV             reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    EQUAL           reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    GREATER         reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    LESS            reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    GREATEREQ       reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    LESSEQ          reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    NEQUAL          reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
-    CPAR            reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    INT             shift and go to state 27
+    FLOAT           shift and go to state 28
+    MINUS           shift and go to state 29
 
-  ! PLUS            [ shift and go to state 44 ]
-  ! MINUS           [ shift and go to state 45 ]
-  ! MUL             [ shift and go to state 46 ]
-  ! DIV             [ shift and go to state 47 ]
-
+    algebraic_expression           shift and go to state 69
 
 state 49
 
-    (11) For_vertex_instr -> FORVERTEX ID IN ID . BEGIN Instructions END
+    (44) algebraic_expression -> MINUS algebraic_expression .
+    (40) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (43) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    BEGIN           shift and go to state 68
+    PLUS            reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    MINUS           reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    MUL             reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    DIV             reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    EQUAL           reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    GREATER         reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    LESS            reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    GREATEREQ       reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    LESSEQ          reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    NEQUAL          reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+    CPAR            reduce using rule 44 (algebraic_expression -> MINUS algebraic_expression .)
+
+  ! PLUS            [ shift and go to state 45 ]
+  ! MINUS           [ shift and go to state 46 ]
+  ! MUL             [ shift and go to state 47 ]
+  ! DIV             [ shift and go to state 48 ]
 
 
 state 50
 
-    (12) For_edge_instr -> FOREDGE ID IN ID . BEGIN Instructions END
+    (11) For_vertex_instr -> FORVERTEX ID IN ID . BEGIN Instructions END
 
-    BEGIN           shift and go to state 69
+    BEGIN           shift and go to state 70
 
 
 state 51
 
+    (12) For_edge_instr -> FOREDGE ID IN ID . BEGIN Instructions END
+
+    BEGIN           shift and go to state 71
+
+
+state 52
+
     (19) graph_expression -> graph_expression UNION graph_expression .
     (19) graph_expression -> graph_expression . UNION graph_expression
     (20) graph_expression -> graph_expression . INTERSECTION graph_expression
+    (21) graph_expression -> graph_expression . DIFFERENCE graph_expression
 
   ! shift/reduce conflict for UNION resolved as shift
   ! shift/reduce conflict for INTERSECTION resolved as shift
+  ! shift/reduce conflict for DIFFERENCE resolved as shift
     PLOT            reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .)
     IF              reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .)
     FORVERTEX       reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .)
@@ -846,19 +869,23 @@ state 51
     END             reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .)
     UNION           shift and go to state 33
     INTERSECTION    shift and go to state 34
+    DIFFERENCE      shift and go to state 35
 
   ! UNION           [ reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .) ]
   ! INTERSECTION    [ reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .) ]
+  ! DIFFERENCE      [ reduce using rule 19 (graph_expression -> graph_expression UNION graph_expression .) ]
 
 
-state 52
+state 53
 
     (20) graph_expression -> graph_expression INTERSECTION graph_expression .
     (19) graph_expression -> graph_expression . UNION graph_expression
     (20) graph_expression -> graph_expression . INTERSECTION graph_expression
+    (21) graph_expression -> graph_expression . DIFFERENCE graph_expression
 
   ! shift/reduce conflict for UNION resolved as shift
   ! shift/reduce conflict for INTERSECTION resolved as shift
+  ! shift/reduce conflict for DIFFERENCE resolved as shift
     PLOT            reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .)
     IF              reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .)
     FORVERTEX       reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .)
@@ -868,261 +895,77 @@ state 52
     END             reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .)
     UNION           shift and go to state 33
     INTERSECTION    shift and go to state 34
+    DIFFERENCE      shift and go to state 35
 
   ! UNION           [ reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .) ]
   ! INTERSECTION    [ reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .) ]
-
-
-state 53
-
-    (15) graph_expression -> GRAPH OPAR INT . COMMA edge_expression CPAR
-
-    COMMA           shift and go to state 70
+  ! DIFFERENCE      [ reduce using rule 20 (graph_expression -> graph_expression INTERSECTION graph_expression .) ]
 
 
 state 54
 
-    (17) graph_expression -> GRAPH OPAR OBR . vertex_expression CBR COMMA edge_expression CPAR
-    (21) vertex_expression -> . vertex_expression INT
-    (22) vertex_expression -> . INT
+    (21) graph_expression -> graph_expression DIFFERENCE graph_expression .
+    (19) graph_expression -> graph_expression . UNION graph_expression
+    (20) graph_expression -> graph_expression . INTERSECTION graph_expression
+    (21) graph_expression -> graph_expression . DIFFERENCE graph_expression
 
-    INT             shift and go to state 72
+  ! shift/reduce conflict for UNION resolved as shift
+  ! shift/reduce conflict for INTERSECTION resolved as shift
+  ! shift/reduce conflict for DIFFERENCE resolved as shift
+    PLOT            reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    IF              reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    FORVERTEX       reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    ID              reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    FOREDGE         reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    $end            reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    END             reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .)
+    UNION           shift and go to state 33
+    INTERSECTION    shift and go to state 34
+    DIFFERENCE      shift and go to state 35
 
-    vertex_expression              shift and go to state 71
+  ! UNION           [ reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .) ]
+  ! INTERSECTION    [ reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .) ]
+  ! DIFFERENCE      [ reduce using rule 21 (graph_expression -> graph_expression DIFFERENCE graph_expression .) ]
+
 
 state 55
 
-    (16) graph_expression -> DIGRAPH OPAR INT . COMMA edge_expression CPAR
+    (15) graph_expression -> GRAPH OPAR INT . COMMA edge_expression CPAR
 
-    COMMA           shift and go to state 73
+    COMMA           shift and go to state 72
 
 
 state 56
 
-    (18) graph_expression -> DIGRAPH OPAR OBR . vertex_expression CBR COMMA edge_expression CPAR
-    (21) vertex_expression -> . vertex_expression INT
-    (22) vertex_expression -> . INT
+    (17) graph_expression -> GRAPH OPAR OBR . vertex_expression CBR COMMA edge_expression CPAR
+    (22) vertex_expression -> . vertex_expression INT
+    (23) vertex_expression -> . INT
 
-    INT             shift and go to state 72
+    INT             shift and go to state 74
 
-    vertex_expression              shift and go to state 74
+    vertex_expression              shift and go to state 73
 
 state 57
 
-    (9) If_instr -> IF OPAR logic_expression CPAR BEGIN . Instructions END
-    (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN . Instructions END ELSE BEGIN Instructions END
-    (1) Instructions -> . Instructions Instruction
-    (2) Instructions -> . Instruction
-    (3) Instruction -> . Plot_instr
-    (4) Instruction -> . If_instr
-    (5) Instruction -> . If_else_instr
-    (6) Instruction -> . For_vertex_instr
-    (7) Instruction -> . Assign_instr
-    (8) Instruction -> . For_edge_instr
-    (13) Plot_instr -> . PLOT OPAR ID CPAR
-    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
-    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
-    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
-    (14) Assign_instr -> . ID ASSIGN graph_expression
-    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
+    (16) graph_expression -> DIGRAPH OPAR INT . COMMA edge_expression CPAR
 
-    PLOT            shift and go to state 9
-    IF              shift and go to state 11
-    FORVERTEX       shift and go to state 12
-    ID              shift and go to state 10
-    FOREDGE         shift and go to state 13
+    COMMA           shift and go to state 75
 
-    Instructions                   shift and go to state 75
-    Instruction                    shift and go to state 2
-    Plot_instr                     shift and go to state 3
-    If_instr                       shift and go to state 4
-    If_else_instr                  shift and go to state 5
-    For_vertex_instr               shift and go to state 6
-    Assign_instr                   shift and go to state 7
-    For_edge_instr                 shift and go to state 8
 
 state 58
 
-    (30) logic_expression -> value_expression EQUAL value_expression .
+    (18) graph_expression -> DIGRAPH OPAR OBR . vertex_expression CBR COMMA edge_expression CPAR
+    (22) vertex_expression -> . vertex_expression INT
+    (23) vertex_expression -> . INT
 
-    CPAR            reduce using rule 30 (logic_expression -> value_expression EQUAL value_expression .)
+    INT             shift and go to state 74
 
+    vertex_expression              shift and go to state 76
 
 state 59
 
-    (31) logic_expression -> value_expression GREATER value_expression .
-
-    CPAR            reduce using rule 31 (logic_expression -> value_expression GREATER value_expression .)
-
-
-state 60
-
-    (32) logic_expression -> value_expression LESS value_expression .
-
-    CPAR            reduce using rule 32 (logic_expression -> value_expression LESS value_expression .)
-
-
-state 61
-
-    (33) logic_expression -> value_expression GREATEREQ value_expression .
-
-    CPAR            reduce using rule 33 (logic_expression -> value_expression GREATEREQ value_expression .)
-
-
-state 62
-
-    (34) logic_expression -> value_expression LESSEQ value_expression .
-
-    CPAR            reduce using rule 34 (logic_expression -> value_expression LESSEQ value_expression .)
-
-
-state 63
-
-    (35) logic_expression -> value_expression NEQUAL value_expression .
-
-    CPAR            reduce using rule 35 (logic_expression -> value_expression NEQUAL value_expression .)
-
-
-state 64
-
-    (39) algebraic_expression -> algebraic_expression PLUS algebraic_expression .
-    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
-
-    PLUS            reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    MINUS           reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    EQUAL           reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    GREATER         reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    LESS            reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    GREATEREQ       reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    LESSEQ          reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    NEQUAL          reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    CPAR            reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    MUL             shift and go to state 46
-    DIV             shift and go to state 47
-
-  ! MUL             [ reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
-  ! DIV             [ reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
-  ! PLUS            [ shift and go to state 44 ]
-  ! MINUS           [ shift and go to state 45 ]
-
-
-state 65
-
-    (40) algebraic_expression -> algebraic_expression MINUS algebraic_expression .
-    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
-
-    PLUS            reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    MINUS           reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    EQUAL           reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    GREATER         reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    LESS            reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    GREATEREQ       reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    LESSEQ          reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    NEQUAL          reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    CPAR            reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    MUL             shift and go to state 46
-    DIV             shift and go to state 47
-
-  ! MUL             [ reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
-  ! DIV             [ reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
-  ! PLUS            [ shift and go to state 44 ]
-  ! MINUS           [ shift and go to state 45 ]
-
-
-state 66
-
-    (41) algebraic_expression -> algebraic_expression MUL algebraic_expression .
-    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
-
-    PLUS            reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    MINUS           reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    MUL             reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    DIV             reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    EQUAL           reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    GREATER         reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    LESS            reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    GREATEREQ       reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    LESSEQ          reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    NEQUAL          reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    CPAR            reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-
-  ! PLUS            [ shift and go to state 44 ]
-  ! MINUS           [ shift and go to state 45 ]
-  ! MUL             [ shift and go to state 46 ]
-  ! DIV             [ shift and go to state 47 ]
-
-
-state 67
-
-    (42) algebraic_expression -> algebraic_expression DIV algebraic_expression .
-    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
-
-    PLUS            reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    MINUS           reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    MUL             reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    DIV             reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    EQUAL           reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    GREATER         reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    LESS            reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    GREATEREQ       reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    LESSEQ          reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    NEQUAL          reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    CPAR            reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-
-  ! PLUS            [ shift and go to state 44 ]
-  ! MINUS           [ shift and go to state 45 ]
-  ! MUL             [ shift and go to state 46 ]
-  ! DIV             [ shift and go to state 47 ]
-
-
-state 68
-
-    (11) For_vertex_instr -> FORVERTEX ID IN ID BEGIN . Instructions END
-    (1) Instructions -> . Instructions Instruction
-    (2) Instructions -> . Instruction
-    (3) Instruction -> . Plot_instr
-    (4) Instruction -> . If_instr
-    (5) Instruction -> . If_else_instr
-    (6) Instruction -> . For_vertex_instr
-    (7) Instruction -> . Assign_instr
-    (8) Instruction -> . For_edge_instr
-    (13) Plot_instr -> . PLOT OPAR ID CPAR
-    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
-    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
-    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
-    (14) Assign_instr -> . ID ASSIGN graph_expression
-    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
-
-    PLOT            shift and go to state 9
-    IF              shift and go to state 11
-    FORVERTEX       shift and go to state 12
-    ID              shift and go to state 10
-    FOREDGE         shift and go to state 13
-
-    Instructions                   shift and go to state 76
-    Instruction                    shift and go to state 2
-    Plot_instr                     shift and go to state 3
-    If_instr                       shift and go to state 4
-    If_else_instr                  shift and go to state 5
-    For_vertex_instr               shift and go to state 6
-    Assign_instr                   shift and go to state 7
-    For_edge_instr                 shift and go to state 8
-
-state 69
-
-    (12) For_edge_instr -> FOREDGE ID IN ID BEGIN . Instructions END
+    (9) If_instr -> IF OPAR logic_expression CPAR BEGIN . Instructions END
+    (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN . Instructions END ELSE BEGIN Instructions END
     (1) Instructions -> . Instructions Instruction
     (2) Instructions -> . Instruction
     (3) Instruction -> . Plot_instr
@@ -1153,142 +996,290 @@ state 69
     Assign_instr                   shift and go to state 7
     For_edge_instr                 shift and go to state 8
 
+state 60
+
+    (31) logic_expression -> value_expression EQUAL value_expression .
+
+    CPAR            reduce using rule 31 (logic_expression -> value_expression EQUAL value_expression .)
+
+
+state 61
+
+    (32) logic_expression -> value_expression GREATER value_expression .
+
+    CPAR            reduce using rule 32 (logic_expression -> value_expression GREATER value_expression .)
+
+
+state 62
+
+    (33) logic_expression -> value_expression LESS value_expression .
+
+    CPAR            reduce using rule 33 (logic_expression -> value_expression LESS value_expression .)
+
+
+state 63
+
+    (34) logic_expression -> value_expression GREATEREQ value_expression .
+
+    CPAR            reduce using rule 34 (logic_expression -> value_expression GREATEREQ value_expression .)
+
+
+state 64
+
+    (35) logic_expression -> value_expression LESSEQ value_expression .
+
+    CPAR            reduce using rule 35 (logic_expression -> value_expression LESSEQ value_expression .)
+
+
+state 65
+
+    (36) logic_expression -> value_expression NEQUAL value_expression .
+
+    CPAR            reduce using rule 36 (logic_expression -> value_expression NEQUAL value_expression .)
+
+
+state 66
+
+    (40) algebraic_expression -> algebraic_expression PLUS algebraic_expression .
+    (40) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (43) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+
+    PLUS            reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    MINUS           reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    EQUAL           reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    GREATER         reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    LESS            reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    GREATEREQ       reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    LESSEQ          reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    NEQUAL          reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    CPAR            reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    MUL             shift and go to state 47
+    DIV             shift and go to state 48
+
+  ! MUL             [ reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
+  ! DIV             [ reduce using rule 40 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
+  ! PLUS            [ shift and go to state 45 ]
+  ! MINUS           [ shift and go to state 46 ]
+
+
+state 67
+
+    (41) algebraic_expression -> algebraic_expression MINUS algebraic_expression .
+    (40) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (43) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+
+    PLUS            reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    MINUS           reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    EQUAL           reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    GREATER         reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    LESS            reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    GREATEREQ       reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    LESSEQ          reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    NEQUAL          reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    CPAR            reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    MUL             shift and go to state 47
+    DIV             shift and go to state 48
+
+  ! MUL             [ reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
+  ! DIV             [ reduce using rule 41 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
+  ! PLUS            [ shift and go to state 45 ]
+  ! MINUS           [ shift and go to state 46 ]
+
+
+state 68
+
+    (42) algebraic_expression -> algebraic_expression MUL algebraic_expression .
+    (40) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (43) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+
+    PLUS            reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    MINUS           reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    MUL             reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    DIV             reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    EQUAL           reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    GREATER         reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    LESS            reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    GREATEREQ       reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    LESSEQ          reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    NEQUAL          reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    CPAR            reduce using rule 42 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+
+  ! PLUS            [ shift and go to state 45 ]
+  ! MINUS           [ shift and go to state 46 ]
+  ! MUL             [ shift and go to state 47 ]
+  ! DIV             [ shift and go to state 48 ]
+
+
+state 69
+
+    (43) algebraic_expression -> algebraic_expression DIV algebraic_expression .
+    (40) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (43) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+
+    PLUS            reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    MINUS           reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    MUL             reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    DIV             reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    EQUAL           reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    GREATER         reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    LESS            reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    GREATEREQ       reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    LESSEQ          reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    NEQUAL          reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    CPAR            reduce using rule 43 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+
+  ! PLUS            [ shift and go to state 45 ]
+  ! MINUS           [ shift and go to state 46 ]
+  ! MUL             [ shift and go to state 47 ]
+  ! DIV             [ shift and go to state 48 ]
+
+
 state 70
 
-    (15) graph_expression -> GRAPH OPAR INT COMMA . edge_expression CPAR
-    (23) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
-    (24) edge_expression -> . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
-    (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
-    (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
-    (29) edge_expression -> . empty
-    (44) empty -> .
+    (11) For_vertex_instr -> FORVERTEX ID IN ID BEGIN . Instructions END
+    (1) Instructions -> . Instructions Instruction
+    (2) Instructions -> . Instruction
+    (3) Instruction -> . Plot_instr
+    (4) Instruction -> . If_instr
+    (5) Instruction -> . If_else_instr
+    (6) Instruction -> . For_vertex_instr
+    (7) Instruction -> . Assign_instr
+    (8) Instruction -> . For_edge_instr
+    (13) Plot_instr -> . PLOT OPAR ID CPAR
+    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
+    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
+    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
+    (14) Assign_instr -> . ID ASSIGN graph_expression
+    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-  ! shift/reduce conflict for OPAR resolved as shift
-    OPAR            shift and go to state 78
-    CPAR            reduce using rule 44 (empty -> .)
+    PLOT            shift and go to state 9
+    IF              shift and go to state 11
+    FORVERTEX       shift and go to state 12
+    ID              shift and go to state 10
+    FOREDGE         shift and go to state 13
 
-  ! OPAR            [ reduce using rule 44 (empty -> .) ]
-
-    edge_expression                shift and go to state 79
-    empty                          shift and go to state 80
+    Instructions                   shift and go to state 78
+    Instruction                    shift and go to state 2
+    Plot_instr                     shift and go to state 3
+    If_instr                       shift and go to state 4
+    If_else_instr                  shift and go to state 5
+    For_vertex_instr               shift and go to state 6
+    Assign_instr                   shift and go to state 7
+    For_edge_instr                 shift and go to state 8
 
 state 71
 
-    (17) graph_expression -> GRAPH OPAR OBR vertex_expression . CBR COMMA edge_expression CPAR
-    (21) vertex_expression -> vertex_expression . INT
+    (12) For_edge_instr -> FOREDGE ID IN ID BEGIN . Instructions END
+    (1) Instructions -> . Instructions Instruction
+    (2) Instructions -> . Instruction
+    (3) Instruction -> . Plot_instr
+    (4) Instruction -> . If_instr
+    (5) Instruction -> . If_else_instr
+    (6) Instruction -> . For_vertex_instr
+    (7) Instruction -> . Assign_instr
+    (8) Instruction -> . For_edge_instr
+    (13) Plot_instr -> . PLOT OPAR ID CPAR
+    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
+    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
+    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
+    (14) Assign_instr -> . ID ASSIGN graph_expression
+    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    CBR             shift and go to state 81
-    INT             shift and go to state 82
+    PLOT            shift and go to state 9
+    IF              shift and go to state 11
+    FORVERTEX       shift and go to state 12
+    ID              shift and go to state 10
+    FOREDGE         shift and go to state 13
 
+    Instructions                   shift and go to state 79
+    Instruction                    shift and go to state 2
+    Plot_instr                     shift and go to state 3
+    If_instr                       shift and go to state 4
+    If_else_instr                  shift and go to state 5
+    For_vertex_instr               shift and go to state 6
+    Assign_instr                   shift and go to state 7
+    For_edge_instr                 shift and go to state 8
 
 state 72
 
-    (22) vertex_expression -> INT .
+    (15) graph_expression -> GRAPH OPAR INT COMMA . edge_expression CPAR
+    (24) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
+    (25) edge_expression -> . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
+    (27) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (30) edge_expression -> . empty
+    (45) empty -> .
 
-    CBR             reduce using rule 22 (vertex_expression -> INT .)
-    INT             reduce using rule 22 (vertex_expression -> INT .)
+  ! shift/reduce conflict for OPAR resolved as shift
+    OPAR            shift and go to state 80
+    CPAR            reduce using rule 45 (empty -> .)
 
+  ! OPAR            [ reduce using rule 45 (empty -> .) ]
+
+    edge_expression                shift and go to state 81
+    empty                          shift and go to state 82
 
 state 73
 
-    (16) graph_expression -> DIGRAPH OPAR INT COMMA . edge_expression CPAR
-    (23) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
-    (24) edge_expression -> . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
-    (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
-    (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
-    (29) edge_expression -> . empty
-    (44) empty -> .
+    (17) graph_expression -> GRAPH OPAR OBR vertex_expression . CBR COMMA edge_expression CPAR
+    (22) vertex_expression -> vertex_expression . INT
 
-  ! shift/reduce conflict for OPAR resolved as shift
-    OPAR            shift and go to state 78
-    CPAR            reduce using rule 44 (empty -> .)
+    CBR             shift and go to state 83
+    INT             shift and go to state 84
 
-  ! OPAR            [ reduce using rule 44 (empty -> .) ]
-
-    edge_expression                shift and go to state 83
-    empty                          shift and go to state 80
 
 state 74
 
-    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression . CBR COMMA edge_expression CPAR
-    (21) vertex_expression -> vertex_expression . INT
+    (23) vertex_expression -> INT .
 
-    CBR             shift and go to state 84
-    INT             shift and go to state 82
+    CBR             reduce using rule 23 (vertex_expression -> INT .)
+    INT             reduce using rule 23 (vertex_expression -> INT .)
 
 
 state 75
 
-    (9) If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions . END
-    (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions . END ELSE BEGIN Instructions END
-    (1) Instructions -> Instructions . Instruction
-    (3) Instruction -> . Plot_instr
-    (4) Instruction -> . If_instr
-    (5) Instruction -> . If_else_instr
-    (6) Instruction -> . For_vertex_instr
-    (7) Instruction -> . Assign_instr
-    (8) Instruction -> . For_edge_instr
-    (13) Plot_instr -> . PLOT OPAR ID CPAR
-    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
-    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
-    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
-    (14) Assign_instr -> . ID ASSIGN graph_expression
-    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
+    (16) graph_expression -> DIGRAPH OPAR INT COMMA . edge_expression CPAR
+    (24) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
+    (25) edge_expression -> . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
+    (27) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (30) edge_expression -> . empty
+    (45) empty -> .
 
-    END             shift and go to state 85
-    PLOT            shift and go to state 9
-    IF              shift and go to state 11
-    FORVERTEX       shift and go to state 12
-    ID              shift and go to state 10
-    FOREDGE         shift and go to state 13
+  ! shift/reduce conflict for OPAR resolved as shift
+    OPAR            shift and go to state 80
+    CPAR            reduce using rule 45 (empty -> .)
 
-    Instruction                    shift and go to state 14
-    Plot_instr                     shift and go to state 3
-    If_instr                       shift and go to state 4
-    If_else_instr                  shift and go to state 5
-    For_vertex_instr               shift and go to state 6
-    Assign_instr                   shift and go to state 7
-    For_edge_instr                 shift and go to state 8
+  ! OPAR            [ reduce using rule 45 (empty -> .) ]
+
+    edge_expression                shift and go to state 85
+    empty                          shift and go to state 82
 
 state 76
 
-    (11) For_vertex_instr -> FORVERTEX ID IN ID BEGIN Instructions . END
-    (1) Instructions -> Instructions . Instruction
-    (3) Instruction -> . Plot_instr
-    (4) Instruction -> . If_instr
-    (5) Instruction -> . If_else_instr
-    (6) Instruction -> . For_vertex_instr
-    (7) Instruction -> . Assign_instr
-    (8) Instruction -> . For_edge_instr
-    (13) Plot_instr -> . PLOT OPAR ID CPAR
-    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
-    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
-    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
-    (14) Assign_instr -> . ID ASSIGN graph_expression
-    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
+    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression . CBR COMMA edge_expression CPAR
+    (22) vertex_expression -> vertex_expression . INT
 
-    END             shift and go to state 86
-    PLOT            shift and go to state 9
-    IF              shift and go to state 11
-    FORVERTEX       shift and go to state 12
-    ID              shift and go to state 10
-    FOREDGE         shift and go to state 13
+    CBR             shift and go to state 86
+    INT             shift and go to state 84
 
-    Instruction                    shift and go to state 14
-    Plot_instr                     shift and go to state 3
-    If_instr                       shift and go to state 4
-    If_else_instr                  shift and go to state 5
-    For_vertex_instr               shift and go to state 6
-    Assign_instr                   shift and go to state 7
-    For_edge_instr                 shift and go to state 8
 
 state 77
 
-    (12) For_edge_instr -> FOREDGE ID IN ID BEGIN Instructions . END
+    (9) If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions . END
+    (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions . END ELSE BEGIN Instructions END
     (1) Instructions -> Instructions . Instruction
     (3) Instruction -> . Plot_instr
     (4) Instruction -> . If_instr
@@ -1320,66 +1311,130 @@ state 77
 
 state 78
 
-    (24) edge_expression -> OPAR . INT COMMA INT CPAR
-    (26) edge_expression -> OPAR . INT COMMA INT COMMA INT CPAR
-    (28) edge_expression -> OPAR . INT COMMA INT COMMA FLOAT CPAR
+    (11) For_vertex_instr -> FORVERTEX ID IN ID BEGIN Instructions . END
+    (1) Instructions -> Instructions . Instruction
+    (3) Instruction -> . Plot_instr
+    (4) Instruction -> . If_instr
+    (5) Instruction -> . If_else_instr
+    (6) Instruction -> . For_vertex_instr
+    (7) Instruction -> . Assign_instr
+    (8) Instruction -> . For_edge_instr
+    (13) Plot_instr -> . PLOT OPAR ID CPAR
+    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
+    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
+    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
+    (14) Assign_instr -> . ID ASSIGN graph_expression
+    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    INT             shift and go to state 88
+    END             shift and go to state 88
+    PLOT            shift and go to state 9
+    IF              shift and go to state 11
+    FORVERTEX       shift and go to state 12
+    ID              shift and go to state 10
+    FOREDGE         shift and go to state 13
 
+    Instruction                    shift and go to state 14
+    Plot_instr                     shift and go to state 3
+    If_instr                       shift and go to state 4
+    If_else_instr                  shift and go to state 5
+    For_vertex_instr               shift and go to state 6
+    Assign_instr                   shift and go to state 7
+    For_edge_instr                 shift and go to state 8
 
 state 79
 
-    (15) graph_expression -> GRAPH OPAR INT COMMA edge_expression . CPAR
-    (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (12) For_edge_instr -> FOREDGE ID IN ID BEGIN Instructions . END
+    (1) Instructions -> Instructions . Instruction
+    (3) Instruction -> . Plot_instr
+    (4) Instruction -> . If_instr
+    (5) Instruction -> . If_else_instr
+    (6) Instruction -> . For_vertex_instr
+    (7) Instruction -> . Assign_instr
+    (8) Instruction -> . For_edge_instr
+    (13) Plot_instr -> . PLOT OPAR ID CPAR
+    (9) If_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END
+    (10) If_else_instr -> . IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
+    (11) For_vertex_instr -> . FORVERTEX ID IN ID BEGIN Instructions END
+    (14) Assign_instr -> . ID ASSIGN graph_expression
+    (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    CPAR            shift and go to state 90
-    OPAR            shift and go to state 89
+    END             shift and go to state 89
+    PLOT            shift and go to state 9
+    IF              shift and go to state 11
+    FORVERTEX       shift and go to state 12
+    ID              shift and go to state 10
+    FOREDGE         shift and go to state 13
 
+    Instruction                    shift and go to state 14
+    Plot_instr                     shift and go to state 3
+    If_instr                       shift and go to state 4
+    If_else_instr                  shift and go to state 5
+    For_vertex_instr               shift and go to state 6
+    Assign_instr                   shift and go to state 7
+    For_edge_instr                 shift and go to state 8
 
 state 80
 
-    (29) edge_expression -> empty .
+    (25) edge_expression -> OPAR . INT COMMA INT CPAR
+    (27) edge_expression -> OPAR . INT COMMA INT COMMA INT CPAR
+    (29) edge_expression -> OPAR . INT COMMA INT COMMA FLOAT CPAR
 
-    CPAR            reduce using rule 29 (edge_expression -> empty .)
-    OPAR            reduce using rule 29 (edge_expression -> empty .)
+    INT             shift and go to state 90
 
 
 state 81
 
-    (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
+    (15) graph_expression -> GRAPH OPAR INT COMMA edge_expression . CPAR
+    (24) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
 
-    COMMA           shift and go to state 91
+    CPAR            shift and go to state 92
+    OPAR            shift and go to state 91
 
 
 state 82
 
-    (21) vertex_expression -> vertex_expression INT .
+    (30) edge_expression -> empty .
 
-    CBR             reduce using rule 21 (vertex_expression -> vertex_expression INT .)
-    INT             reduce using rule 21 (vertex_expression -> vertex_expression INT .)
+    CPAR            reduce using rule 30 (edge_expression -> empty .)
+    OPAR            reduce using rule 30 (edge_expression -> empty .)
 
 
 state 83
 
-    (16) graph_expression -> DIGRAPH OPAR INT COMMA edge_expression . CPAR
-    (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
-
-    CPAR            shift and go to state 92
-    OPAR            shift and go to state 89
-
-
-state 84
-
-    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
+    (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
 
     COMMA           shift and go to state 93
 
 
+state 84
+
+    (22) vertex_expression -> vertex_expression INT .
+
+    CBR             reduce using rule 22 (vertex_expression -> vertex_expression INT .)
+    INT             reduce using rule 22 (vertex_expression -> vertex_expression INT .)
+
+
 state 85
+
+    (16) graph_expression -> DIGRAPH OPAR INT COMMA edge_expression . CPAR
+    (24) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
+
+    CPAR            shift and go to state 94
+    OPAR            shift and go to state 91
+
+
+state 86
+
+    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
+
+    COMMA           shift and go to state 95
+
+
+state 87
 
     (9) If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END . ELSE BEGIN Instructions END
@@ -1391,10 +1446,10 @@ state 85
     FOREDGE         reduce using rule 9 (If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .)
     $end            reduce using rule 9 (If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .)
     END             reduce using rule 9 (If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .)
-    ELSE            shift and go to state 94
+    ELSE            shift and go to state 96
 
 
-state 86
+state 88
 
     (11) For_vertex_instr -> FORVERTEX ID IN ID BEGIN Instructions END .
 
@@ -1407,7 +1462,7 @@ state 86
     END             reduce using rule 11 (For_vertex_instr -> FORVERTEX ID IN ID BEGIN Instructions END .)
 
 
-state 87
+state 89
 
     (12) For_edge_instr -> FOREDGE ID IN ID BEGIN Instructions END .
 
@@ -1420,30 +1475,31 @@ state 87
     END             reduce using rule 12 (For_edge_instr -> FOREDGE ID IN ID BEGIN Instructions END .)
 
 
-state 88
-
-    (24) edge_expression -> OPAR INT . COMMA INT CPAR
-    (26) edge_expression -> OPAR INT . COMMA INT COMMA INT CPAR
-    (28) edge_expression -> OPAR INT . COMMA INT COMMA FLOAT CPAR
-
-    COMMA           shift and go to state 95
-
-
-state 89
-
-    (23) edge_expression -> edge_expression OPAR . INT COMMA INT CPAR
-    (25) edge_expression -> edge_expression OPAR . INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression OPAR . INT COMMA INT COMMA FLOAT CPAR
-
-    INT             shift and go to state 96
-
-
 state 90
+
+    (25) edge_expression -> OPAR INT . COMMA INT CPAR
+    (27) edge_expression -> OPAR INT . COMMA INT COMMA INT CPAR
+    (29) edge_expression -> OPAR INT . COMMA INT COMMA FLOAT CPAR
+
+    COMMA           shift and go to state 97
+
+
+state 91
+
+    (24) edge_expression -> edge_expression OPAR . INT COMMA INT CPAR
+    (26) edge_expression -> edge_expression OPAR . INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression OPAR . INT COMMA INT COMMA FLOAT CPAR
+
+    INT             shift and go to state 98
+
+
+state 92
 
     (15) graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .
 
     UNION           reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
     INTERSECTION    reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
+    DIFFERENCE      reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
     PLOT            reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
     IF              reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
     FORVERTEX       reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
@@ -1453,33 +1509,34 @@ state 90
     END             reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
 
 
-state 91
+state 93
 
     (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA . edge_expression CPAR
-    (23) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
-    (24) edge_expression -> . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
-    (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
-    (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
-    (29) edge_expression -> . empty
-    (44) empty -> .
+    (24) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
+    (25) edge_expression -> . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
+    (27) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (30) edge_expression -> . empty
+    (45) empty -> .
 
   ! shift/reduce conflict for OPAR resolved as shift
-    OPAR            shift and go to state 78
-    CPAR            reduce using rule 44 (empty -> .)
+    OPAR            shift and go to state 80
+    CPAR            reduce using rule 45 (empty -> .)
 
-  ! OPAR            [ reduce using rule 44 (empty -> .) ]
+  ! OPAR            [ reduce using rule 45 (empty -> .) ]
 
-    edge_expression                shift and go to state 97
-    empty                          shift and go to state 80
+    edge_expression                shift and go to state 99
+    empty                          shift and go to state 82
 
-state 92
+state 94
 
     (16) graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .
 
     UNION           reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
     INTERSECTION    reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
+    DIFFERENCE      reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
     PLOT            reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
     IF              reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
     FORVERTEX       reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
@@ -1489,75 +1546,75 @@ state 92
     END             reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
 
 
-state 93
-
-    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA . edge_expression CPAR
-    (23) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
-    (24) edge_expression -> . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
-    (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
-    (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
-    (29) edge_expression -> . empty
-    (44) empty -> .
-
-  ! shift/reduce conflict for OPAR resolved as shift
-    OPAR            shift and go to state 78
-    CPAR            reduce using rule 44 (empty -> .)
-
-  ! OPAR            [ reduce using rule 44 (empty -> .) ]
-
-    edge_expression                shift and go to state 98
-    empty                          shift and go to state 80
-
-state 94
-
-    (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE . BEGIN Instructions END
-
-    BEGIN           shift and go to state 99
-
-
 state 95
 
-    (24) edge_expression -> OPAR INT COMMA . INT CPAR
-    (26) edge_expression -> OPAR INT COMMA . INT COMMA INT CPAR
-    (28) edge_expression -> OPAR INT COMMA . INT COMMA FLOAT CPAR
+    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA . edge_expression CPAR
+    (24) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
+    (25) edge_expression -> . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA INT CPAR
+    (27) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (30) edge_expression -> . empty
+    (45) empty -> .
 
-    INT             shift and go to state 100
+  ! shift/reduce conflict for OPAR resolved as shift
+    OPAR            shift and go to state 80
+    CPAR            reduce using rule 45 (empty -> .)
 
+  ! OPAR            [ reduce using rule 45 (empty -> .) ]
+
+    edge_expression                shift and go to state 100
+    empty                          shift and go to state 82
 
 state 96
 
-    (23) edge_expression -> edge_expression OPAR INT . COMMA INT CPAR
-    (25) edge_expression -> edge_expression OPAR INT . COMMA INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression OPAR INT . COMMA INT COMMA FLOAT CPAR
+    (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE . BEGIN Instructions END
 
-    COMMA           shift and go to state 101
+    BEGIN           shift and go to state 101
 
 
 state 97
 
-    (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression . CPAR
-    (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (25) edge_expression -> OPAR INT COMMA . INT CPAR
+    (27) edge_expression -> OPAR INT COMMA . INT COMMA INT CPAR
+    (29) edge_expression -> OPAR INT COMMA . INT COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 102
-    OPAR            shift and go to state 89
+    INT             shift and go to state 102
 
 
 state 98
 
-    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression . CPAR
-    (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
-    (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (24) edge_expression -> edge_expression OPAR INT . COMMA INT CPAR
+    (26) edge_expression -> edge_expression OPAR INT . COMMA INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression OPAR INT . COMMA INT COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 103
-    OPAR            shift and go to state 89
+    COMMA           shift and go to state 103
 
 
 state 99
+
+    (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression . CPAR
+    (24) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
+
+    CPAR            shift and go to state 104
+    OPAR            shift and go to state 91
+
+
+state 100
+
+    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression . CPAR
+    (24) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
+    (26) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
+
+    CPAR            shift and go to state 105
+    OPAR            shift and go to state 91
+
+
+state 101
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN . Instructions END
     (1) Instructions -> . Instructions Instruction
@@ -1581,7 +1638,7 @@ state 99
     ID              shift and go to state 10
     FOREDGE         shift and go to state 13
 
-    Instructions                   shift and go to state 104
+    Instructions                   shift and go to state 106
     Instruction                    shift and go to state 2
     Plot_instr                     shift and go to state 3
     If_instr                       shift and go to state 4
@@ -1590,31 +1647,32 @@ state 99
     Assign_instr                   shift and go to state 7
     For_edge_instr                 shift and go to state 8
 
-state 100
-
-    (24) edge_expression -> OPAR INT COMMA INT . CPAR
-    (26) edge_expression -> OPAR INT COMMA INT . COMMA INT CPAR
-    (28) edge_expression -> OPAR INT COMMA INT . COMMA FLOAT CPAR
-
-    CPAR            shift and go to state 106
-    COMMA           shift and go to state 105
-
-
-state 101
-
-    (23) edge_expression -> edge_expression OPAR INT COMMA . INT CPAR
-    (25) edge_expression -> edge_expression OPAR INT COMMA . INT COMMA INT CPAR
-    (27) edge_expression -> edge_expression OPAR INT COMMA . INT COMMA FLOAT CPAR
-
-    INT             shift and go to state 107
-
-
 state 102
+
+    (25) edge_expression -> OPAR INT COMMA INT . CPAR
+    (27) edge_expression -> OPAR INT COMMA INT . COMMA INT CPAR
+    (29) edge_expression -> OPAR INT COMMA INT . COMMA FLOAT CPAR
+
+    CPAR            shift and go to state 108
+    COMMA           shift and go to state 107
+
+
+state 103
+
+    (24) edge_expression -> edge_expression OPAR INT COMMA . INT CPAR
+    (26) edge_expression -> edge_expression OPAR INT COMMA . INT COMMA INT CPAR
+    (28) edge_expression -> edge_expression OPAR INT COMMA . INT COMMA FLOAT CPAR
+
+    INT             shift and go to state 109
+
+
+state 104
 
     (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .
 
     UNION           reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     INTERSECTION    reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
+    DIFFERENCE      reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     PLOT            reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     IF              reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     FORVERTEX       reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
@@ -1624,12 +1682,13 @@ state 102
     END             reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
 
 
-state 103
+state 105
 
     (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .
 
     UNION           reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     INTERSECTION    reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
+    DIFFERENCE      reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     PLOT            reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     IF              reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
     FORVERTEX       reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
@@ -1639,7 +1698,7 @@ state 103
     END             reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
 
 
-state 104
+state 106
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions . END
     (1) Instructions -> Instructions . Instruction
@@ -1656,7 +1715,7 @@ state 104
     (14) Assign_instr -> . ID ASSIGN graph_expression
     (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    END             shift and go to state 108
+    END             shift and go to state 110
     PLOT            shift and go to state 9
     IF              shift and go to state 11
     FORVERTEX       shift and go to state 12
@@ -1671,34 +1730,34 @@ state 104
     Assign_instr                   shift and go to state 7
     For_edge_instr                 shift and go to state 8
 
-state 105
-
-    (26) edge_expression -> OPAR INT COMMA INT COMMA . INT CPAR
-    (28) edge_expression -> OPAR INT COMMA INT COMMA . FLOAT CPAR
-
-    INT             shift and go to state 109
-    FLOAT           shift and go to state 110
-
-
-state 106
-
-    (24) edge_expression -> OPAR INT COMMA INT CPAR .
-
-    CPAR            reduce using rule 24 (edge_expression -> OPAR INT COMMA INT CPAR .)
-    OPAR            reduce using rule 24 (edge_expression -> OPAR INT COMMA INT CPAR .)
-
-
 state 107
 
-    (23) edge_expression -> edge_expression OPAR INT COMMA INT . CPAR
-    (25) edge_expression -> edge_expression OPAR INT COMMA INT . COMMA INT CPAR
-    (27) edge_expression -> edge_expression OPAR INT COMMA INT . COMMA FLOAT CPAR
+    (27) edge_expression -> OPAR INT COMMA INT COMMA . INT CPAR
+    (29) edge_expression -> OPAR INT COMMA INT COMMA . FLOAT CPAR
 
-    CPAR            shift and go to state 112
-    COMMA           shift and go to state 111
+    INT             shift and go to state 111
+    FLOAT           shift and go to state 112
 
 
 state 108
+
+    (25) edge_expression -> OPAR INT COMMA INT CPAR .
+
+    CPAR            reduce using rule 25 (edge_expression -> OPAR INT COMMA INT CPAR .)
+    OPAR            reduce using rule 25 (edge_expression -> OPAR INT COMMA INT CPAR .)
+
+
+state 109
+
+    (24) edge_expression -> edge_expression OPAR INT COMMA INT . CPAR
+    (26) edge_expression -> edge_expression OPAR INT COMMA INT . COMMA INT CPAR
+    (28) edge_expression -> edge_expression OPAR INT COMMA INT . COMMA FLOAT CPAR
+
+    CPAR            shift and go to state 114
+    COMMA           shift and go to state 113
+
+
+state 110
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END .
 
@@ -1711,90 +1770,95 @@ state 108
     END             reduce using rule 10 (If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END .)
 
 
-state 109
-
-    (26) edge_expression -> OPAR INT COMMA INT COMMA INT . CPAR
-
-    CPAR            shift and go to state 113
-
-
-state 110
-
-    (28) edge_expression -> OPAR INT COMMA INT COMMA FLOAT . CPAR
-
-    CPAR            shift and go to state 114
-
-
 state 111
 
-    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . INT CPAR
-    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . FLOAT CPAR
+    (27) edge_expression -> OPAR INT COMMA INT COMMA INT . CPAR
 
-    INT             shift and go to state 115
-    FLOAT           shift and go to state 116
+    CPAR            shift and go to state 115
 
 
 state 112
 
-    (23) edge_expression -> edge_expression OPAR INT COMMA INT CPAR .
+    (29) edge_expression -> OPAR INT COMMA INT COMMA FLOAT . CPAR
 
-    CPAR            reduce using rule 23 (edge_expression -> edge_expression OPAR INT COMMA INT CPAR .)
-    OPAR            reduce using rule 23 (edge_expression -> edge_expression OPAR INT COMMA INT CPAR .)
+    CPAR            shift and go to state 116
 
 
 state 113
 
-    (26) edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .
+    (26) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . INT CPAR
+    (28) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . FLOAT CPAR
 
-    CPAR            reduce using rule 26 (edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .)
-    OPAR            reduce using rule 26 (edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .)
+    INT             shift and go to state 117
+    FLOAT           shift and go to state 118
 
 
 state 114
 
-    (28) edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .
+    (24) edge_expression -> edge_expression OPAR INT COMMA INT CPAR .
 
-    CPAR            reduce using rule 28 (edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .)
-    OPAR            reduce using rule 28 (edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .)
+    CPAR            reduce using rule 24 (edge_expression -> edge_expression OPAR INT COMMA INT CPAR .)
+    OPAR            reduce using rule 24 (edge_expression -> edge_expression OPAR INT COMMA INT CPAR .)
 
 
 state 115
 
-    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT . CPAR
+    (27) edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .
 
-    CPAR            shift and go to state 117
+    CPAR            reduce using rule 27 (edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .)
+    OPAR            reduce using rule 27 (edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .)
 
 
 state 116
 
-    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT . CPAR
+    (29) edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .
 
-    CPAR            shift and go to state 118
+    CPAR            reduce using rule 29 (edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .)
+    OPAR            reduce using rule 29 (edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .)
 
 
 state 117
 
-    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .
+    (26) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT . CPAR
 
-    CPAR            reduce using rule 25 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .)
-    OPAR            reduce using rule 25 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .)
+    CPAR            shift and go to state 119
 
 
 state 118
 
-    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .
+    (28) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT . CPAR
 
-    CPAR            reduce using rule 27 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .)
-    OPAR            reduce using rule 27 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .)
+    CPAR            shift and go to state 120
+
+
+state 119
+
+    (26) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .
+
+    CPAR            reduce using rule 26 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .)
+    OPAR            reduce using rule 26 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .)
+
+
+state 120
+
+    (28) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .
+
+    CPAR            reduce using rule 28 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .)
+    OPAR            reduce using rule 28 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for UNION in state 51 resolved as shift
-WARNING: shift/reduce conflict for INTERSECTION in state 51 resolved as shift
 WARNING: shift/reduce conflict for UNION in state 52 resolved as shift
 WARNING: shift/reduce conflict for INTERSECTION in state 52 resolved as shift
-WARNING: shift/reduce conflict for OPAR in state 70 resolved as shift
-WARNING: shift/reduce conflict for OPAR in state 73 resolved as shift
-WARNING: shift/reduce conflict for OPAR in state 91 resolved as shift
+WARNING: shift/reduce conflict for DIFFERENCE in state 52 resolved as shift
+WARNING: shift/reduce conflict for UNION in state 53 resolved as shift
+WARNING: shift/reduce conflict for INTERSECTION in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIFFERENCE in state 53 resolved as shift
+WARNING: shift/reduce conflict for UNION in state 54 resolved as shift
+WARNING: shift/reduce conflict for INTERSECTION in state 54 resolved as shift
+WARNING: shift/reduce conflict for DIFFERENCE in state 54 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 72 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 75 resolved as shift
 WARNING: shift/reduce conflict for OPAR in state 93 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 95 resolved as shift
