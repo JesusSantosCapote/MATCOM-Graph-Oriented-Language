@@ -19,7 +19,7 @@ def p_instructions_instruction(t) :
     'Instructions    : Instruction '
     t[0] = Instructions([t[1]])
 
-                       #TODO: Vertex identation
+                       #TODO: Vertex and Edges identation
 def p_instruction(t) : #TODO: Put some more Instructions here
     '''Instruction      : Plot_instr
                         | If_instr
