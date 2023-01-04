@@ -20,24 +20,33 @@ Arithmetic_Operations={
 def union(graph1, graph2):
     graph1_node_number = len(graph1.nodes())
     graph2_node_number = len(graph2.nodes())
-    new_vertex = [i for i in range(graph1_node_number + graph2_node_number)]
+    graph1_node_attr = list(graph1._node.values())
+    graph2_node_attr = list(graph2._node.values())
 
+    union_vertex1 = [(i, graph1_node_attr[i]) for i in range(graph1_node_number)] 
+    union_vertex2 = [(i + graph1_node_number, graph2_node_attr[i]) for i in range(graph2_node_number)]
+    final_vertexs = union_vertex1 + union_vertex2
+
+    union_edges1 = [(u, v, graph1.get_edge_data(u, v)) for u, v in graph1.edges()]
+    union_edges2 = [(u + graph1_node_number, v + graph1_node_number, graph2.get_edge_data(u, v)) for u, v in graph2.edges()]
+    final_edges = union_edges1 + union_edges2
+
+    union_graph = nx.Graph()
+    union_graph.add_nodes_from(final_vertexs)
+    union_graph.add_edges_from(final_edges)
+
+    return union_graph
 
 a = nx.Graph()
-#a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
-a.add_nodes_from([0, 1, 2])
-a.add_edges_from([(0,1), (0,2), (0,0), (0,1)])
+a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
+a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-a[0][1]['w'] = 0
-a[0][2]['w'] = 0
+b = nx.Graph()
+b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
+b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
 
-print(a._node)
-print(a.edges())
+c = union(a, b)
 
-b = nx.Graph([(0,1), (2, 3), (0,1)])
-print(b.edges())
+print(c._node)
+print(c._adj)
 
-
-c = nx.union(a, b, rename=("a-", "b-"))
-
-print(c.edges())
