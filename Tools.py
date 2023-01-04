@@ -31,6 +31,17 @@ def intersection(graph1, graph2):
     return nx.operators.intersection(graph1, graph2)
 
 
+def difference(graph1, graph2):
+    graph2_nodes = graph2.nodes
+    graph1_nodes = graph1.nodes
+
+    nodes_to_delete = [node for node in graph2_nodes if node in graph1_nodes]
+
+    graph1.remove_nodes_from(nodes_to_delete)
+
+    return graph1
+
+
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,
@@ -54,17 +65,27 @@ Graph_Operations={
 }
 
 
-a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
-# a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
-# a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
+# a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
+# # a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
+# # a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
-# b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
-# b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+# b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
+# # b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
+# # b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
 
-# c = union(a, b)
+# # c = union(a, b)
 
-c = nx.operators.difference(a, b)
+# d = nx.Graph([(5,0), (7,2), (2,0), (4, 5)])
+# e = nx.Graph([(2,0), (7,2)])
 
-print(c.nodes(data=True))
-print(c.edges)
+# print(d.nodes)
+# print(e.nodes)
+
+# c = difference(d, e)
+
+# # print(c._node)
+# # print(c.edges)
+
+
+# print(c.nodes)
+# print(c.edges())
