@@ -43,12 +43,12 @@ def p_if_else_instr(t):
 
 def p_for_vertex_instr(t):
     'For_vertex_instr   : FORVERTEX ID IN ID BEGIN Instructions END'
-    t[0] = For_vertex(t[2], t[4], t[6], t.lineno)
+    t[0] = For_vertex(t[2], t[4], t[6], t.lineno(2))
 
 
 def p_for_edge_instr(t):
     'For_edge_instr   : FOREDGE ID IN ID BEGIN Instructions END'
-    t[0] = For_edge(t[2], t[4], t[6], t.lineno)
+    t[0] = For_edge(t[2], t[4], t[6], t.lineno(2))
 
 
 
@@ -59,16 +59,21 @@ def p_Plot_instr(t):
 
 def p_assign_instr(t) :
     '''Assign_instr     : ID ASSIGN graph_expression'''
-    
+
     t[0] = Assign(t[1], t[3])
 
 
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
                             | DIGRAPH OPAR INT COMMA edge_expression CPAR
-                            | graph_expression UNION graph_expression'''
+                            | graph_expression UNION graph_expression
+                            | graph_expression INTERSECTION graph_expression'''
+                            
     if len(t) == 7:
-        t[0] = CreateGraph(t[1], t[3], t[5])
+        t[0] = Create_graph(t[1], t[3], t[5], t.lineno(1))
+    if len(t) == 4:
+        t[0] = Graph_operation(t[1], t[3], t[2], t.lineno(2))
+        
                             
 
 

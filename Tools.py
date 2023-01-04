@@ -1,21 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-Bool_Operations={
-    '==' : lambda x,y : x==y,
-    '>' : lambda x,y : x>y,
-    '<' : lambda x,y : x<y,
-    '>=' : lambda x,y : x>=y,
-    '<=' : lambda x,y : x<=y,
-    '!=' : lambda x,y : x!=y,
-}
-
-Arithmetic_Operations={
-    '+' : lambda x,y : x+y,
-    '-' : lambda x,y : x-y,
-    '*' : lambda x,y : x*y,
-    '/' : lambda x,y : x/y,
-}
 
 def union_rara(graph1, graph2):
     graph1_node_number = len(graph1.nodes())
@@ -53,10 +38,34 @@ def union(graph1, graph2):
 
 # c = nx.operators.disjoint_union(a, b)
 
-# nx.draw(c,)
-# plt.show()
+Bool_Operations={
+    '==' : lambda x,y : x==y,
+    '>' : lambda x,y : x>y,
+    '<' : lambda x,y : x<y,
+    '>=' : lambda x,y : x>=y,
+    '<=' : lambda x,y : x<=y,
+    '!=' : lambda x,y : x!=y,
+}
 
-# print(c.nodes(data=True))
+Arithmetic_Operations={
+    '+' : lambda x,y : x+y,
+    '-' : lambda x,y : x-y,
+    '*' : lambda x,y : x*y,
+    '/' : lambda x,y : x/y,
+}
+#TODO: Aggregate intersection graph operation
+Graph_Operations={
+    'union' : union
+}
+# a = nx.Graph()
+# a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
+# a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
+
+# b = nx.Graph()
+# b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
+# b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+
+# # print(c.nodes(data=True))
 # print(c.edges)
 
 

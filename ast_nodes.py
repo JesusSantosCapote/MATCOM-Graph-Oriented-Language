@@ -4,6 +4,7 @@ from symbol_table import DataType
 from exceptions import SemanticException
 from symbol_table import *
 import matplotlib.pyplot as plt
+from Tools import *
 
 class Node(ABC):
     @abstractmethod
@@ -36,12 +37,30 @@ class Plot(Node) :
         plt.show()
 
 
-class CreateGraph(Node) :
+class Graph_operation(Node):
+    
+    def __init__(self, graph_expression_object1, graph_expression_object2, operation, line):
+        self.graph1 = graph_expression_object1
+        self.graph2 = graph_expression_object2
+        self.operation = operation
+        self.line = line
+    
+    def evaluate(self, st):
+        graph1 = self.graph_expression_object1.evaluate(st)
+        graph2 = self.graph_expression_object2.evaluate(st)
+        if graph1.is_directed() == graph2.is_directed():
+            return Bool_Operations(self.operation)(graph1, graph2)
+        else:
+            raise TypeError(f"At line: {self.line}. The graph variables has different types")
 
-    def __init__(self, graph_type, vertex, edges_expression) :
+
+class Create_graph(Node) :
+
+    def __init__(self, graph_type, vertex, edges_expression, line) :
         self.graph_type = graph_type
         self.vertex = vertex
         self.edges_expression = edges_expression
+        self.line = line
 
     def build_graph(self):
         graph = None
@@ -61,16 +80,16 @@ class CreateGraph(Node) :
     def evaluate(self, st):
         for edge in range (len(self.edges_expression)):
             if self.edges_expression[edge][0] >= self.vertex or self.edges_expression[edge][0] < 0 or self.edges_expression[edge][1] >= self.vertex or self.edges_expression[edge][1] < 0:
-                raise Exception("Edge non-existent")
+                raise Exception(f"At line {self.line}. Edge non-existent")
             if self.edges_expression[edge][0] == self.edges_expression[edge][1]:
-                raise Exception(f"{self.graph_type} can not have loop edges")
+                raise Exception(f"At line {self.line}. {self.graph_type} can not have loop edges")
             for remain_edge in range(edge + 1, len(self.edges_expression)):
                 if self.edges_expression[remain_edge][0] == self.edges_expression[edge][0] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][1]:
-                    raise Exception(f"{self.graph_type} can not have multiple edges")
+                    raise Exception(f"At line {self.line}.{self.graph_type} can not have multiple edges")
             if self.graph_type != "digraph":
                 for remain_edge in range(edge + 1,len(self.edges_expression)):
                     if self.edges_expression[remain_edge][0] == self.edges_expression[edge][1] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][0]:
-                        raise Exception(f"{self.graph_type} can not have multiple edges")
+                        raise Exception(f"At line {self.line}. {self.graph_type} can not have multiple edges")
             
         graph = self.build_graph()  
         return graph
@@ -134,7 +153,7 @@ class For_vertex(Node) :
     def evaluate(self, st):
         new_st = st.Clone()
         graph_data = st.get(self.graph)
-        if graph_data.data_type == "graph" or graph_data.data_type == "pseudograph" or graph_data.data_type == "multigraph" or graph_data.data_type == "digraph":
+        if graph_data.data_type == "graph" or graph_data.data_type == "digraph":
             for vertex in list(st.symbols[self.graph].value.nodes):
                 print(vertex)
                 new_st.add(Symbol(self.iterator,"vertex",vertex))
@@ -157,7 +176,7 @@ class For_edge(Node) :
     def evaluate(self, st):
         new_st = st.Clone()
         graph_data = st.get(self.graph)
-        if graph_data.data_type == "graph" or graph_data.data_type == "pseudograph" or graph_data.data_type == "multigraph" or graph_data.data_type == "digraph":
+        if graph_data.data_type == "graph" or graph_data.data_type == "digraph":
             for edge in list(st.symbols[self.graph].value.edges):
                 print(edge)
                 new_st.add(Symbol(self.iterator,"edge",edge))
