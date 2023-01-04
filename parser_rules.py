@@ -20,12 +20,13 @@ def p_instructions_instruction(t) :
     t[0] = Instructions([t[1]])
 
                        #TODO: Vertex identation
-def p_instruction(t) : #TODO: Put some more Instructions here (foredge)
+def p_instruction(t) : #TODO: Put some more Instructions here
     '''Instruction      : Plot_instr
                         | If_instr
                         | If_else_instr
                         | For_vertex_instr
-                        | Assign_instr'''
+                        | Assign_instr
+                        | For_edge_instr'''
                         
     t[0] = t[1]
 
@@ -43,6 +44,11 @@ def p_if_else_instr(t):
 def p_for_vertex_instr(t):
     'For_vertex_instr   : FORVERTEX ID IN ID BEGIN Instructions END'
     t[0] = For_vertex(t[2], t[4], t[6], t.lineno)
+
+
+def p_for_edge_instr(t):
+    'For_edge_instr   : FOREDGE ID IN ID BEGIN Instructions END'
+    t[0] = For_edge(t[2], t[4], t[6], t.lineno)
 
 
 

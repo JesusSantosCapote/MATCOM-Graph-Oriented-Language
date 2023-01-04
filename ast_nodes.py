@@ -145,3 +145,23 @@ class For_vertex(Node) :
             raise TypeError(f"At line: {self.line}. {self.graph} is a {graph_data.data_type} variable, a graph variable was expected")
 
 
+class For_edge(Node) :
+    def __init__(self, iterator, graph, instructions, line) :
+        self.iterator = iterator
+        self.graph = graph
+        self.instructions = instructions
+        self.line = line
+    
+    def evaluate(self, st):
+        new_st = st.Clone()
+        graph_data = st.get(self.graph)
+        if graph_data.data_type == "graph" or graph_data.data_type == "pseudograph" or graph_data.data_type == "multigraph" or graph_data.data_type == "digraph":
+            for edge in list(st.symbols[self.graph].value.edges):
+                new_st.add(Symbol(self.iterator,"edge",edge))
+                for instruction in self.instructions.node_list:
+                    instruction.evaluate(new_st)
+                for key in st.symbols.keys():
+                    st.update(new_st.symbols[key])
+                new_st = st.Clone()
+        else:
+            raise TypeError(f"At line: {self.line}. {self.graph} is a {graph_data.data_type} variable, a graph variable was expected")

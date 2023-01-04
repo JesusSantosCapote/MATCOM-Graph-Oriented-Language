@@ -1,5 +1,5 @@
-un_grafo = graph(3, (0,1) (1,2) (2,0))
-forvertex i in un_grafo
+un_grafo = graph(5, (1,2) (2,0))
+foredge i in un_grafo
 begin
 plot(un_grafo)
 end
