@@ -137,6 +137,19 @@ class Create_graph_with_vertex(Node):
         return graph
 
 
+class Create_Graph_With_Variable(Node):
+    def __init__(self, variable_id, line) :
+        self.variable_id = variable_id
+        self.line = line
+    
+
+    def evaluate(self, st):
+        recover_object = st.get(self.variable_id, self.line)
+        if recover_object.data_type != 'graph' and recover_object.data_type != 'digraph':
+            raise TypeError(f"At line {self.line}. {self.id} was not a graph type object.")
+        graph = recover_object.value
+        return graph
+
 class Assign(Node) :
 
     def __init__(self, id, graph_expression_object) :

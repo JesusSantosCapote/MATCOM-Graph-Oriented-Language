@@ -8,7 +8,7 @@ precedence = (
     ('left','MUL','DIV'),
     ('right','UMINUS'),
     )
-#TODO: Implement instructions with variable ID's
+
 def p_instructions_list(t) :
     'Instructions    : Instructions Instruction'
     t[1].node_list.append(t[2])
@@ -20,7 +20,7 @@ def p_instructions_instruction(t) :
     t[0] = Instructions([t[1]])
 
                        #TODO: Vertex and Edges identation
-def p_instruction(t) : #TODO: Put some more Instructions here
+def p_instruction(t) : #TODO: Put some more Instructions here (Add_vertex, Add_edge)
     '''Instruction      : Plot_instr
                         | If_instr
                         | If_else_instr
@@ -53,7 +53,8 @@ def p_for_edge_instr(t):
 
 
 def p_Plot_instr(t):
-    'Plot_instr    : PLOT OPAR ID CPAR'
+    'Plot_instr   : PLOT OPAR ID CPAR'
+    
     t[0] = Plot(t[3], t.lineno(1))
 
 
@@ -62,7 +63,7 @@ def p_assign_instr(t) :
 
     t[0] = Assign(t[1], t[3])
 
-#TODO:Add difference
+
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
                             | DIGRAPH OPAR INT COMMA edge_expression CPAR
@@ -71,6 +72,7 @@ def p_graph_expression(t) :
                             | graph_expression UNION graph_expression
                             | graph_expression INTERSECTION graph_expression
                             | graph_expression DIFFERENCE graph_expression
+                            | ID
                             '''
                             
     if len(t) == 7:
@@ -82,7 +84,8 @@ def p_graph_expression(t) :
     if len(t) == 4:
         t[0] = Graph_operation(t[1], t[3], t[2], t.lineno(2))
 
-
+    if len(t) == 2: 
+        t[0] = Create_Graph_With_Variable(t[1], t.lineno(1))
 
 def p_vertex_expression(t) :
     '''vertex_expression    : vertex_expression INT

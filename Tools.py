@@ -30,7 +30,7 @@ def union(graph1, graph2):
 def intersection(graph1, graph2):
     return nx.operators.intersection(graph1, graph2)
 
-
+#TODO: Rewrite method. Dont remove elements from graph1, create a copy and work whit that.
 def difference(graph1, graph2):
     graph2_nodes = graph2.nodes
     graph1_nodes = graph1.nodes

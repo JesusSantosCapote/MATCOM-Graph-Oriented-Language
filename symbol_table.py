@@ -29,9 +29,9 @@ class SymbolTable():
         self.symbols[symbol.id] = symbol
     
 
-    def get(self, id):
+    def get(self, id, line):
         if not id in self.symbols:
-            raise Exception('Error: variable ', id, ' not defined.')
+            raise Exception(f'At line {line}. Error: variable ', id, ' not defined.')
 
         return self.symbols[id]
 
