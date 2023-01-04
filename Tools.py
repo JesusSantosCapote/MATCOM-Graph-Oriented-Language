@@ -85,9 +85,5 @@ Graph_Operations={
 
 # c = difference(d, e)
 
-# # print(c._node)
-# # print(c.edges)
-
-
-# print(c.nodes)
-# print(c.edges())# print(c._node)
+# print(c._node)
+# print(c.edges)
