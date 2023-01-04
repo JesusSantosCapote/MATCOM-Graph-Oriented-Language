@@ -40,7 +40,9 @@ tokens = [
     'INT',
     'FLOAT',
     'STRING',
-    'COMMA'
+    'COMMA',
+    'OBR',
+    'CBR'
  ] + list(keywords.values())
 
 #TOKENS
@@ -59,6 +61,8 @@ t_GREATEREQ = r'>='
 t_LESSEQ = r'<='
 t_NEQUAL = r'!='
 t_COMMA = r','
+t_OBR = r'\['
+t_CBR = r'\]'
 
 def t_FLOAT (t):
     r'\d+\.\d+'

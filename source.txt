@@ -1,2 +1,2 @@
-un_grafo = digraph(5, (1,2) (2,0))
+un_grafo = graph([0 7 2], (7,2) (2,0))
 plot(un_grafo)

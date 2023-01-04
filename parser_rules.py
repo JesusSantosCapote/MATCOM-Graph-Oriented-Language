@@ -62,20 +62,34 @@ def p_assign_instr(t) :
 
     t[0] = Assign(t[1], t[3])
 
-
+#TODO: Need a way to create empty graph and graph without edges
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
                             | DIGRAPH OPAR INT COMMA edge_expression CPAR
+                            | GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
+                            | DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
                             | graph_expression UNION graph_expression
                             | graph_expression INTERSECTION graph_expression'''
                             
     if len(t) == 7:
         t[0] = Create_graph(t[1], t[3], t[5], t.lineno(1))
+    
+    if len(t) == 9:
+        t[0] = Create_graph_with_vertex(t[1], t[4], t[7], t.lineno(1))
+
     if len(t) == 4:
         t[0] = Graph_operation(t[1], t[3], t[2], t.lineno(2))
-        
-                            
 
+
+
+def p_vertex_expression(t) :
+    '''vertex_expression    : vertex_expression INT
+                            | INT'''                            
+    if len(t) == 2:
+        t[0] = [t[1]]
+    else:
+        t[1].append(t[2])
+        t[0] = t[1]
 
 def p_edge_expression(t) :
     '''edge_expression  : edge_expression OPAR INT COMMA INT CPAR
