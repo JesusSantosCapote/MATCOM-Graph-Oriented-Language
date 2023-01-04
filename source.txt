@@ -1,9 +1,5 @@
-if (5>10) 
-begin 
-variable = graph(3,(0,1)(1,2)) 
-plot(variable)
+un_grafo = graph(5, (1,2) (2,0))
+foredge i in un_grafo
+begin
+plot(un_grafo)
 end
-
-graph2 = pseudograph(3, (2,2))
-
-plot(graph2)

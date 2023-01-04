@@ -11,21 +11,22 @@ precedence = (
 
 def p_instructions_list(t) :
     'Instructions    : Instructions Instruction'
-    print('Entro en 1')
     t[1].node_list.append(t[2])
     t[0] = Instructions(t[1].node_list)
 
 
 def p_instructions_instruction(t) :
     'Instructions    : Instruction '
-    print('Entre en 2')
     t[0] = Instructions([t[1]])
 
-
+                       #TODO: Vertex and Edges identation
 def p_instruction(t) : #TODO: Put some more Instructions here
     '''Instruction      : Plot_instr
                         | If_instr
-                        | Assign_instr'''
+                        | If_else_instr
+                        | For_vertex_instr
+                        | Assign_instr
+                        | For_edge_instr'''
                         
     t[0] = t[1]
 
@@ -33,6 +34,22 @@ def p_instruction(t) : #TODO: Put some more Instructions here
 def p_if_instr(t):
     'If_instr         : IF OPAR logic_expression CPAR BEGIN Instructions END'
     t[0] = If(t[3], t[6])
+
+
+def p_if_else_instr(t):
+    'If_else_instr  : IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END'
+    t[0] = If_else(t[3], t[6], t[10])
+
+
+def p_for_vertex_instr(t):
+    'For_vertex_instr   : FORVERTEX ID IN ID BEGIN Instructions END'
+    t[0] = For_vertex(t[2], t[4], t[6], t.lineno)
+
+
+def p_for_edge_instr(t):
+    'For_edge_instr   : FOREDGE ID IN ID BEGIN Instructions END'
+    t[0] = For_edge(t[2], t[4], t[6], t.lineno)
+
 
 
 def p_Plot_instr(t):

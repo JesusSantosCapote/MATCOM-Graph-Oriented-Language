@@ -15,6 +15,7 @@ keywords = {
     'forvertex' : 'FORVERTEX',
     'begin' : 'BEGIN',
     'end' : 'END',
+    'in' : 'IN',
     'union' : 'UNION'
 }
 
