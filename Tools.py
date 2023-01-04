@@ -26,9 +26,41 @@ def union_rara(graph1, graph2):
 def union(graph1, graph2):
     return nx.operators.compose(graph1, graph2)
 
+
 #TODO: intersection needs to be fixed
 def intersection(graph1, graph2):
-    return nx.operators.intersection(graph1, graph2)
+    graph1_copy = graph1.copy()
+    graph2_copy = graph2.copy()
+
+    common_nodes = [node for node in graph1_copy.nodes if node in graph2_copy.nodes]
+    common_edges = [(u, v) for u, v in graph1_copy.edges if graph2_copy.has_edge(u, v)]
+    intersec_nodes = []
+    intersec_edges = []
+    
+    for node in common_nodes:
+        attr2 = graph2_copy._node[node]
+        attr1 = graph1_copy._node[node]
+
+        for key, value in attr1.items():
+            attr2[key] = value
+
+        intersec_nodes.append((node, attr2))
+
+    for u, v in common_edges:
+        edge_attr2 = graph2_copy.get_edge_data(u, v)
+        edge_attr1 = graph1_copy.get_edge_data(u, v)
+
+        for key, value in edge_attr1.items():
+            edge_attr2[key] = value
+
+        intersec_edges.append((u, v, edge_attr2))
+
+    graph1_copy.clear()
+
+    graph1_copy.add_nodes_from(intersec_nodes)
+    graph1_copy.add_edges_from(intersec_edges)
+
+    return graph1_copy
 
 
 def difference(graph1, graph2):
@@ -67,23 +99,31 @@ Graph_Operations={
 }
 
 
-# a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
-# # a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
-# # a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-# b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
-# # b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
-# # b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
+a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
+a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-# # c = union(a, b)
+print(a._node)
+print(a.edges)
 
-# d = nx.Graph([(5,0), (7,2), (2,0), (4, 5)])
-# e = nx.Graph([(2,0), (7,2)])
+b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
+b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
+b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
 
-# print(d.nodes)
-# print(e.nodes)
+print(b._node)
+print(b.edges)
 
-# c = difference(d, e)
+c = intersection(a, b)
 
-# print(c._node)
-# print(c.edges)
+d = nx.Graph([(5,0), (7,2), (2,0), (4, 5)])
+e = nx.Graph([(2,0), (7,2)])
+
+print(d.nodes)
+print(e.nodes)
+
+c = difference(d, e)
+
+print(c._node)
+print(b.edges)
+nx.get
