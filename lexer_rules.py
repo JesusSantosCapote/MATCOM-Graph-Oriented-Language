@@ -16,7 +16,10 @@ keywords = {
     'begin' : 'BEGIN',
     'end' : 'END',
     'in' : 'IN',
-    'union' : 'UNION'
+    'union' : 'UNION',
+    'intersection' : 'INTERSECTION',
+    'diference' : 'DIFERENCE',
+    'complement' : 'COMPLEMENT'
 }
 
 tokens = [
