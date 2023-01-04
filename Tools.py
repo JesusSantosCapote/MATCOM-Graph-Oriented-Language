@@ -1,7 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-
+#TODO: union_rara needs to be fixed
 def union_rara(graph1, graph2):
     graph1_node_number = len(graph1.nodes())
     graph2_node_number = len(graph2.nodes())

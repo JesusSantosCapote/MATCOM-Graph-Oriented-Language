@@ -20,13 +20,16 @@ def p_instructions_instruction(t) :
     t[0] = Instructions([t[1]])
 
                        #TODO: Vertex and Edges identation
-def p_instruction(t) : #TODO: Put some more Instructions here (Add_vertex, Add_edge)
+def p_instruction(t) : #TODO: Put some more Instructions here
     '''Instruction      : Plot_instr
                         | If_instr
                         | If_else_instr
                         | For_vertex_instr
                         | Assign_instr
-                        | For_edge_instr'''
+                        | For_edge_instr
+                        | Add_vertex_instr
+                        | Add_edge_instr
+                        | Add_vertex_and_edge_instr'''
                         
     t[0] = t[1]
 
@@ -63,6 +66,22 @@ def p_assign_instr(t) :
 
     t[0] = Assign(t[1], t[3])
 
+
+def  p_add_vertex_instr(t) :
+    'Add_vertex_instr      : ID ADD OPAR vertex_expression CPAR'
+
+    t[0] = Add_vertex(t[1], t[4], t.lineno(2))
+
+
+def p_add_edge_instr(t) :  
+    'Add_edge_instr     : ID ADD OPAR edge_expression CPAR'
+
+    t[0] = Add_edge(t[1], t[4], t.lineno(2))
+
+def p_add_vertex_and_edge_instr(t) :
+    'Add_vertex_and_edge_instr      : ID ADD OPAR vertex_expression COMMA edge_expression CPAR'
+
+    t[0] = Add_vertex_and_edge(t[1], t[4], t[6], t.lineno(2))
 
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
@@ -125,30 +144,34 @@ def p_logic_expression(t):
                             | value_expression GREATEREQ value_expression
                             | value_expression LESSEQ value_expression
                             | value_expression NEQUAL value_expression'''
-    t[0] = Bool_Operations[t[2]](t[1],t[3])
+    t[0] = Bool_Operation(t[1], t[3], t[2])
 
 #TODO add function to this production
 def p_value_expression(t):
-    'value_expression     : algebraic_expression'
-    #                        |function'''
+    '''value_expression     : algebraic_expression'''
+#                            | function'''
+
     t[0] = t[1]
 
 
+def p_algebraic_expression_number(t):
+    '''algebraic_expression      : INT
+                                | FLOAT'''
+
+    t[0] = Numerical_value(t[1])
+
 def p_algebraic_expression(t):
-    '''algebraic_expression     : INT
-                                | FLOAT
-                                | algebraic_expression PLUS algebraic_expression
+    '''algebraic_expression     : algebraic_expression PLUS algebraic_expression
                                 | algebraic_expression MINUS algebraic_expression
                                 | algebraic_expression MUL algebraic_expression
                                 | algebraic_expression DIV algebraic_expression
                                 | MINUS algebraic_expression %prec UMINUS
                                 '''
-    if len(t) == 2:
-        t[0] = t[1]
-    elif len(t) == 4:
-        t[0] = Arithmetic_Operations[t[2]](t[1],t[3])
+
+    if len(t) == 4:
+        t[0] = Algebraic_expression(t[1], t[3], t[2])
     else:
-        t[0] = -t[2]
+        t[0] = Minus_operation(t[2])
 
 def p_empty(p):
     'empty :'

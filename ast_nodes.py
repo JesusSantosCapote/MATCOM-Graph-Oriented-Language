@@ -167,13 +167,56 @@ class Assign(Node) :
             symbol_table.add(Symbol(self.id, graph_type, graph)) 
 
 
+class Add_vertex(Node) :
+
+    def __init__(self, id, vertexs_expression, line) :
+        self.id = id
+        self.vertexs_expression = vertexs_expression
+        self.line = line
+
+    def evaluate(self, st : SymbolTable):
+        recover_object = st.get(self.id, self.line)
+        if recover_object.data_type != 'graph' and recover_object.data_type != 'digraph':
+            raise TypeError(f"At line {self.line}. {self.id} was not a graph type object.")
+        graph = recover_object.value
+        graph.add_nodes_from(self.vertexs_expression)
+
+class Add_edge(Node) :
+
+    def __init__(self, id, edges_expression, line) :
+        self.id = id
+        self.edges_expression = edges_expression
+        self.line = line
+
+    def evaluate(self, st : SymbolTable):
+        recover_object = st.get(self.id, self.line)
+        if recover_object.data_type != 'graph' and recover_object.data_type != 'digraph':
+            raise TypeError(f"At line {self.line}. {self.id} was not a graph type object.")
+        graph = recover_object.value
+        for edge in self.edges_expression:
+            graph.add_edge(edge[0], edge[1])
+            graph[edge[0]][edge[1]]['weight'] = edge[2]
+
+
+class Add_vertex_and_edge(Node) :
+
+    def __init__(self, id, vertexs_expression, edges_expression, line):
+        self.vertex_add = Add_vertex(id, vertexs_expression, line)
+        self.edge_add = Add_edge(id, edges_expression, line)
+
+    def evaluate(self, st):
+        self.vertex_add.evaluate(st)
+        self.edge_add.evaluate(st)
+
+
 class If(Node) :
     def __init__(self,  logic_expression, instructions) :
         self.logic_expression = logic_expression
         self.instructions = instructions
 
     def evaluate(self, st):
-        if self.logic_expression:
+        solved_logic_expression = self.logic_expression.evaluate(st)
+        if solved_logic_expression:
             new_st = st.Clone()
             for instruction in self.instructions.node_list:
                 instruction.evaluate(new_st)
@@ -188,7 +231,8 @@ class If_else(Node) :
         self.instructions_if_false = instructions_if_false
 
     def evaluate(self, st):
-        if self.logic_expression:
+        solved_logic_expression = self.logic_expression.evaluate(st)
+        if solved_logic_expression:
             instructions = self.instructions_if_true
         else:
             instructions = self.instructions_if_false
@@ -243,3 +287,45 @@ class For_edge(Node) :
                 new_st = st.Clone()
         else:
             raise TypeError(f"At line: {self.line}. {self.graph} is a {graph_data.data_type} variable, a graph variable was expected")
+
+
+class Numerical_value(Node):
+
+    def __init__(self, value) :
+        self.value = value
+
+    def evaluate(self, st):
+        return self.value
+
+class Algebraic_expression(Node):
+
+    def __init__(self, exp1, exp2, operation) :
+        self.exp1 = exp1
+        self.exp2 = exp2
+        self.operation = operation
+
+    def evaluate(self, st):
+        solved_exp1 = self.exp1.evaluate(st)
+        solved_exp2 = self.exp2.evaluate(st)
+        return Arithmetic_Operations[self.operation](solved_exp1,solved_exp2)
+
+class Minus_operation(Node):
+
+    def __init__(self, exp) :
+        self.exp = exp
+
+    def evaluate(self, st):
+        value = self.exp.evaluate(st)
+        return -value
+
+class Bool_Operation(Node):
+
+    def __init__(self, exp1, exp2, operator) :
+        self.exp1 = exp1
+        self.exp2 = exp2
+        self.operator = operator
+
+    def evaluate(self, st):
+        solved_exp1 = self.exp1.evaluate(st)
+        solved_exp2 = self.exp2.evaluate(st)
+        return Bool_Operations[self.operator](solved_exp1,solved_exp2)
