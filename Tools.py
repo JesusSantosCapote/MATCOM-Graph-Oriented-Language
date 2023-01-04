@@ -30,16 +30,18 @@ def union(graph1, graph2):
 def intersection(graph1, graph2):
     return nx.operators.intersection(graph1, graph2)
 
-#TODO: Rewrite method. Dont remove elements from graph1, create a copy and work whit that.
+
 def difference(graph1, graph2):
     graph2_nodes = graph2.nodes
     graph1_nodes = graph1.nodes
 
+    graph_diff = graph1.copy()
+    
     nodes_to_delete = [node for node in graph2_nodes if node in graph1_nodes]
 
-    graph1.remove_nodes_from(nodes_to_delete)
+    graph_diff.remove_nodes_from(nodes_to_delete)
 
-    return graph1
+    return graph_diff
 
 
 Bool_Operations={
@@ -83,9 +85,5 @@ Graph_Operations={
 
 # c = difference(d, e)
 
-# # print(c._node)
-# # print(c.edges)
-
-
-# print(c.nodes)
-# print(c.edges())
+# print(c._node)
+# print(c.edges)
