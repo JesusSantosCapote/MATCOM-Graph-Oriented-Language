@@ -41,20 +41,22 @@ Rule 25    edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR
 Rule 26    edge_expression -> OPAR INT COMMA INT COMMA INT CPAR
 Rule 27    edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
 Rule 28    edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR
-Rule 29    logic_expression -> value_expression EQUAL value_expression
-Rule 30    logic_expression -> value_expression GREATER value_expression
-Rule 31    logic_expression -> value_expression LESS value_expression
-Rule 32    logic_expression -> value_expression GREATEREQ value_expression
-Rule 33    logic_expression -> value_expression LESSEQ value_expression
-Rule 34    logic_expression -> value_expression NEQUAL value_expression
-Rule 35    value_expression -> algebraic_expression
-Rule 36    algebraic_expression -> INT
-Rule 37    algebraic_expression -> FLOAT
-Rule 38    algebraic_expression -> algebraic_expression PLUS algebraic_expression
-Rule 39    algebraic_expression -> algebraic_expression MINUS algebraic_expression
-Rule 40    algebraic_expression -> algebraic_expression MUL algebraic_expression
-Rule 41    algebraic_expression -> algebraic_expression DIV algebraic_expression
-Rule 42    algebraic_expression -> MINUS algebraic_expression
+Rule 29    edge_expression -> empty
+Rule 30    logic_expression -> value_expression EQUAL value_expression
+Rule 31    logic_expression -> value_expression GREATER value_expression
+Rule 32    logic_expression -> value_expression LESS value_expression
+Rule 33    logic_expression -> value_expression GREATEREQ value_expression
+Rule 34    logic_expression -> value_expression LESSEQ value_expression
+Rule 35    logic_expression -> value_expression NEQUAL value_expression
+Rule 36    value_expression -> algebraic_expression
+Rule 37    algebraic_expression -> INT
+Rule 38    algebraic_expression -> FLOAT
+Rule 39    algebraic_expression -> algebraic_expression PLUS algebraic_expression
+Rule 40    algebraic_expression -> algebraic_expression MINUS algebraic_expression
+Rule 41    algebraic_expression -> algebraic_expression MUL algebraic_expression
+Rule 42    algebraic_expression -> algebraic_expression DIV algebraic_expression
+Rule 43    algebraic_expression -> MINUS algebraic_expression
+Rule 44    empty -> <empty>
 
 Terminals, with rules where they appear
 
@@ -66,33 +68,33 @@ COMPLEMENT           :
 CPAR                 : 9 10 13 15 16 17 18 23 24 25 26 27 28
 DIFFERENCE           : 
 DIGRAPH              : 16 18
-DIV                  : 41
+DIV                  : 42
 EDGE                 : 
 ELIF                 : 
 ELSE                 : 10
 END                  : 9 10 10 11 12
-EQUAL                : 29
-FLOAT                : 27 28 37
+EQUAL                : 30
+FLOAT                : 27 28 38
 FOREDGE              : 12
 FORVERTEX            : 11
 GRAPH                : 15 17
-GREATER              : 30
-GREATEREQ            : 32
+GREATER              : 31
+GREATEREQ            : 33
 ID                   : 11 11 12 12 13 14
 IF                   : 9 10
 IN                   : 11 12
-INT                  : 15 16 21 22 23 23 24 24 25 25 25 26 26 26 27 27 28 28 36
+INT                  : 15 16 21 22 23 23 24 24 25 25 25 26 26 26 27 27 28 28 37
 INTERSECTION         : 20
-LESS                 : 31
-LESSEQ               : 33
-MINUS                : 39 42
-MUL                  : 40
+LESS                 : 32
+LESSEQ               : 34
+MINUS                : 40 43
+MUL                  : 41
 MULTIGRAPH           : 
-NEQUAL               : 34
+NEQUAL               : 35
 OBR                  : 17 18
 OPAR                 : 9 10 13 15 16 17 18 23 24 25 26 27 28
 PLOT                 : 13
-PLUS                 : 38
+PLUS                 : 39
 PSEUDOGRAPH          : 
 STRING               : 
 UNION                : 19
@@ -108,11 +110,12 @@ If_instr             : 4
 Instruction          : 1 2
 Instructions         : 1 9 10 10 11 12 0
 Plot_instr           : 3
-algebraic_expression : 35 38 38 39 39 40 40 41 41 42
+algebraic_expression : 36 39 39 40 40 41 41 42 42 43
 edge_expression      : 15 16 17 18 23 25 27
+empty                : 29
 graph_expression     : 14 19 19 20 20
 logic_expression     : 9 10
-value_expression     : 29 29 30 30 31 31 32 32 33 33 34 34
+value_expression     : 30 30 31 31 32 32 33 33 34 34 35 35
 vertex_expression    : 17 18 21
 
 Parsing method: LALR
@@ -347,20 +350,20 @@ state 17
 
     (9) If_instr -> IF OPAR . logic_expression CPAR BEGIN Instructions END
     (10) If_else_instr -> IF OPAR . logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END
-    (29) logic_expression -> . value_expression EQUAL value_expression
-    (30) logic_expression -> . value_expression GREATER value_expression
-    (31) logic_expression -> . value_expression LESS value_expression
-    (32) logic_expression -> . value_expression GREATEREQ value_expression
-    (33) logic_expression -> . value_expression LESSEQ value_expression
-    (34) logic_expression -> . value_expression NEQUAL value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (30) logic_expression -> . value_expression EQUAL value_expression
+    (31) logic_expression -> . value_expression GREATER value_expression
+    (32) logic_expression -> . value_expression LESS value_expression
+    (33) logic_expression -> . value_expression GREATEREQ value_expression
+    (34) logic_expression -> . value_expression LESSEQ value_expression
+    (35) logic_expression -> . value_expression NEQUAL value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -434,12 +437,12 @@ state 24
 
 state 25
 
-    (29) logic_expression -> value_expression . EQUAL value_expression
-    (30) logic_expression -> value_expression . GREATER value_expression
-    (31) logic_expression -> value_expression . LESS value_expression
-    (32) logic_expression -> value_expression . GREATEREQ value_expression
-    (33) logic_expression -> value_expression . LESSEQ value_expression
-    (34) logic_expression -> value_expression . NEQUAL value_expression
+    (30) logic_expression -> value_expression . EQUAL value_expression
+    (31) logic_expression -> value_expression . GREATER value_expression
+    (32) logic_expression -> value_expression . LESS value_expression
+    (33) logic_expression -> value_expression . GREATEREQ value_expression
+    (34) logic_expression -> value_expression . LESSEQ value_expression
+    (35) logic_expression -> value_expression . NEQUAL value_expression
 
     EQUAL           shift and go to state 38
     GREATER         shift and go to state 39
@@ -451,19 +454,19 @@ state 25
 
 state 26
 
-    (35) value_expression -> algebraic_expression .
-    (38) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (39) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (36) value_expression -> algebraic_expression .
+    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    EQUAL           reduce using rule 35 (value_expression -> algebraic_expression .)
-    GREATER         reduce using rule 35 (value_expression -> algebraic_expression .)
-    LESS            reduce using rule 35 (value_expression -> algebraic_expression .)
-    GREATEREQ       reduce using rule 35 (value_expression -> algebraic_expression .)
-    LESSEQ          reduce using rule 35 (value_expression -> algebraic_expression .)
-    NEQUAL          reduce using rule 35 (value_expression -> algebraic_expression .)
-    CPAR            reduce using rule 35 (value_expression -> algebraic_expression .)
+    EQUAL           reduce using rule 36 (value_expression -> algebraic_expression .)
+    GREATER         reduce using rule 36 (value_expression -> algebraic_expression .)
+    LESS            reduce using rule 36 (value_expression -> algebraic_expression .)
+    GREATEREQ       reduce using rule 36 (value_expression -> algebraic_expression .)
+    LESSEQ          reduce using rule 36 (value_expression -> algebraic_expression .)
+    NEQUAL          reduce using rule 36 (value_expression -> algebraic_expression .)
+    CPAR            reduce using rule 36 (value_expression -> algebraic_expression .)
     PLUS            shift and go to state 44
     MINUS           shift and go to state 45
     MUL             shift and go to state 46
@@ -472,48 +475,48 @@ state 26
 
 state 27
 
-    (36) algebraic_expression -> INT .
+    (37) algebraic_expression -> INT .
 
-    PLUS            reduce using rule 36 (algebraic_expression -> INT .)
-    MINUS           reduce using rule 36 (algebraic_expression -> INT .)
-    MUL             reduce using rule 36 (algebraic_expression -> INT .)
-    DIV             reduce using rule 36 (algebraic_expression -> INT .)
-    EQUAL           reduce using rule 36 (algebraic_expression -> INT .)
-    GREATER         reduce using rule 36 (algebraic_expression -> INT .)
-    LESS            reduce using rule 36 (algebraic_expression -> INT .)
-    GREATEREQ       reduce using rule 36 (algebraic_expression -> INT .)
-    LESSEQ          reduce using rule 36 (algebraic_expression -> INT .)
-    NEQUAL          reduce using rule 36 (algebraic_expression -> INT .)
-    CPAR            reduce using rule 36 (algebraic_expression -> INT .)
+    PLUS            reduce using rule 37 (algebraic_expression -> INT .)
+    MINUS           reduce using rule 37 (algebraic_expression -> INT .)
+    MUL             reduce using rule 37 (algebraic_expression -> INT .)
+    DIV             reduce using rule 37 (algebraic_expression -> INT .)
+    EQUAL           reduce using rule 37 (algebraic_expression -> INT .)
+    GREATER         reduce using rule 37 (algebraic_expression -> INT .)
+    LESS            reduce using rule 37 (algebraic_expression -> INT .)
+    GREATEREQ       reduce using rule 37 (algebraic_expression -> INT .)
+    LESSEQ          reduce using rule 37 (algebraic_expression -> INT .)
+    NEQUAL          reduce using rule 37 (algebraic_expression -> INT .)
+    CPAR            reduce using rule 37 (algebraic_expression -> INT .)
 
 
 state 28
 
-    (37) algebraic_expression -> FLOAT .
+    (38) algebraic_expression -> FLOAT .
 
-    PLUS            reduce using rule 37 (algebraic_expression -> FLOAT .)
-    MINUS           reduce using rule 37 (algebraic_expression -> FLOAT .)
-    MUL             reduce using rule 37 (algebraic_expression -> FLOAT .)
-    DIV             reduce using rule 37 (algebraic_expression -> FLOAT .)
-    EQUAL           reduce using rule 37 (algebraic_expression -> FLOAT .)
-    GREATER         reduce using rule 37 (algebraic_expression -> FLOAT .)
-    LESS            reduce using rule 37 (algebraic_expression -> FLOAT .)
-    GREATEREQ       reduce using rule 37 (algebraic_expression -> FLOAT .)
-    LESSEQ          reduce using rule 37 (algebraic_expression -> FLOAT .)
-    NEQUAL          reduce using rule 37 (algebraic_expression -> FLOAT .)
-    CPAR            reduce using rule 37 (algebraic_expression -> FLOAT .)
+    PLUS            reduce using rule 38 (algebraic_expression -> FLOAT .)
+    MINUS           reduce using rule 38 (algebraic_expression -> FLOAT .)
+    MUL             reduce using rule 38 (algebraic_expression -> FLOAT .)
+    DIV             reduce using rule 38 (algebraic_expression -> FLOAT .)
+    EQUAL           reduce using rule 38 (algebraic_expression -> FLOAT .)
+    GREATER         reduce using rule 38 (algebraic_expression -> FLOAT .)
+    LESS            reduce using rule 38 (algebraic_expression -> FLOAT .)
+    GREATEREQ       reduce using rule 38 (algebraic_expression -> FLOAT .)
+    LESSEQ          reduce using rule 38 (algebraic_expression -> FLOAT .)
+    NEQUAL          reduce using rule 38 (algebraic_expression -> FLOAT .)
+    CPAR            reduce using rule 38 (algebraic_expression -> FLOAT .)
 
 
 state 29
 
-    (42) algebraic_expression -> MINUS . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (43) algebraic_expression -> MINUS . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -606,15 +609,15 @@ state 37
 
 state 38
 
-    (29) logic_expression -> value_expression EQUAL . value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (30) logic_expression -> value_expression EQUAL . value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -625,15 +628,15 @@ state 38
 
 state 39
 
-    (30) logic_expression -> value_expression GREATER . value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (31) logic_expression -> value_expression GREATER . value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -644,15 +647,15 @@ state 39
 
 state 40
 
-    (31) logic_expression -> value_expression LESS . value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (32) logic_expression -> value_expression LESS . value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -663,15 +666,15 @@ state 40
 
 state 41
 
-    (32) logic_expression -> value_expression GREATEREQ . value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (33) logic_expression -> value_expression GREATEREQ . value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -682,15 +685,15 @@ state 41
 
 state 42
 
-    (33) logic_expression -> value_expression LESSEQ . value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (34) logic_expression -> value_expression LESSEQ . value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -701,15 +704,15 @@ state 42
 
 state 43
 
-    (34) logic_expression -> value_expression NEQUAL . value_expression
-    (35) value_expression -> . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (35) logic_expression -> value_expression NEQUAL . value_expression
+    (36) value_expression -> . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -720,14 +723,14 @@ state 43
 
 state 44
 
-    (38) algebraic_expression -> algebraic_expression PLUS . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (39) algebraic_expression -> algebraic_expression PLUS . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -737,14 +740,14 @@ state 44
 
 state 45
 
-    (39) algebraic_expression -> algebraic_expression MINUS . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression MINUS . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -754,14 +757,14 @@ state 45
 
 state 46
 
-    (40) algebraic_expression -> algebraic_expression MUL . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression MUL . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -771,14 +774,14 @@ state 46
 
 state 47
 
-    (41) algebraic_expression -> algebraic_expression DIV . algebraic_expression
-    (36) algebraic_expression -> . INT
-    (37) algebraic_expression -> . FLOAT
-    (38) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
-    (39) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
-    (40) algebraic_expression -> . algebraic_expression MUL algebraic_expression
-    (41) algebraic_expression -> . algebraic_expression DIV algebraic_expression
-    (42) algebraic_expression -> . MINUS algebraic_expression
+    (42) algebraic_expression -> algebraic_expression DIV . algebraic_expression
+    (37) algebraic_expression -> . INT
+    (38) algebraic_expression -> . FLOAT
+    (39) algebraic_expression -> . algebraic_expression PLUS algebraic_expression
+    (40) algebraic_expression -> . algebraic_expression MINUS algebraic_expression
+    (41) algebraic_expression -> . algebraic_expression MUL algebraic_expression
+    (42) algebraic_expression -> . algebraic_expression DIV algebraic_expression
+    (43) algebraic_expression -> . MINUS algebraic_expression
 
     INT             shift and go to state 27
     FLOAT           shift and go to state 28
@@ -788,23 +791,23 @@ state 47
 
 state 48
 
-    (42) algebraic_expression -> MINUS algebraic_expression .
-    (38) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (39) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (43) algebraic_expression -> MINUS algebraic_expression .
+    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    PLUS            reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    MINUS           reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    MUL             reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    DIV             reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    EQUAL           reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    GREATER         reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    LESS            reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    GREATEREQ       reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    LESSEQ          reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    NEQUAL          reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
-    CPAR            reduce using rule 42 (algebraic_expression -> MINUS algebraic_expression .)
+    PLUS            reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    MINUS           reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    MUL             reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    DIV             reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    EQUAL           reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    GREATER         reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    LESS            reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    GREATEREQ       reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    LESSEQ          reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    NEQUAL          reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
+    CPAR            reduce using rule 43 (algebraic_expression -> MINUS algebraic_expression .)
 
   ! PLUS            [ shift and go to state 44 ]
   ! MINUS           [ shift and go to state 45 ]
@@ -940,117 +943,117 @@ state 57
 
 state 58
 
-    (29) logic_expression -> value_expression EQUAL value_expression .
+    (30) logic_expression -> value_expression EQUAL value_expression .
 
-    CPAR            reduce using rule 29 (logic_expression -> value_expression EQUAL value_expression .)
+    CPAR            reduce using rule 30 (logic_expression -> value_expression EQUAL value_expression .)
 
 
 state 59
 
-    (30) logic_expression -> value_expression GREATER value_expression .
+    (31) logic_expression -> value_expression GREATER value_expression .
 
-    CPAR            reduce using rule 30 (logic_expression -> value_expression GREATER value_expression .)
+    CPAR            reduce using rule 31 (logic_expression -> value_expression GREATER value_expression .)
 
 
 state 60
 
-    (31) logic_expression -> value_expression LESS value_expression .
+    (32) logic_expression -> value_expression LESS value_expression .
 
-    CPAR            reduce using rule 31 (logic_expression -> value_expression LESS value_expression .)
+    CPAR            reduce using rule 32 (logic_expression -> value_expression LESS value_expression .)
 
 
 state 61
 
-    (32) logic_expression -> value_expression GREATEREQ value_expression .
+    (33) logic_expression -> value_expression GREATEREQ value_expression .
 
-    CPAR            reduce using rule 32 (logic_expression -> value_expression GREATEREQ value_expression .)
+    CPAR            reduce using rule 33 (logic_expression -> value_expression GREATEREQ value_expression .)
 
 
 state 62
 
-    (33) logic_expression -> value_expression LESSEQ value_expression .
+    (34) logic_expression -> value_expression LESSEQ value_expression .
 
-    CPAR            reduce using rule 33 (logic_expression -> value_expression LESSEQ value_expression .)
+    CPAR            reduce using rule 34 (logic_expression -> value_expression LESSEQ value_expression .)
 
 
 state 63
 
-    (34) logic_expression -> value_expression NEQUAL value_expression .
+    (35) logic_expression -> value_expression NEQUAL value_expression .
 
-    CPAR            reduce using rule 34 (logic_expression -> value_expression NEQUAL value_expression .)
+    CPAR            reduce using rule 35 (logic_expression -> value_expression NEQUAL value_expression .)
 
 
 state 64
 
-    (38) algebraic_expression -> algebraic_expression PLUS algebraic_expression .
-    (38) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (39) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (39) algebraic_expression -> algebraic_expression PLUS algebraic_expression .
+    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    PLUS            reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    MINUS           reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    EQUAL           reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    GREATER         reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    LESS            reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    GREATEREQ       reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    LESSEQ          reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    NEQUAL          reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
-    CPAR            reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    PLUS            reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    MINUS           reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    EQUAL           reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    GREATER         reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    LESS            reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    GREATEREQ       reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    LESSEQ          reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    NEQUAL          reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
+    CPAR            reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .)
     MUL             shift and go to state 46
     DIV             shift and go to state 47
 
-  ! MUL             [ reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
-  ! DIV             [ reduce using rule 38 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
+  ! MUL             [ reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
+  ! DIV             [ reduce using rule 39 (algebraic_expression -> algebraic_expression PLUS algebraic_expression .) ]
   ! PLUS            [ shift and go to state 44 ]
   ! MINUS           [ shift and go to state 45 ]
 
 
 state 65
 
-    (39) algebraic_expression -> algebraic_expression MINUS algebraic_expression .
-    (38) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (39) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (40) algebraic_expression -> algebraic_expression MINUS algebraic_expression .
+    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    PLUS            reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    MINUS           reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    EQUAL           reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    GREATER         reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    LESS            reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    GREATEREQ       reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    LESSEQ          reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    NEQUAL          reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
-    CPAR            reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    PLUS            reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    MINUS           reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    EQUAL           reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    GREATER         reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    LESS            reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    GREATEREQ       reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    LESSEQ          reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    NEQUAL          reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
+    CPAR            reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .)
     MUL             shift and go to state 46
     DIV             shift and go to state 47
 
-  ! MUL             [ reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
-  ! DIV             [ reduce using rule 39 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
+  ! MUL             [ reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
+  ! DIV             [ reduce using rule 40 (algebraic_expression -> algebraic_expression MINUS algebraic_expression .) ]
   ! PLUS            [ shift and go to state 44 ]
   ! MINUS           [ shift and go to state 45 ]
 
 
 state 66
 
-    (40) algebraic_expression -> algebraic_expression MUL algebraic_expression .
-    (38) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (39) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (41) algebraic_expression -> algebraic_expression MUL algebraic_expression .
+    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    PLUS            reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    MINUS           reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    MUL             reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    DIV             reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    EQUAL           reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    GREATER         reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    LESS            reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    GREATEREQ       reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    LESSEQ          reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    NEQUAL          reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
-    CPAR            reduce using rule 40 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    PLUS            reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    MINUS           reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    MUL             reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    DIV             reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    EQUAL           reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    GREATER         reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    LESS            reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    GREATEREQ       reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    LESSEQ          reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    NEQUAL          reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
+    CPAR            reduce using rule 41 (algebraic_expression -> algebraic_expression MUL algebraic_expression .)
 
   ! PLUS            [ shift and go to state 44 ]
   ! MINUS           [ shift and go to state 45 ]
@@ -1060,23 +1063,23 @@ state 66
 
 state 67
 
-    (41) algebraic_expression -> algebraic_expression DIV algebraic_expression .
-    (38) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
-    (39) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
-    (40) algebraic_expression -> algebraic_expression . MUL algebraic_expression
-    (41) algebraic_expression -> algebraic_expression . DIV algebraic_expression
+    (42) algebraic_expression -> algebraic_expression DIV algebraic_expression .
+    (39) algebraic_expression -> algebraic_expression . PLUS algebraic_expression
+    (40) algebraic_expression -> algebraic_expression . MINUS algebraic_expression
+    (41) algebraic_expression -> algebraic_expression . MUL algebraic_expression
+    (42) algebraic_expression -> algebraic_expression . DIV algebraic_expression
 
-    PLUS            reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    MINUS           reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    MUL             reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    DIV             reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    EQUAL           reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    GREATER         reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    LESS            reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    GREATEREQ       reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    LESSEQ          reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    NEQUAL          reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
-    CPAR            reduce using rule 41 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    PLUS            reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    MINUS           reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    MUL             reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    DIV             reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    EQUAL           reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    GREATER         reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    LESS            reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    GREATEREQ       reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    LESSEQ          reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    NEQUAL          reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
+    CPAR            reduce using rule 42 (algebraic_expression -> algebraic_expression DIV algebraic_expression .)
 
   ! PLUS            [ shift and go to state 44 ]
   ! MINUS           [ shift and go to state 45 ]
@@ -1159,18 +1162,25 @@ state 70
     (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
     (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . empty
+    (44) empty -> .
 
+  ! shift/reduce conflict for OPAR resolved as shift
     OPAR            shift and go to state 78
+    CPAR            reduce using rule 44 (empty -> .)
+
+  ! OPAR            [ reduce using rule 44 (empty -> .) ]
 
     edge_expression                shift and go to state 79
+    empty                          shift and go to state 80
 
 state 71
 
     (17) graph_expression -> GRAPH OPAR OBR vertex_expression . CBR COMMA edge_expression CPAR
     (21) vertex_expression -> vertex_expression . INT
 
-    CBR             shift and go to state 80
-    INT             shift and go to state 81
+    CBR             shift and go to state 81
+    INT             shift and go to state 82
 
 
 state 72
@@ -1190,18 +1200,25 @@ state 73
     (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
     (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . empty
+    (44) empty -> .
 
+  ! shift/reduce conflict for OPAR resolved as shift
     OPAR            shift and go to state 78
+    CPAR            reduce using rule 44 (empty -> .)
 
-    edge_expression                shift and go to state 82
+  ! OPAR            [ reduce using rule 44 (empty -> .) ]
+
+    edge_expression                shift and go to state 83
+    empty                          shift and go to state 80
 
 state 74
 
     (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression . CBR COMMA edge_expression CPAR
     (21) vertex_expression -> vertex_expression . INT
 
-    CBR             shift and go to state 83
-    INT             shift and go to state 81
+    CBR             shift and go to state 84
+    INT             shift and go to state 82
 
 
 state 75
@@ -1222,7 +1239,7 @@ state 75
     (14) Assign_instr -> . ID ASSIGN graph_expression
     (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    END             shift and go to state 84
+    END             shift and go to state 85
     PLOT            shift and go to state 9
     IF              shift and go to state 11
     FORVERTEX       shift and go to state 12
@@ -1254,7 +1271,7 @@ state 76
     (14) Assign_instr -> . ID ASSIGN graph_expression
     (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    END             shift and go to state 85
+    END             shift and go to state 86
     PLOT            shift and go to state 9
     IF              shift and go to state 11
     FORVERTEX       shift and go to state 12
@@ -1286,7 +1303,7 @@ state 77
     (14) Assign_instr -> . ID ASSIGN graph_expression
     (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    END             shift and go to state 86
+    END             shift and go to state 87
     PLOT            shift and go to state 9
     IF              shift and go to state 11
     FORVERTEX       shift and go to state 12
@@ -1307,7 +1324,7 @@ state 78
     (26) edge_expression -> OPAR . INT COMMA INT COMMA INT CPAR
     (28) edge_expression -> OPAR . INT COMMA INT COMMA FLOAT CPAR
 
-    INT             shift and go to state 87
+    INT             shift and go to state 88
 
 
 state 79
@@ -1317,18 +1334,26 @@ state 79
     (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 89
-    OPAR            shift and go to state 88
+    CPAR            shift and go to state 90
+    OPAR            shift and go to state 89
 
 
 state 80
 
-    (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
+    (29) edge_expression -> empty .
 
-    COMMA           shift and go to state 90
+    CPAR            reduce using rule 29 (edge_expression -> empty .)
+    OPAR            reduce using rule 29 (edge_expression -> empty .)
 
 
 state 81
+
+    (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
+
+    COMMA           shift and go to state 91
+
+
+state 82
 
     (21) vertex_expression -> vertex_expression INT .
 
@@ -1336,25 +1361,25 @@ state 81
     INT             reduce using rule 21 (vertex_expression -> vertex_expression INT .)
 
 
-state 82
+state 83
 
     (16) graph_expression -> DIGRAPH OPAR INT COMMA edge_expression . CPAR
     (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
     (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 91
-    OPAR            shift and go to state 88
-
-
-state 83
-
-    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
-
-    COMMA           shift and go to state 92
+    CPAR            shift and go to state 92
+    OPAR            shift and go to state 89
 
 
 state 84
+
+    (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR . COMMA edge_expression CPAR
+
+    COMMA           shift and go to state 93
+
+
+state 85
 
     (9) If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END . ELSE BEGIN Instructions END
@@ -1366,10 +1391,10 @@ state 84
     FOREDGE         reduce using rule 9 (If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .)
     $end            reduce using rule 9 (If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .)
     END             reduce using rule 9 (If_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END .)
-    ELSE            shift and go to state 93
+    ELSE            shift and go to state 94
 
 
-state 85
+state 86
 
     (11) For_vertex_instr -> FORVERTEX ID IN ID BEGIN Instructions END .
 
@@ -1382,7 +1407,7 @@ state 85
     END             reduce using rule 11 (For_vertex_instr -> FORVERTEX ID IN ID BEGIN Instructions END .)
 
 
-state 86
+state 87
 
     (12) For_edge_instr -> FOREDGE ID IN ID BEGIN Instructions END .
 
@@ -1395,25 +1420,25 @@ state 86
     END             reduce using rule 12 (For_edge_instr -> FOREDGE ID IN ID BEGIN Instructions END .)
 
 
-state 87
+state 88
 
     (24) edge_expression -> OPAR INT . COMMA INT CPAR
     (26) edge_expression -> OPAR INT . COMMA INT COMMA INT CPAR
     (28) edge_expression -> OPAR INT . COMMA INT COMMA FLOAT CPAR
 
-    COMMA           shift and go to state 94
+    COMMA           shift and go to state 95
 
 
-state 88
+state 89
 
     (23) edge_expression -> edge_expression OPAR . INT COMMA INT CPAR
     (25) edge_expression -> edge_expression OPAR . INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> edge_expression OPAR . INT COMMA INT COMMA FLOAT CPAR
 
-    INT             shift and go to state 95
+    INT             shift and go to state 96
 
 
-state 89
+state 90
 
     (15) graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .
 
@@ -1428,7 +1453,7 @@ state 89
     END             reduce using rule 15 (graph_expression -> GRAPH OPAR INT COMMA edge_expression CPAR .)
 
 
-state 90
+state 91
 
     (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA . edge_expression CPAR
     (23) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
@@ -1437,12 +1462,19 @@ state 90
     (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
     (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . empty
+    (44) empty -> .
 
+  ! shift/reduce conflict for OPAR resolved as shift
     OPAR            shift and go to state 78
+    CPAR            reduce using rule 44 (empty -> .)
 
-    edge_expression                shift and go to state 96
+  ! OPAR            [ reduce using rule 44 (empty -> .) ]
 
-state 91
+    edge_expression                shift and go to state 97
+    empty                          shift and go to state 80
+
+state 92
 
     (16) graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .
 
@@ -1457,7 +1489,7 @@ state 91
     END             reduce using rule 16 (graph_expression -> DIGRAPH OPAR INT COMMA edge_expression CPAR .)
 
 
-state 92
+state 93
 
     (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA . edge_expression CPAR
     (23) edge_expression -> . edge_expression OPAR INT COMMA INT CPAR
@@ -1466,59 +1498,66 @@ state 92
     (26) edge_expression -> . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> . edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR
     (28) edge_expression -> . OPAR INT COMMA INT COMMA FLOAT CPAR
+    (29) edge_expression -> . empty
+    (44) empty -> .
 
+  ! shift/reduce conflict for OPAR resolved as shift
     OPAR            shift and go to state 78
+    CPAR            reduce using rule 44 (empty -> .)
 
-    edge_expression                shift and go to state 97
+  ! OPAR            [ reduce using rule 44 (empty -> .) ]
 
-state 93
+    edge_expression                shift and go to state 98
+    empty                          shift and go to state 80
+
+state 94
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE . BEGIN Instructions END
 
-    BEGIN           shift and go to state 98
+    BEGIN           shift and go to state 99
 
 
-state 94
+state 95
 
     (24) edge_expression -> OPAR INT COMMA . INT CPAR
     (26) edge_expression -> OPAR INT COMMA . INT COMMA INT CPAR
     (28) edge_expression -> OPAR INT COMMA . INT COMMA FLOAT CPAR
 
-    INT             shift and go to state 99
+    INT             shift and go to state 100
 
 
-state 95
+state 96
 
     (23) edge_expression -> edge_expression OPAR INT . COMMA INT CPAR
     (25) edge_expression -> edge_expression OPAR INT . COMMA INT COMMA INT CPAR
     (27) edge_expression -> edge_expression OPAR INT . COMMA INT COMMA FLOAT CPAR
 
-    COMMA           shift and go to state 100
+    COMMA           shift and go to state 101
 
 
-state 96
+state 97
 
     (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression . CPAR
     (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
     (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 101
-    OPAR            shift and go to state 88
+    CPAR            shift and go to state 102
+    OPAR            shift and go to state 89
 
 
-state 97
+state 98
 
     (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression . CPAR
     (23) edge_expression -> edge_expression . OPAR INT COMMA INT CPAR
     (25) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA INT CPAR
     (27) edge_expression -> edge_expression . OPAR INT COMMA INT COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 102
-    OPAR            shift and go to state 88
+    CPAR            shift and go to state 103
+    OPAR            shift and go to state 89
 
 
-state 98
+state 99
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN . Instructions END
     (1) Instructions -> . Instructions Instruction
@@ -1542,7 +1581,7 @@ state 98
     ID              shift and go to state 10
     FOREDGE         shift and go to state 13
 
-    Instructions                   shift and go to state 103
+    Instructions                   shift and go to state 104
     Instruction                    shift and go to state 2
     Plot_instr                     shift and go to state 3
     If_instr                       shift and go to state 4
@@ -1551,26 +1590,26 @@ state 98
     Assign_instr                   shift and go to state 7
     For_edge_instr                 shift and go to state 8
 
-state 99
+state 100
 
     (24) edge_expression -> OPAR INT COMMA INT . CPAR
     (26) edge_expression -> OPAR INT COMMA INT . COMMA INT CPAR
     (28) edge_expression -> OPAR INT COMMA INT . COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 105
-    COMMA           shift and go to state 104
+    CPAR            shift and go to state 106
+    COMMA           shift and go to state 105
 
 
-state 100
+state 101
 
     (23) edge_expression -> edge_expression OPAR INT COMMA . INT CPAR
     (25) edge_expression -> edge_expression OPAR INT COMMA . INT COMMA INT CPAR
     (27) edge_expression -> edge_expression OPAR INT COMMA . INT COMMA FLOAT CPAR
 
-    INT             shift and go to state 106
+    INT             shift and go to state 107
 
 
-state 101
+state 102
 
     (17) graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .
 
@@ -1585,7 +1624,7 @@ state 101
     END             reduce using rule 17 (graph_expression -> GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
 
 
-state 102
+state 103
 
     (18) graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .
 
@@ -1600,7 +1639,7 @@ state 102
     END             reduce using rule 18 (graph_expression -> DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR .)
 
 
-state 103
+state 104
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions . END
     (1) Instructions -> Instructions . Instruction
@@ -1617,7 +1656,7 @@ state 103
     (14) Assign_instr -> . ID ASSIGN graph_expression
     (12) For_edge_instr -> . FOREDGE ID IN ID BEGIN Instructions END
 
-    END             shift and go to state 107
+    END             shift and go to state 108
     PLOT            shift and go to state 9
     IF              shift and go to state 11
     FORVERTEX       shift and go to state 12
@@ -1632,16 +1671,16 @@ state 103
     Assign_instr                   shift and go to state 7
     For_edge_instr                 shift and go to state 8
 
-state 104
+state 105
 
     (26) edge_expression -> OPAR INT COMMA INT COMMA . INT CPAR
     (28) edge_expression -> OPAR INT COMMA INT COMMA . FLOAT CPAR
 
-    INT             shift and go to state 108
-    FLOAT           shift and go to state 109
+    INT             shift and go to state 109
+    FLOAT           shift and go to state 110
 
 
-state 105
+state 106
 
     (24) edge_expression -> OPAR INT COMMA INT CPAR .
 
@@ -1649,17 +1688,17 @@ state 105
     OPAR            reduce using rule 24 (edge_expression -> OPAR INT COMMA INT CPAR .)
 
 
-state 106
+state 107
 
     (23) edge_expression -> edge_expression OPAR INT COMMA INT . CPAR
     (25) edge_expression -> edge_expression OPAR INT COMMA INT . COMMA INT CPAR
     (27) edge_expression -> edge_expression OPAR INT COMMA INT . COMMA FLOAT CPAR
 
-    CPAR            shift and go to state 111
-    COMMA           shift and go to state 110
+    CPAR            shift and go to state 112
+    COMMA           shift and go to state 111
 
 
-state 107
+state 108
 
     (10) If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END .
 
@@ -1672,30 +1711,30 @@ state 107
     END             reduce using rule 10 (If_else_instr -> IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END .)
 
 
-state 108
-
-    (26) edge_expression -> OPAR INT COMMA INT COMMA INT . CPAR
-
-    CPAR            shift and go to state 112
-
-
 state 109
 
-    (28) edge_expression -> OPAR INT COMMA INT COMMA FLOAT . CPAR
+    (26) edge_expression -> OPAR INT COMMA INT COMMA INT . CPAR
 
     CPAR            shift and go to state 113
 
 
 state 110
 
-    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . INT CPAR
-    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . FLOAT CPAR
+    (28) edge_expression -> OPAR INT COMMA INT COMMA FLOAT . CPAR
 
-    INT             shift and go to state 114
-    FLOAT           shift and go to state 115
+    CPAR            shift and go to state 114
 
 
 state 111
+
+    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . INT CPAR
+    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA . FLOAT CPAR
+
+    INT             shift and go to state 115
+    FLOAT           shift and go to state 116
+
+
+state 112
 
     (23) edge_expression -> edge_expression OPAR INT COMMA INT CPAR .
 
@@ -1703,7 +1742,7 @@ state 111
     OPAR            reduce using rule 23 (edge_expression -> edge_expression OPAR INT COMMA INT CPAR .)
 
 
-state 112
+state 113
 
     (26) edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .
 
@@ -1711,7 +1750,7 @@ state 112
     OPAR            reduce using rule 26 (edge_expression -> OPAR INT COMMA INT COMMA INT CPAR .)
 
 
-state 113
+state 114
 
     (28) edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .
 
@@ -1719,21 +1758,21 @@ state 113
     OPAR            reduce using rule 28 (edge_expression -> OPAR INT COMMA INT COMMA FLOAT CPAR .)
 
 
-state 114
-
-    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT . CPAR
-
-    CPAR            shift and go to state 116
-
-
 state 115
 
-    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT . CPAR
+    (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT . CPAR
 
     CPAR            shift and go to state 117
 
 
 state 116
+
+    (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT . CPAR
+
+    CPAR            shift and go to state 118
+
+
+state 117
 
     (25) edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .
 
@@ -1741,7 +1780,7 @@ state 116
     OPAR            reduce using rule 25 (edge_expression -> edge_expression OPAR INT COMMA INT COMMA INT CPAR .)
 
 
-state 117
+state 118
 
     (27) edge_expression -> edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR .
 
@@ -1755,3 +1794,7 @@ WARNING: shift/reduce conflict for UNION in state 51 resolved as shift
 WARNING: shift/reduce conflict for INTERSECTION in state 51 resolved as shift
 WARNING: shift/reduce conflict for UNION in state 52 resolved as shift
 WARNING: shift/reduce conflict for INTERSECTION in state 52 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 70 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 73 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 91 resolved as shift
+WARNING: shift/reduce conflict for OPAR in state 93 resolved as shift

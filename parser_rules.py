@@ -8,7 +8,7 @@ precedence = (
     ('left','MUL','DIV'),
     ('right','UMINUS'),
     )
-
+#TODO: Implement instructions with variable ID's
 def p_instructions_list(t) :
     'Instructions    : Instructions Instruction'
     t[1].node_list.append(t[2])
@@ -62,7 +62,7 @@ def p_assign_instr(t) :
 
     t[0] = Assign(t[1], t[3])
 
-#TODO: Need a way to create empty graph and graph without edges. Add difference
+#TODO:Add difference
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
                             | DIGRAPH OPAR INT COMMA edge_expression CPAR
@@ -98,6 +98,7 @@ def p_edge_expression(t) :
                         | OPAR INT COMMA INT COMMA INT CPAR
                         | edge_expression OPAR INT COMMA INT COMMA FLOAT CPAR 
                         | OPAR INT COMMA INT COMMA FLOAT CPAR
+                        | empty
                         '''
     if len(t) == 7:
         t[1].append((t[3], t[5], 0))
@@ -107,6 +108,8 @@ def p_edge_expression(t) :
     elif len(t) == 9:
         t[1].append((t[3], t[5], t[7]))
         t[0] =t[1]
+    elif len(t) == 2:
+        t[0] = []
     else:
         t[0] = [(t[2], t[4], t[6])]
 
@@ -142,6 +145,9 @@ def p_algebraic_expression(t):
     else:
         t[0] = -t[2]
 
+def p_empty(p):
+    'empty :'
+    pass
 
 #def p_function(t):
 #    '''function     : '''

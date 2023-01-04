@@ -1,2 +1,2 @@
-un_grafo = graph([0 7 2 5], (5,0) (7,2) (2,0)) union graph([0 2 7 4], (2,0) (7,2) (4,7))
+un_grafo = graph(3,)
 plot(un_grafo)
