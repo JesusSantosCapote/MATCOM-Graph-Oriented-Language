@@ -58,21 +58,18 @@ def p_Plot_instr(t):
 
 
 def p_assign_instr(t) :
-    '''Assign_instr     : ID ASSIGN GRAPH OPAR INT COMMA edge_expression CPAR  
-                        | ID ASSIGN DIGRAPH OPAR INT COMMA edge_expression CPAR
-                        | ID ASSIGN MULTIGRAPH OPAR INT COMMA edge_expression CPAR
-                        | ID ASSIGN PSEUDOGRAPH OPAR INT COMMA edge_expression CPAR
-                        | ID ASSIGN Graph_operation                      
-                    '''
-    if len(t) == 4:
-        pass
-    t[0] = Assign(t[1], t[3], t[5], t[7])
+    '''Assign_instr     : ID ASSIGN graph_expression'''
+    
+    t[0] = Assign(t[1], t[3])
 
 
-def p_graph_operation(t):
-    '''Graph_operation  : ID UNION ID'''
-
-    t[0] = (t[2], t[1], t[3])
+def p_graph_expression(t) :
+    '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
+                            | DIGRAPH OPAR INT COMMA edge_expression CPAR
+                            | graph_expression UNION graph_expression'''
+    if len(t) == 7:
+        t[0] = CreateGraph(t[1], t[3], t[5])
+                            
 
 
 def p_edge_expression(t) :

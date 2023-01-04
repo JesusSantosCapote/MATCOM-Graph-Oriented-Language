@@ -36,23 +36,17 @@ class Plot(Node) :
         plt.show()
 
 
-class Assign(Node) :
+class CreateGraph(Node) :
 
-    def __init__(self, id, graph_type, vertex, edges_expression) :
-        self.id = id
+    def __init__(self, graph_type, vertex, edges_expression) :
         self.graph_type = graph_type
         self.vertex = vertex
         self.edges_expression = edges_expression
 
-    
-    def build_graph(self): #TODO: Multigraph creation need to be fixed
+    def build_graph(self):
         graph = None
-        if self.graph_type == "multigraph":
-            graph = nx.MultiGraph()
-        elif self.graph_type == "digraph":
+        if self.graph_type == "digraph":
             graph = nx.DiGraph()
-        elif self.graph_type == "pseudograph":
-            graph = nx.MultiGraph()
         else:
             graph = nx.Graph()
         
@@ -64,30 +58,38 @@ class Assign(Node) :
 
         return graph
 
-#TODO Hasta ahora solo podemos crear grafos normales
-    def evaluate(self, symbol_table : SymbolTable):
-        
+    def evaluate(self, st):
         for edge in range (len(self.edges_expression)):
             if self.edges_expression[edge][0] >= self.vertex or self.edges_expression[edge][0] < 0 or self.edges_expression[edge][1] >= self.vertex or self.edges_expression[edge][1] < 0:
                 raise Exception("Edge non-existent")
-            if self.graph_type != "pseudograph":
-                if self.edges_expression[edge][0] == self.edges_expression[edge][1]:
-                    raise Exception(f"{self.graph_type} can not have loop edges")
-            if self.graph_type != "multigraph" and self.graph_type != "pseudograph":
-                for remain_edge in range(edge + 1, len(self.edges_expression)):
-                    if self.edges_expression[remain_edge][0] == self.edges_expression[edge][0] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][1]:
-                        raise Exception(f"{self.graph_type} can not have multiple edges")
-            if self.graph_type != "digraph" and self.graph_type != "pseudograph" and self.graph_type != "multigraph":
+            if self.edges_expression[edge][0] == self.edges_expression[edge][1]:
+                raise Exception(f"{self.graph_type} can not have loop edges")
+            for remain_edge in range(edge + 1, len(self.edges_expression)):
+                if self.edges_expression[remain_edge][0] == self.edges_expression[edge][0] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][1]:
+                    raise Exception(f"{self.graph_type} can not have multiple edges")
+            if self.graph_type != "digraph":
                 for remain_edge in range(edge + 1,len(self.edges_expression)):
                     if self.edges_expression[remain_edge][0] == self.edges_expression[edge][1] and self.edges_expression[remain_edge][1] == self.edges_expression[edge][0]:
                         raise Exception(f"{self.graph_type} can not have multiple edges")
             
-        graph = self.build_graph()
+        graph = self.build_graph()  
+        return graph
 
-        if id in symbol_table.symbols.keys():
-            symbol_table.update(Symbol(self.id, self.graph_type, graph)) 
+class Assign(Node) :
+
+    def __init__(self, id, graph_expression_object) :
+        self.id = id
+        self.graph_expression_object = graph_expression_object
+    def evaluate(self, symbol_table : SymbolTable):
+        graph = self.graph_expression_object.evaluate(symbol_table)
+        if graph.is_directed():
+            graph_type = "digraph"
         else:
-            symbol_table.add(Symbol(self.id, self.graph_type, graph)) 
+            graph_type = "graph"
+        if id in symbol_table.symbols.keys():
+            symbol_table.update(Symbol(self.id, graph_type, graph)) 
+        else:
+            symbol_table.add(Symbol(self.id, graph_type, graph)) 
 
 
 class If(Node) :
@@ -129,31 +131,6 @@ class For_vertex(Node) :
         self.instructions = instructions
         self.line = line
     
-
-class GraphOperAssign(Node):
-    def __init__(self, operation, id1, id2, store_id, line) -> None:
-        self.id1 = id1
-        self.id2 = id2
-        self.operation = operation
-        self.line = line
-        self.store_id = store_id
-
-
-    def evaluate(self, st):
-        symbol1 = st.symbols[self.id1]
-        if symbol1.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
-            raise TypeError(f"{self.operation} error at line {self.line}: variable {self.id1} must hava a type of graph")
-
-        symbol2 = st.symbols[self.id2]
-        if symbol2.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
-            raise TypeError(f"{self.operation} error at line {self.line}: variable {self.id2} must hava a type of graph")
-
-        if symbol1.data_type != symbol2.data_type:
-            raise TypeError(f"{self.operation} error at line {self.line}: {self.id1} and {self.id2} they are not the same type of graph")
-
-        
-
-
     def evaluate(self, st):
         new_st = st.Clone()
         graph_data = st.get(self.graph)

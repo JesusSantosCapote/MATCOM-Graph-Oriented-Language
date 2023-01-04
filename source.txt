@@ -1,5 +1,2 @@
-un_grafo = graph(5, (1,2) (2,0))
-foredge i in un_grafo
-begin
+un_grafo = digraph(5, (1,2) (2,0))
 plot(un_grafo)
-end
