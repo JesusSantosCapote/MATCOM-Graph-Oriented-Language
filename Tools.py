@@ -17,7 +17,7 @@ Arithmetic_Operations={
     '/' : lambda x,y : x/y,
 }
 
-def union(graph1, graph2):
+def union_rara(graph1, graph2):
     graph1_node_number = len(graph1.nodes())
     graph2_node_number = len(graph2.nodes())
     graph1_node_attr = list(graph1._node.values())
@@ -37,16 +37,26 @@ def union(graph1, graph2):
 
     return union_graph
 
-a = nx.Graph()
-a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
-a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-b = nx.Graph()
-b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
-b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+def union(graph1, graph2):
+    return nx.operators.compose(graph1, graph2)
 
-c = union(a, b)
+# a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
+# # a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
+# # a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-print(c._node)
-print(c._adj)
+# b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
+# # b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
+# # b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+
+# # c = union(a, b)
+
+# c = nx.operators.disjoint_union(a, b)
+
+# nx.draw(c,)
+# plt.show()
+
+# print(c.nodes(data=True))
+# print(c.edges)
+
 
