@@ -3,7 +3,7 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     COMPLEMENT
-    DIFERENCE
+    DIFFERENCE
     EDGE
     ELIF
     MULTIGRAPH
@@ -64,7 +64,7 @@ CBR                  : 17 18
 COMMA                : 15 16 17 18 23 24 25 25 26 26 27 27 28 28
 COMPLEMENT           : 
 CPAR                 : 9 10 13 15 16 17 18 23 24 25 26 27 28
-DIFERENCE            : 
+DIFFERENCE           : 
 DIGRAPH              : 16 18
 DIV                  : 41
 EDGE                 : 

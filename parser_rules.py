@@ -62,7 +62,7 @@ def p_assign_instr(t) :
 
     t[0] = Assign(t[1], t[3])
 
-#TODO: Need a way to create empty graph and graph without edges
+#TODO: Need a way to create empty graph and graph without edges. Add difference
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
                             | DIGRAPH OPAR INT COMMA edge_expression CPAR

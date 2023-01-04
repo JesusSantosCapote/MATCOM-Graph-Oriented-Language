@@ -18,7 +18,7 @@ keywords = {
     'in' : 'IN',
     'union' : 'UNION',
     'intersection' : 'INTERSECTION',
-    'diference' : 'DIFERENCE',
+    'difference' : 'DIFFERENCE',
     'complement' : 'COMPLEMENT'
 }
 
