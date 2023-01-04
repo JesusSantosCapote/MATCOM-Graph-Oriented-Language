@@ -54,6 +54,19 @@ class Graph_operation(Node):
             raise TypeError(f"At line: {self.line}. The graph variables has different types")
 
 
+class Unary_function(Node):
+
+
+    def __init__(self, graph_expression_object, function, line) :
+        self.graph_expression_object = graph_expression_object
+        self.function = function
+        self.line = line
+
+
+    def evaluate(self, st : SymbolTable):
+        graph = self.graph_expression_object.evaluate(st)
+        return Graph_Unary_Functions[self.function](graph)
+
 class Create_graph(Node) :
 
     def __init__(self, graph_type, vertex, edges_expression, line) :
@@ -78,6 +91,7 @@ class Create_graph(Node) :
         return graph
 
     def evaluate(self, st):
+        self.vertex = self.vertex.evaluate(st)
         for edge in range (len(self.edges_expression)):
             if self.edges_expression[edge][0] >= self.vertex or self.edges_expression[edge][0] < 0 or self.edges_expression[edge][1] >= self.vertex or self.edges_expression[edge][1] < 0:
                 raise Exception(f"At line {self.line}. Edge non-existent")

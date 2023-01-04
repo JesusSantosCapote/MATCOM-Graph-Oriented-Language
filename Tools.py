@@ -76,6 +76,10 @@ def difference(graph1, graph2):
     return graph_diff
 
 
+def nodes_count(graph : nx.Graph):
+    return graph.number_of_nodes()
+
+
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,
@@ -98,32 +102,34 @@ Graph_Operations={
     'difference' : difference
 }
 
+Graph_Unary_Functions={
+    'nodes_count' : nodes_count
+}
 
+# a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
+# a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
+# a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
-a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
-a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
+# print(a._node)
+# print(a.edges)
 
-print(a._node)
-print(a.edges)
+# b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
+# b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
+# b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
 
-b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
-b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
-b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+# print(b._node)
+# print(b.edges)
 
-print(b._node)
-print(b.edges)
+# c = intersection(a, b)
 
-c = intersection(a, b)
+# d = nx.Graph([(5,0), (7,2), (2,0), (4, 5)])
+# e = nx.Graph([(2,0), (7,2)])
 
-d = nx.Graph([(5,0), (7,2), (2,0), (4, 5)])
-e = nx.Graph([(2,0), (7,2)])
+# print(d.nodes)
+# print(e.nodes)
 
-print(d.nodes)
-print(e.nodes)
+# c = difference(d, e)
 
-c = difference(d, e)
-
-print(c._node)
-print(b.edges)
-nx.get
+# print(c._node)
+# print(b.edges)
+# nx.get

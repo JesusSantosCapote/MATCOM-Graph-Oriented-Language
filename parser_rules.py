@@ -3,6 +3,8 @@ from ast_nodes import *
 from ply import yacc
 from Tools import Bool_Operations, Arithmetic_Operations
 
+#TODO: Vertex and Edges identation
+#TODO: Use ids
 precedence = (
     ('left','PLUS','MINUS'),
     ('left','MUL','DIV'),
@@ -19,7 +21,7 @@ def p_instructions_instruction(t) :
     'Instructions    : Instruction '
     t[0] = Instructions([t[1]])
 
-                       #TODO: Vertex and Edges identation
+
 def p_instruction(t) : #TODO: Put some more Instructions here
     '''Instruction      : Plot_instr
                         | If_instr
@@ -84,8 +86,8 @@ def p_add_vertex_and_edge_instr(t) :
     t[0] = Add_vertex_and_edge(t[1], t[4], t[6], t.lineno(2))
 
 def p_graph_expression(t) :
-    '''graph_expression   : GRAPH OPAR INT COMMA edge_expression CPAR
-                            | DIGRAPH OPAR INT COMMA edge_expression CPAR
+    '''graph_expression   : GRAPH OPAR value_expression COMMA edge_expression CPAR
+                            | DIGRAPH OPAR value_expression COMMA edge_expression CPAR
                             | GRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
                             | DIGRAPH OPAR OBR vertex_expression CBR COMMA edge_expression CPAR
                             | graph_expression UNION graph_expression
@@ -148,8 +150,8 @@ def p_logic_expression(t):
 
 #TODO add function to this production
 def p_value_expression(t):
-    '''value_expression     : algebraic_expression'''
-#                            | function'''
+    '''value_expression     : algebraic_expression
+                            | function'''
 
     t[0] = t[1]
 
@@ -177,6 +179,10 @@ def p_empty(p):
     'empty :'
     pass
 
-#def p_function(t):
-#    '''function     : '''
+def p_function_nodes_count(t):
+    '''function     : graph_expression POINT NODES_COUNT'''
+
+    t[0] = Unary_function(t[1], t[3], t.lineno(3))
+
+
 parser = yacc.yacc(debug=True)
