@@ -1,3 +1,5 @@
+
+
 dic1 = {'Luka' : 'perro', 'Chuchi' : 'humano'}
 dic2 = dic1.copy()
 print(dic1)

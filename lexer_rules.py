@@ -14,7 +14,8 @@ keywords = {
     'foredge' : 'FOREDGE',
     'forvertex' : 'FORVERTEX',
     'begin' : 'BEGIN',
-    'end' : 'END'
+    'end' : 'END',
+    'in' : 'IN'
 }
 
 tokens = [

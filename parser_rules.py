@@ -19,11 +19,12 @@ def p_instructions_instruction(t) :
     'Instructions    : Instruction '
     t[0] = Instructions([t[1]])
 
-
-def p_instruction(t) : #TODO: Put some more Instructions here
+                       #TODO: Vertex identation
+def p_instruction(t) : #TODO: Put some more Instructions here (foredge)
     '''Instruction      : Plot_instr
                         | If_instr
                         | If_else_instr
+                        | For_vertex_instr
                         | Assign_instr'''
                         
     t[0] = t[1]
@@ -37,6 +38,13 @@ def p_if_instr(t):
 def p_if_else_instr(t):
     'If_else_instr  : IF OPAR logic_expression CPAR BEGIN Instructions END ELSE BEGIN Instructions END'
     t[0] = If_else(t[3], t[6], t[10])
+
+
+def p_for_vertex_instr(t):
+    'For_vertex_instr   : FORVERTEX ID IN ID BEGIN Instructions END'
+    t[0] = For_vertex(t[2], t[4], t[6], t.lineno)
+
+
 
 def p_Plot_instr(t):
     'Plot_instr    : PLOT OPAR ID CPAR'

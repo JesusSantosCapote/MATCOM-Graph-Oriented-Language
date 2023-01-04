@@ -27,7 +27,7 @@ class Plot(Node) :
         self.graph_id = graph_id
         self.line = line
 
-    def evaluate(self, symbol_table): #TODO not implemented
+    def evaluate(self, symbol_table):
         symbol = symbol_table.symbols[self.graph_id]
         if symbol.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
             raise SemanticException(self.line, 'plot error : plot argument must be a type of graph')
@@ -96,7 +96,7 @@ class If(Node) :
         self.logic_expression = logic_expression
         self.instructions = instructions
 
-    def evaluate(self, st): #TODO Implement local symbol_table for if instruction
+    def evaluate(self, st):
         if self.logic_expression:
             new_st = st.Clone()
             for instruction in self.instructions.node_list:
@@ -111,7 +111,7 @@ class If_else(Node) :
         self.instructions_if_true = instructions_if_true
         self.instructions_if_false = instructions_if_false
 
-    def evaluate(self, st): #TODO Implement local symbol_table for if instruction
+    def evaluate(self, st):
         if self.logic_expression:
             instructions = self.instructions_if_true
         else:
@@ -121,5 +121,27 @@ class If_else(Node) :
             instruction.evaluate(new_st)
         for key in st.symbols.keys():
             st.update(new_st.symbols[key])
+
+
+class For_vertex(Node) :
+    def __init__(self, iterator, graph, instructions, line) :
+        self.iterator = iterator
+        self.graph = graph
+        self.instructions = instructions
+        self.line = line
+    
+    def evaluate(self, st):
+        new_st = st.Clone()
+        graph_data = st.get(self.graph)
+        if graph_data.data_type == "graph" or graph_data.data_type == "pseudograph" or graph_data.data_type == "multigraph" or graph_data.data_type == "digraph":
+            for vertex in list(st.symbols[self.graph].value.nodes):
+                new_st.add(Symbol(self.iterator,"vertex",vertex))
+                for instruction in self.instructions.node_list:
+                    instruction.evaluate(new_st)
+                for key in st.symbols.keys():
+                    st.update(new_st.symbols[key])
+                new_st = st.Clone()
+        else:
+            raise TypeError(f"At line: {self.line}. {self.graph} is a {graph_data.data_type} variable, a graph variable was expected")
 
 
