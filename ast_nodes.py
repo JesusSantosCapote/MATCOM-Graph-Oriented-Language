@@ -167,6 +167,48 @@ class Assign(Node) :
             symbol_table.add(Symbol(self.id, graph_type, graph)) 
 
 
+class Add_vertex(Node) :
+
+    def __init__(self, id, vertexs_expression, line) :
+        self.id = id
+        self.vertexs_expression = vertexs_expression
+        self.line = line
+
+    def evaluate(self, st : SymbolTable):
+        recover_object = st.get(self.id, self.line)
+        if recover_object.data_type != 'graph' and recover_object.data_type != 'digraph':
+            raise TypeError(f"At line {self.line}. {self.id} was not a graph type object.")
+        graph = recover_object.value
+        graph.add_nodes_from(self.vertexs_expression)
+
+class Add_edge(Node) :
+
+    def __init__(self, id, edges_expression, line) :
+        self.id = id
+        self.edges_expression = edges_expression
+        self.line = line
+
+    def evaluate(self, st : SymbolTable):
+        recover_object = st.get(self.id, self.line)
+        if recover_object.data_type != 'graph' and recover_object.data_type != 'digraph':
+            raise TypeError(f"At line {self.line}. {self.id} was not a graph type object.")
+        graph = recover_object.value
+        for edge in self.edges_expression:
+            graph.add_edge(edge[0], edge[1])
+            graph[edge[0]][edge[1]]['weight'] = edge[2]
+
+
+class Add_vertex_and_edge(Node) :
+
+    def __init__(self, id, vertexs_expression, edges_expression, line):
+        self.vertex_add = Add_vertex(id, vertexs_expression, line)
+        self.edge_add = Add_edge(id, edges_expression, line)
+
+    def evaluate(self, st):
+        self.vertex_add.evaluate(st)
+        self.edge_add.evaluate(st)
+
+
 class If(Node) :
     def __init__(self,  logic_expression, instructions) :
         self.logic_expression = logic_expression

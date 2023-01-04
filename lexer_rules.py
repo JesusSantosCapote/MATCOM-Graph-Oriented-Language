@@ -19,7 +19,8 @@ keywords = {
     'union' : 'UNION',
     'intersection' : 'INTERSECTION',
     'difference' : 'DIFFERENCE',
-    'complement' : 'COMPLEMENT'
+    'complement' : 'COMPLEMENT',
+    'add' : 'ADD'
 }
 
 tokens = [

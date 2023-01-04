@@ -1,4 +1,3 @@
 un_grafo = graph(3, (0,1)(1,2)(0,2))
-otro_grafo = un_grafo
+un_grafo add ( 4 5 , (0,4) )
 plot(un_grafo)
-plot(otro_grafo)
