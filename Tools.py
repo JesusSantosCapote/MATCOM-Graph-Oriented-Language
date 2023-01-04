@@ -26,7 +26,7 @@ def union_rara(graph1, graph2):
 def union(graph1, graph2):
     return nx.operators.compose(graph1, graph2)
 
-
+#TODO: intersection needs to be fixed
 def intersection(graph1, graph2):
     return nx.operators.intersection(graph1, graph2)
 
@@ -61,7 +61,7 @@ Arithmetic_Operations={
 Graph_Operations={
     'union' : union,
     'intersection' : intersection,
-    'diference' : 3
+    'difference' : 3
 }
 
 
