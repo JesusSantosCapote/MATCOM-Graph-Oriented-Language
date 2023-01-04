@@ -26,17 +26,10 @@ def union_rara(graph1, graph2):
 def union(graph1, graph2):
     return nx.operators.compose(graph1, graph2)
 
-# a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
-# # a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
-# # a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-# b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
-# # b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
-# # b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
+def intersection(graph1, graph2):
+    return nx.operators.intersection(graph1, graph2)
 
-# # c = union(a, b)
-
-# c = nx.operators.disjoint_union(a, b)
 
 Bool_Operations={
     '==' : lambda x,y : x==y,
@@ -53,19 +46,25 @@ Arithmetic_Operations={
     '*' : lambda x,y : x*y,
     '/' : lambda x,y : x/y,
 }
-#TODO: Aggregate intersection graph operation
+
 Graph_Operations={
-    'union' : union
+    'union' : union,
+    'intersection' : intersection,
+    'diference' : 3
 }
-# a = nx.Graph()
+
+
+a = nx.Graph([('pepe', 2), ('kuko', 'nosy')])
 # a.add_nodes_from([(0, {'color':'red'}), (1, {'color':'blue'}), (2, {'age': 60})])
 # a.add_edges_from([(0,1, {"weigth":5}), (0,2, {"code":5}), (0,0), (0,1)])
 
-# b = nx.Graph()
+b = nx.Graph([('pepe', 2), ('kuko', 'nosy'), ('nosy', 1)])
 # b.add_nodes_from([(0, {'color':'black'}), (1, {'audio':'stereo'}), (2, {'age': 50})])
 # b.add_edges_from([(0,1,{"weigth":5, "code":123}), (2, 3,{"weigth":5}), (0,1)])
 
-# # print(c.nodes(data=True))
-# print(c.edges)
+# c = union(a, b)
 
+c = nx.operators.difference(a, b)
 
+print(c.nodes(data=True))
+print(c.edges)
