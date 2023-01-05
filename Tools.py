@@ -58,6 +58,13 @@ def difference(graph1, graph2):
     return graph_diff
 
 
+def complement(graph1):
+    graph1_copy = graph1.copy()
+    graph_compl = nx.operators.complement(graph1_copy)
+
+    return graph_compl
+
+
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,
