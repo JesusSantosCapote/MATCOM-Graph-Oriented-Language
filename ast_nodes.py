@@ -24,17 +24,26 @@ class Instructions(Node):
 
 class Plot(Node) :
 
-    def __init__(self, graph_id, line) :
-        self.graph_id = graph_id
+    def __init__(self, graph_expression_object, line) :
+        self.graph_expression_object = graph_expression_object
         self.line = line
 
-    def evaluate(self, symbol_table):
-        symbol = symbol_table.symbols[self.graph_id]
-        if symbol.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
-            raise SemanticException(self.line, 'plot error : plot argument must be a type of graph')
-
-        nx.draw(symbol.value, with_labels=True, font_weight='bold')
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        nx.draw(graph, with_labels=True, font_weight='bold')
         plt.show()
+
+#TODO: Finis implementation for K_color_plot.evaluate
+class K_color_plot (Node) :
+
+    def __init__(self, graph_expression_object, line) :
+        self.graph_expression_object = graph_expression_object
+        self.line = line
+    
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        
+
 
 class Unary_graph_operation(Node):
 
@@ -65,6 +74,28 @@ class Binary_graph_operation(Node):
             raise TypeError(f"At line: {self.line}. The graph variables has different types")
 
 
+class Contain_vertex(Node):
+
+    def __init__(self, graph_expression_object, value_expression_object):
+        self.graph_expression_object = graph_expression_object
+        self.value_expression_object = value_expression_object
+
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        vertex = self.value_expression_object.evaluate(st)
+        return contain_vertex(graph, vertex)
+
+
+class Contain_edges(Node):
+
+    def __init__(self, graph_expression_object, edge_expression) :
+        self.graph_expression_object = graph_expression_object
+        self.edge_expression = edge_expression
+
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        return contain_edges(graph, self.edge_expression)
+
 class Unary_function(Node):
 
 
@@ -94,6 +125,9 @@ class Create_graph(Node) :
             graph = nx.Graph()
         
         graph.add_nodes_from(range(self.vertex))
+
+        for vertex in list(graph.nodes):
+            graph.nodes[vertex]['color'] = 1
 
         for edge in self.edges_expression:
             graph.add_edge(edge[0], edge[1])
@@ -137,6 +171,8 @@ class Create_graph_with_vertex(Node):
         
         graph.add_nodes_from(self.vertexs_expression)
 
+        for vertex in graph.nodes:
+            graph.nodes[vertex]['color'] = 1
         for edge in self.edges_expression:
             graph.add_edge(edge[0], edge[1])
             graph[edge[0]][edge[1]]['weight'] = edge[2]
@@ -267,7 +303,7 @@ class If_else(Node) :
         for key in st.symbols.keys():
             st.update(new_st.symbols[key])
 
-
+#TODO: Use of iterable object in forvertex and foredge
 class For_vertex(Node) :
     def __init__(self, iterator, graph, instructions, line) :
         self.iterator = iterator

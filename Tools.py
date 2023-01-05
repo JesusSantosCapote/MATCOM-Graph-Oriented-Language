@@ -68,6 +68,25 @@ def complement(graph1):
 def nodes_count(graph : nx.Graph):
     return graph.number_of_nodes()
 
+def edges_count(graph : nx.Graph):
+    return graph.number_of_edges()
+
+def weight_sum(graph : nx.Graph):
+    sum = 0
+    for edge in graph.edges(data=True):
+        sum = sum + edge[2]['weight']
+    return sum
+
+def contain_vertex(graph : nx.Graph, vertex):
+    return vertex in graph
+
+def contain_edges(graph : nx.Graph, edges):
+    contains = True
+    for edge in edges:
+        if not graph.has_edge(edge[0], edge[1]):
+            contains = False
+            break
+    return contains
 
 def k_color(graph):
     colors = nx.coloring.greedy_color(graph)
@@ -99,6 +118,8 @@ Graph_Operations={
 }
 
 Graph_Unary_Functions={
-    'nodes_count' : nodes_count
+    'nodes_count' : nodes_count,
+    'edges_count' : edges_count,
+    'weight_sum' : weight_sum
 }
 

@@ -1,10 +1,10 @@
-fibonacci = graph(5,)
-numero_1 = graph(1,)
-numero_2 = graph(1,)
-forvertex a in fibonacci
+graph1 = graph(7,(0,1,1) (1,2,2) (2,3,4))
+graph2 = graph(5, (0,1) (1,2))
+if (graph2.contain_edges (0,1) (1,2) (4,1))
 begin
-temp = numero_1 concat numero_2
-numero_1 = numero_2
-numero_2 = temp
+plot(graph1)
 end
-plot(numero_2)
+else
+begin
+plot(graph2)
+end
