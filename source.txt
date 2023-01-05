@@ -1,2 +1,3 @@
-graph2 = graph(5, (0,1, 40) (1,2, 18))
-weighted_plot(graph2)
+graph2 = graph(3, (0,1, 4) (0,2,5) (1,2, 40))
+mst = prim(graph2)
+weighted_plot(mst)

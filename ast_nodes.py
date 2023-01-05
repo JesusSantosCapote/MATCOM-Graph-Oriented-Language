@@ -85,7 +85,7 @@ class Unary_graph_operation(Node):
         graph = self.graph_expression_object.evaluate(st)
         return Graph_Operations[self.operation](graph)
 
-#TODO: Finish MST.evaluate() implementation
+
 class MST(Node):
     
     def __init__(self, graph_expression_object, operation, line) :
@@ -98,6 +98,9 @@ class MST(Node):
         if graph.is_directed():
             raise TypeError(f"At line {self.line}. Kruskal can't recive digraph object.")
         
+        mst = nx.tree.minimum_spanning_tree(graph, algorithm=self.operation)
+
+        return mst
 
 
 class Binary_graph_operation(Node):
