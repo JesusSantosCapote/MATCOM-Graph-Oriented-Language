@@ -203,10 +203,13 @@ def p_empty(p):
     'empty :'
     pass
 
-def p_function_nodes_count(t):
-    '''function     : graph_expression POINT NODES_COUNT'''
+def p_functions(t):
+    '''function     : graph_expression POINT NODES_COUNT
+                    | graph_expression POINT EDGES_COUNT
+                    | graph_expression POINT WEIGHT_SUM'''
 
     t[0] = Unary_function(t[1], t[3], t.lineno(3))
+
 
 
 parser = yacc.yacc(debug=True)

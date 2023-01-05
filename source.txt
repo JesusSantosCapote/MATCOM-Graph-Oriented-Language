@@ -1,10 +1,4 @@
-graph1 = graph(7,)
-graph2 = graph(5,)
-graph3 = graph([5 6],)
-graph4 = graph1 union graph2 intersection graph3
-graph5 = graph1 union (graph2 intersection graph3)
+graph1 = graph(7,(0,1,1) (1,2,2) (2,3,4))
+graph2 = graph(graph1.weight_sum,)
 plot(graph1)
 plot(graph2)
-plot(graph3)
-plot(graph4)
-plot(graph5)

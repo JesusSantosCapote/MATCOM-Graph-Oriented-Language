@@ -68,7 +68,14 @@ def complement(graph1):
 def nodes_count(graph : nx.Graph):
     return graph.number_of_nodes()
 
+def edges_count(graph : nx.Graph):
+    return graph.number_of_edges()
 
+def weight_sum(graph : nx.Graph):
+    sum = 0
+    for edge in graph.edges(data=True):
+        sum = sum + edge[2]['weight']
+    return sum
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,
@@ -94,6 +101,8 @@ Graph_Operations={
 }
 
 Graph_Unary_Functions={
-    'nodes_count' : nodes_count
+    'nodes_count' : nodes_count,
+    'edges_count' : edges_count,
+    'weight_sum' : weight_sum
 }
 
