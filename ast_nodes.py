@@ -4,6 +4,7 @@ from symbol_table import DataType
 from exceptions import SemanticException
 from symbol_table import *
 import matplotlib.pyplot as plt
+import pylab
 from Tools import *
 
 class Node(ABC):
@@ -33,7 +34,7 @@ class Plot(Node) :
         nx.draw(graph, with_labels=True, font_weight='bold')
         plt.show()
 
-#TODO: Finis implementation for K_color_plot.evaluate
+
 class K_color_plot (Node) :
 
     def __init__(self, graph_expression_object, line) :
@@ -51,10 +52,8 @@ class K_color_plot (Node) :
         plt.tight_layout()
         plt.show()
 
-#TODO: Finis implementation for Weighted_plot.evaluate
-class Weighted_plot (Node) :
-        
 
+class Weighted_plot (Node) :
 
     def __init__(self, graph_expression_object, line) :
         self.graph_expression_object = graph_expression_object
@@ -62,7 +61,17 @@ class Weighted_plot (Node) :
     
     def evaluate(self, st):
         graph = self.graph_expression_object.evaluate(st)
-        pass
+        
+        pos = nx.layout.circular_layout(graph)
+        pylab.figure(2)
+        nx.draw(graph,pos)
+        nx.draw_networkx_labels(graph, pos)
+        # specifiy edge labels explicitly
+        edge_labels=dict([((u,v,),d['weight']) for u,v,d in graph.edges(data=True)])
+        nx.draw_networkx_edge_labels(graph,pos,edge_labels=edge_labels)
+
+        # show graphs
+        pylab.show()
 
     
 class Unary_graph_operation(Node):
