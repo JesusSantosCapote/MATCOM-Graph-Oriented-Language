@@ -26,7 +26,8 @@ keywords = {
     'edges_count' : 'EDGES_COUNT',
     'weight_sum' : 'WEIGHT_SUM',
     'contain_vertex' : 'CONTAIN_VERTEX',
-    'contain_edges' : 'CONTAIN_EDGES'
+    'contain_edges' : 'CONTAIN_EDGES',
+    'k_color_plot' : 'K_COLOR_PLOT'
 }
 
 tokens = [

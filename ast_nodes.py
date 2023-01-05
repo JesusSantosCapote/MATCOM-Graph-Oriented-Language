@@ -21,20 +21,29 @@ class Instructions(Node):
         for instruction in self.node_list:
             instruction.evaluate(st)
 
-#TODO: Needs to plot with vertex color
+
 class Plot(Node) :
 
-    def __init__(self, graph_id, line) :
-        self.graph_id = graph_id
+    def __init__(self, graph_expression_object, line) :
+        self.graph_expression_object = graph_expression_object
         self.line = line
 
-    def evaluate(self, symbol_table):
-        symbol = symbol_table.symbols[self.graph_id]
-        if symbol.data_type not in ["digraph", "multigraph", "pseudograph", "graph"]:
-            raise SemanticException(self.line, 'plot error : plot argument must be a type of graph')
-
-        nx.draw(symbol.value, with_labels=True, font_weight='bold')
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        nx.draw(graph, with_labels=True, font_weight='bold')
         plt.show()
+
+#TODO: Finis implementation for K_color_plot.evaluate
+class K_color_plot (Node) :
+
+    def __init__(self, graph_expression_object, line) :
+        self.graph_expression_object = graph_expression_object
+        self.line = line
+    
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        
+
 
 class Unary_graph_operation(Node):
 

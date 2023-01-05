@@ -33,7 +33,8 @@ def p_instruction(t) : #TODO: Put some more Instructions here ()
                         | For_edge_instr
                         | Add_vertex_instr
                         | Add_edge_instr
-                        | Add_vertex_and_edge_instr'''
+                        | Add_vertex_and_edge_instr
+                        | K_color_plot_instr'''
                         
     t[0] = t[1]
 
@@ -59,8 +60,8 @@ def p_for_edge_instr(t):
 
 
 
-def p_Plot_instr(t):
-    'Plot_instr   : PLOT OPAR ID CPAR'
+def p_plot_instr(t):
+    'Plot_instr   : PLOT OPAR graph_expression CPAR'
     
     t[0] = Plot(t[3], t.lineno(1))
 
@@ -75,6 +76,12 @@ def  p_add_vertex_instr(t) :
     'Add_vertex_instr      : ID ADD OPAR vertex_expression CPAR'
 
     t[0] = Add_vertex(t[1], t[4], t.lineno(2))
+
+
+def p_k_color_plot_instr(t) :
+    '''K_color_plot_instr       : K_COLOR_PLOT OPAR graph_expression CPAR'''
+
+    t[0]= K_color_plot(t[3], t.lineno(1))
 
 
 def p_add_edge_instr(t) :  
