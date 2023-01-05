@@ -103,6 +103,17 @@ class MST(Node):
         return mst
 
 
+class BFS(Node):
+    
+    def __init__(self, graph_expression_object, value_expression_object) :
+        self.graph_expression_object =graph_expression_object
+        self.value_expression_object = value_expression_object
+        
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        source = self.value_expression_object.evaluate(st)
+
+
 class Binary_graph_operation(Node):
     
     def __init__(self, graph_expression_object1, graph_expression_object2, operation, line):
