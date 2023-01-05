@@ -1,4 +1,10 @@
-un_grafo = graph(3, (0,1)(1,2)(0,2) )
-grafo2 = graph(un_grafo.nodes_count + 1, (0,1) )
-plot(un_grafo)
-plot(grafo2)
+fibonacci = graph(5,)
+numero_1 = graph(1,)
+numero_2 = graph(1,)
+forvertex a in fibonacci
+begin
+temp = numero_1 concat numero_2
+numero_1 = numero_2
+numero_2 = temp
+end
+plot(numero_2)

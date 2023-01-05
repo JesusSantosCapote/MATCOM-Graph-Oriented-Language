@@ -6,6 +6,7 @@ from Tools import Bool_Operations, Arithmetic_Operations
 #TODO: Vertex and Edges identation
 #TODO: Use ids
 precedence = (
+    ('left', 'UNION', 'INTERSECTION'),
     ('left','PLUS','MINUS'),
     ('left','MUL','DIV'),
     ('right','UMINUS'),
@@ -94,9 +95,12 @@ def p_graph_expression(t) :
                             | graph_expression INTERSECTION graph_expression
                             | graph_expression DIFFERENCE graph_expression
                             | graph_expression CONCAT graph_expression
+                            | COMPLEMENT OPAR graph_expression CPAR
                             | ID
                             '''
-                            
+    if len(t) == 5:
+        t[0] = Unary_graph_operation(t[3], t[1])
+
     if len(t) == 7:
         t[0] = Create_graph(t[1], t[3], t[5], t.lineno(1))
     
@@ -104,7 +108,7 @@ def p_graph_expression(t) :
         t[0] = Create_graph_with_vertex(t[1], t[4], t[7], t.lineno(1))
 
     if len(t) == 4:
-        t[0] = Graph_operation(t[1], t[3], t[2], t.lineno(2))
+        t[0] = Binary_graph_operation(t[1], t[3], t[2], t.lineno(2))
 
     if len(t) == 2: 
         t[0] = Create_Graph_With_Variable(t[1], t.lineno(1))

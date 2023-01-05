@@ -36,8 +36,19 @@ class Plot(Node) :
         nx.draw(symbol.value, with_labels=True, font_weight='bold')
         plt.show()
 
+class Unary_graph_operation(Node):
 
-class Graph_operation(Node):
+
+    def __init__(self, graph_expression_object, operation):
+        self.graph_expression_object = graph_expression_object
+        self.operation = operation
+
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        return Graph_Operations[self.operation](graph)
+
+
+class Binary_graph_operation(Node):
     
     def __init__(self, graph_expression_object1, graph_expression_object2, operation, line):
         self.graph_expression_object1 = graph_expression_object1
@@ -266,7 +277,7 @@ class For_vertex(Node) :
     
     def evaluate(self, st):
         new_st = st.Clone()
-        graph_data = st.get(self.graph)
+        graph_data = st.get(self.graph, self.line)
         if graph_data.data_type == "graph" or graph_data.data_type == "digraph":
             for vertex in list(st.symbols[self.graph].value.nodes):
                 print(vertex)
