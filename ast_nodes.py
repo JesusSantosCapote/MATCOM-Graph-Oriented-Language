@@ -65,6 +65,17 @@ class Binary_graph_operation(Node):
             raise TypeError(f"At line: {self.line}. The graph variables has different types")
 
 
+class Contain_vertex(Node):
+
+    def __init__(self, graph_expression_object, value_expression_object):
+        self.graph_expression_object = graph_expression_object
+        self.value_expression_object = value_expression_object
+
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        vertex = self.value_expression_object.evaluate(st)
+        return contain_vertex(graph, vertex)
+
 class Unary_function(Node):
 
 
@@ -267,7 +278,7 @@ class If_else(Node) :
         for key in st.symbols.keys():
             st.update(new_st.symbols[key])
 
-
+#TODO: Use of iterable object in forvertex and foredge
 class For_vertex(Node) :
     def __init__(self, iterator, graph, instructions, line) :
         self.iterator = iterator

@@ -76,6 +76,11 @@ def weight_sum(graph : nx.Graph):
     for edge in graph.edges(data=True):
         sum = sum + edge[2]['weight']
     return sum
+
+def contain_vertex(graph : nx.Graph, vertex):
+    return vertex in graph
+
+
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,

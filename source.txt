@@ -1,4 +1,10 @@
 graph1 = graph(7,(0,1,1) (1,2,2) (2,3,4))
 graph2 = graph(graph1.weight_sum,)
+if (graph2.contain_vertex graph1.edges_count)
+begin
 plot(graph1)
+end
+else
+begin
 plot(graph2)
+end

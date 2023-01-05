@@ -158,13 +158,17 @@ def p_logic_expression(t):
                             | value_expression LESS value_expression
                             | value_expression GREATEREQ value_expression
                             | value_expression LESSEQ value_expression
-                            | value_expression NEQUAL value_expression'''
-    t[0] = Bool_Operation(t[1], t[3], t[2])
-
+                            | value_expression NEQUAL value_expression
+                            | logic_function'''
+    if len(t) == 2:
+        t[0] = t[1]
+    else:
+        t[0] = Bool_Operation(t[1], t[3], t[2])
+    
 
 def p_value_expression(t):
     '''value_expression     : algebraic_expression
-                            | function'''
+                            | numeric_function'''
 
     t[0] = t[1]
 
@@ -181,7 +185,7 @@ def p_algebraic_expression_grouping(t):
     t[0] = t[2]
 
 def p_algebraic_expression_function(t):
-    'algebraic_expression       : function'
+    'algebraic_expression       : numeric_function'
 
     t[0] = Solve(t[1])
 
@@ -203,13 +207,17 @@ def p_empty(p):
     'empty :'
     pass
 
-def p_functions(t):
-    '''function     : graph_expression POINT NODES_COUNT
-                    | graph_expression POINT EDGES_COUNT
-                    | graph_expression POINT WEIGHT_SUM'''
+def p_numeric_functions(t):
+    '''numeric_function     : graph_expression POINT NODES_COUNT
+                            | graph_expression POINT EDGES_COUNT
+                            | graph_expression POINT WEIGHT_SUM'''
 
     t[0] = Unary_function(t[1], t[3], t.lineno(3))
 
 
+def p_logic_functions(t):
+    '''logic_function       : graph_expression POINT CONTAIN_VERTEX value_expression'''
+
+    t[0] = Contain_vertex(t[1], t[4])
 
 parser = yacc.yacc(debug=True)
