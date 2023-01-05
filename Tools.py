@@ -81,7 +81,8 @@ Arithmetic_Operations={
 Graph_Operations={
     'union' : union,
     'intersection' : intersection,
-    'difference' : difference
+    'difference' : difference,
+    'concat' : concat
 }
 
 Graph_Unary_Functions={

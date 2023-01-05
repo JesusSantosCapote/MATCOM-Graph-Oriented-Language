@@ -93,6 +93,7 @@ def p_graph_expression(t) :
                             | graph_expression UNION graph_expression
                             | graph_expression INTERSECTION graph_expression
                             | graph_expression DIFFERENCE graph_expression
+                            | graph_expression CONCAT graph_expression
                             | ID
                             '''
                             

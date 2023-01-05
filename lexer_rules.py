@@ -21,7 +21,8 @@ keywords = {
     'difference' : 'DIFFERENCE',
     'complement' : 'COMPLEMENT',
     'add' : 'ADD',
-    'nodes_count' : 'NODES_COUNT'
+    'nodes_count' : 'NODES_COUNT',
+    'concat' : 'CONCAT'
 }
 
 tokens = [

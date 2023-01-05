@@ -1,4 +1,4 @@
 un_grafo = graph(3, (0,1)(1,2)(0,2) )
-grafo2 = graph(un_grafo.nodes_count, )
+grafo2 = graph(un_grafo.nodes_count + 1, (0,1) )
 plot(un_grafo)
 plot(grafo2)
