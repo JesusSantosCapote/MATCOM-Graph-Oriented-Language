@@ -149,7 +149,7 @@ def p_logic_expression(t):
                             | value_expression NEQUAL value_expression'''
     t[0] = Bool_Operation(t[1], t[3], t[2])
 
-#TODO add function to this production
+
 def p_value_expression(t):
     '''value_expression     : algebraic_expression
                             | function'''
