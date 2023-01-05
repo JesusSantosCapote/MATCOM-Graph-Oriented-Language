@@ -3,8 +3,7 @@ from ast_nodes import *
 from ply import yacc
 from Tools import Bool_Operations, Arithmetic_Operations
 
-#TODO: Vertex and Edges identation
-#TODO: Use ids
+
 precedence = (
     ('left', 'CONCAT'),
     ('left', 'UNION', 'INTERSECTION', 'DIFFERENCE'),
@@ -24,7 +23,7 @@ def p_instructions_instruction(t) :
     t[0] = Instructions([t[1]])
 
 
-def p_instruction(t) : #TODO: Put some more Instructions here ()
+def p_instruction(t) :
     '''Instruction      : Plot_instr
                         | If_instr
                         | If_else_instr

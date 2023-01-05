@@ -12,7 +12,7 @@ class Node(ABC):
     def evaluate(self, st):
         pass       
 
-#TODO que todos reciban una linea la crearse
+
 
 class Instructions(Node):
     def __init__(self, node_list) -> None:
