@@ -42,9 +42,20 @@ class K_color_plot (Node) :
     
     def evaluate(self, st):
         graph = self.graph_expression_object.evaluate(st)
-        
+        pass
 
+#TODO: Finis implementation for Weighted_plot.evaluate
+class Weighted_plot (Node) :
 
+    def __init__(self, graph_expression_object, line) :
+        self.graph_expression_object = graph_expression_object
+        self.line = line
+    
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        pass
+
+    
 class Unary_graph_operation(Node):
 
 

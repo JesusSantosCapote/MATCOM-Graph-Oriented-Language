@@ -34,7 +34,8 @@ def p_instruction(t) : #TODO: Put some more Instructions here ()
                         | Add_vertex_instr
                         | Add_edge_instr
                         | Add_vertex_and_edge_instr
-                        | K_color_plot_instr'''
+                        | K_color_plot_instr
+                        | Weighted_plt_instr'''
                         
     t[0] = t[1]
 
@@ -83,6 +84,11 @@ def p_k_color_plot_instr(t) :
 
     t[0]= K_color_plot(t[3], t.lineno(1))
 
+
+def weighted_plot_instr(t) :
+    '''Weighted_plt_instr       : WEIGHTED_PLOT OPAR graph_expression CPAR'''
+
+    t[0] = Weighted_plot(t[3], t.lineno(1))
 
 def p_add_edge_instr(t) :  
     'Add_edge_instr     : ID ADD OPAR edge_expression CPAR'
