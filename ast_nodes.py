@@ -113,6 +113,18 @@ class BFS(Node):
         graph = self.graph_expression_object.evaluate(st)
         source = self.value_expression_object.evaluate(st)
 
+        bfs = nx.traversal.bfs_tree(graph, source)
+
+        for node,d in graph.nodes(data=True):
+            bfs.add_nodes_from([(node, d)])
+
+        for u,v in bfs.edges():
+            attr = graph.get_edge_data(u, v)
+            for key, value in attr.items():
+                bfs[u][v][key] = value
+
+        return bfs
+
 
 class Binary_graph_operation(Node):
     
