@@ -109,7 +109,7 @@ def p_graph_expression_grouping(t):
 def p_graph_expression_algorithm(t):
     'graph_expression       : KRUSKAL OPAR graph_expression CPAR'
     
-    t[0] = Kruskal_Graph(t[2])
+    t[0] = MST(t[3], t[1], t.lineno(1))
     
     
 def p_graph_expression(t) :
