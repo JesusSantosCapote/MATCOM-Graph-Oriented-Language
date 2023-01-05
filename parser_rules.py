@@ -109,13 +109,16 @@ def p_graph_expression_grouping(t):
 def p_graph_expression_algorithm(t):
     '''graph_expression         : KRUSKAL OPAR graph_expression CPAR
                                 | PRIM OPAR graph_expression CPAR
-                                | BFS OPAR graph_expression COMMA value_expression CPAR'''
+                                | BFS OPAR graph_expression COMMA value_expression CPAR
+                                | DIJKSTRA OPAR graph_expression COMMA value_expression COMMA value_expression CPAR'''
     if len(t) == 5:
         t[0] = MST(t[3], t[1], t.lineno(1))
     
     elif len(t) == 7:
         t[0] = BFS(t[3], t[5])
     
+    else:
+        t[0] = Dijkstra(t[3], t[5], t[7])
     
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR value_expression COMMA edge_expression CPAR

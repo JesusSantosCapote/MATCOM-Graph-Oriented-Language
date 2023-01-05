@@ -1,2 +1,2 @@
-graph2 = graph(5, (0,1, 40) (1,2, 18))
-weighted_plot(graph2)
+graph2 = graph(5, (0,1, 40) (1,2, 18) (0,3,100) (3,2,40))
+weighted_plot(dijkstra(graph2,0,2))

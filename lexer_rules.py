@@ -31,7 +31,8 @@ keywords = {
     'weighted_plot' : 'WEIGHTED_PLOT',
     'kruskal' : 'KRUSKAL',
     'prim' : 'PRIM',
-    'bfs' : 'BFS'
+    'bfs' : 'BFS',
+    'dijkstra' : 'DIJKSTRA'
 }
 
 tokens = [

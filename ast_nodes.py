@@ -110,7 +110,29 @@ class BFS(Node):
         graph = self.graph_expression_object.evaluate(st)
         source = self.value_expression_object.evaluate(st)
 
-
+class Dijkstra(Node):
+    
+    def __init__(self, graph_expression_object, value_expression_object1, value_expression_object2) :
+        self.graph_expression_object =graph_expression_object
+        self.value_expression_object1 = value_expression_object1
+        self.value_expression_object2 = value_expression_object2
+    
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        source = self.value_expression_object1.evaluate(st)
+        target = self.value_expression_object2.evaluate(st)
+        
+        node_list = nx.dijkstra_path(graph, source, target, "weight")
+        if graph.is_directed():
+            dijkstra_path_graph = nx.DiGraph()
+        else:
+            dijkstra_path_graph = nx.Graph()
+        dijkstra_path_graph.add_nodes_from(node_list)
+        for i in range (len(node_list)-1):
+            dijkstra_path_graph.add_edge(node_list[i], node_list[i+1])
+            dijkstra_path_graph[i][i+1]['weight'] = graph[i][i+1]['weight']
+        return dijkstra_path_graph
+        
 class Binary_graph_operation(Node):
     
     def __init__(self, graph_expression_object1, graph_expression_object2, operation, line):
