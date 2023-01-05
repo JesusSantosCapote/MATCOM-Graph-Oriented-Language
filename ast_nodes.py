@@ -21,7 +21,7 @@ class Instructions(Node):
         for instruction in self.node_list:
             instruction.evaluate(st)
 
-
+#TODO: Needs to plot with vertex color
 class Plot(Node) :
 
     def __init__(self, graph_id, line) :
@@ -76,6 +76,17 @@ class Contain_vertex(Node):
         vertex = self.value_expression_object.evaluate(st)
         return contain_vertex(graph, vertex)
 
+
+class Contain_edges(Node):
+
+    def __init__(self, graph_expression_object, edge_expression) :
+        self.graph_expression_object = graph_expression_object
+        self.edge_expression = edge_expression
+
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        return contain_edges(graph, self.edge_expression)
+
 class Unary_function(Node):
 
 
@@ -105,6 +116,9 @@ class Create_graph(Node) :
             graph = nx.Graph()
         
         graph.add_nodes_from(range(self.vertex))
+
+        for vertex in list(graph.nodes):
+            graph.nodes[vertex]['color'] = 1
 
         for edge in self.edges_expression:
             graph.add_edge(edge[0], edge[1])
@@ -148,6 +162,8 @@ class Create_graph_with_vertex(Node):
         
         graph.add_nodes_from(self.vertexs_expression)
 
+        for vertex in graph.nodes:
+            graph.nodes[vertex]['color'] = 1
         for edge in self.edges_expression:
             graph.add_edge(edge[0], edge[1])
             graph[edge[0]][edge[1]]['weight'] = edge[2]

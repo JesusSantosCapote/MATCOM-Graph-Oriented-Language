@@ -80,6 +80,13 @@ def weight_sum(graph : nx.Graph):
 def contain_vertex(graph : nx.Graph, vertex):
     return vertex in graph
 
+def contain_edges(graph : nx.Graph, edges):
+    contains = True
+    for edge in edges:
+        if not graph.has_edge(edge[0], edge[1]):
+            contains = False
+            break
+    return contains
 
 Bool_Operations={
     '==' : lambda x,y : x==y,

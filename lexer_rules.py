@@ -25,7 +25,8 @@ keywords = {
     'concat' : 'CONCAT',
     'edges_count' : 'EDGES_COUNT',
     'weight_sum' : 'WEIGHT_SUM',
-    'contain_vertex' : 'CONTAIN_VERTEX'
+    'contain_vertex' : 'CONTAIN_VERTEX',
+    'contain_edges' : 'CONTAIN_EDGES'
 }
 
 tokens = [

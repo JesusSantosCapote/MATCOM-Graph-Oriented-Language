@@ -24,7 +24,7 @@ def p_instructions_instruction(t) :
     t[0] = Instructions([t[1]])
 
 
-def p_instruction(t) : #TODO: Put some more Instructions here
+def p_instruction(t) : #TODO: Put some more Instructions here ()
     '''Instruction      : Plot_instr
                         | If_instr
                         | If_else_instr
@@ -216,8 +216,11 @@ def p_numeric_functions(t):
 
 
 def p_logic_functions(t):
-    '''logic_function       : graph_expression POINT CONTAIN_VERTEX value_expression'''
-
-    t[0] = Contain_vertex(t[1], t[4])
+    '''logic_function       : graph_expression POINT CONTAIN_VERTEX value_expression
+                            | graph_expression POINT CONTAIN_EDGES edge_expression'''
+    if t[3] == 'contain_vertex':
+        t[0] = Contain_vertex(t[1], t[4])
+    else:
+        t[0] = Contain_edges(t[1], t[4])
 
 parser = yacc.yacc(debug=True)
