@@ -96,6 +96,7 @@ class Kruskal_Graph(Node):
         graph = self.graph_expression_object.evaluate(st)
         if graph.is_directed():
             raise TypeError(f"At line {self.line}. Kruskal can't recive digraph object.")
+        
 
 
 class Binary_graph_operation(Node):

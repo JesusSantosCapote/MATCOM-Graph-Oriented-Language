@@ -2,16 +2,13 @@ import networkx as nx
 from Tools import *
 
 a = nx.Graph()
+a.add_nodes_from([(0, {'color': 'red'}), ((1, {'age':2})), 2])
+a.add_edges_from([(0,1, {'weight':5}), (0,2, {'weight':4, 'code': 42}), (1,2, {'weight':40})])
 
-a.add_nodes_from([1,7,4])
+b = nx.tree.minimum_spanning_tree(a)
 
-a.is_directed()
+print(b.nodes(data=True))
+print(b.edges(data=True))
 
-for vertex in a.nodes:
-    a.nodes[vertex]['color'] = 1
-
-print(a._node)
-
-        # for edge in self.edges_expression:
-        #     graph.add_edge(edge[0], edge[1])
-        #     graph[edge[0]][edge[1]]['weight'] = edge[2]
+print(a.nodes(data=True))
+print(a.edges(data=True))
