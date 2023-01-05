@@ -1,3 +1,2 @@
-graph2 = graph(3, (0,1, 4) (0,2,5) (1,2, 40))
-mst = bfs(graph2, 2)
-weighted_plot(mst)
+un_gra, fo  = graph([1, 2, 3], (1,2,5))
+plot(un_gra)

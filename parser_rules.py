@@ -248,4 +248,13 @@ def p_logic_functions(t):
     else:
         t[0] = Contain_edges(t[1], t[4])
 
+
+def p_error(t):
+    if t:
+          print("Syntax error at token", t.value, "at line", t.lineno)
+          # Just discard the token and tell the parser it's okay.
+          parser.errok()
+    else:
+          print("Syntax error at EOF")
+
 parser = yacc.yacc(debug=True)
