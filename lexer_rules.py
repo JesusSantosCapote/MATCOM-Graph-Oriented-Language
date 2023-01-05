@@ -28,7 +28,8 @@ keywords = {
     'contain_vertex' : 'CONTAIN_VERTEX',
     'contain_edges' : 'CONTAIN_EDGES',
     'k_color_plot' : 'K_COLOR_PLOT',
-    'weighted_plot' : 'WEIGHTED_PLOT'
+    'weighted_plot' : 'WEIGHTED_PLOT',
+    'kruskal' : 'KRUSKAL',
 }
 
 tokens = [

@@ -85,6 +85,18 @@ class Unary_graph_operation(Node):
         graph = self.graph_expression_object.evaluate(st)
         return Graph_Operations[self.operation](graph)
 
+#TODO: Finish Kruskal_Graph.evaluate() implementation
+class Kruskal_Graph(Node):
+    
+    def __init__(self, graph_expression_object, line) :
+        self.graph_expression_object = graph_expression_object
+        self.line = line
+        
+    def evaluate(self, st):
+        graph = self.graph_expression_object.evaluate(st)
+        if graph.is_directed():
+            raise TypeError(f"At line {self.line}. Kruskal can't recive digraph object.")
+
 
 class Binary_graph_operation(Node):
     

@@ -106,7 +106,12 @@ def p_graph_expression_grouping(t):
 
     t[0] = t[2]
 
-
+def p_graph_expression_algorithm(t):
+    'graph_expression       : KRUSKAL OPAR graph_expression CPAR'
+    
+    t[0] = Kruskal_Graph(t[2])
+    
+    
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR value_expression COMMA edge_expression CPAR
                             | DIGRAPH OPAR value_expression COMMA edge_expression CPAR

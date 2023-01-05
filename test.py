@@ -5,6 +5,8 @@ a = nx.Graph()
 
 a.add_nodes_from([1,7,4])
 
+a.is_directed()
+
 for vertex in a.nodes:
     a.nodes[vertex]['color'] = 1
 
