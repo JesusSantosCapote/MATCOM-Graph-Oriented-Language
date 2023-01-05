@@ -42,6 +42,15 @@ class K_color_plot (Node) :
     
     def evaluate(self, st):
         graph = self.graph_expression_object.evaluate(st)
+        colors = k_color(graph)
+
+        nx.draw_networkx(graph, labels=colors)
+        ax = plt.gca()
+        ax.margins(0.08)
+        plt.axis("off")
+        plt.tight_layout()
+        plt.show()
+
         
 
 
