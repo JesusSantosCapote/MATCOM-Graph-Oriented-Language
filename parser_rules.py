@@ -6,7 +6,8 @@ from Tools import Bool_Operations, Arithmetic_Operations
 #TODO: Vertex and Edges identation
 #TODO: Use ids
 precedence = (
-    ('left', 'UNION', 'INTERSECTION'),
+    ('left', 'CONCAT'),
+    ('left', 'UNION', 'INTERSECTION', 'DIFFERENCE'),
     ('left','PLUS','MINUS'),
     ('left','MUL','DIV'),
     ('right','UMINUS'),
@@ -85,6 +86,13 @@ def p_add_vertex_and_edge_instr(t) :
     'Add_vertex_and_edge_instr      : ID ADD OPAR vertex_expression COMMA edge_expression CPAR'
 
     t[0] = Add_vertex_and_edge(t[1], t[4], t[6], t.lineno(2))
+
+
+def p_graph_expression_grouping(t):
+    'graph_expression       : OPAR graph_expression CPAR'
+
+    t[0] = t[2]
+
 
 def p_graph_expression(t) :
     '''graph_expression   : GRAPH OPAR value_expression COMMA edge_expression CPAR
@@ -165,7 +173,12 @@ def p_algebraic_expression_number(t):
     '''algebraic_expression      : INT
                                 | FLOAT'''
     t[0] = Numerical_value(t[1])
-    
+
+
+def p_algebraic_expression_grouping(t):
+    'algebraic_expression       : OPAR algebraic_expression CPAR'
+
+    t[0] = t[2]
 
 def p_algebraic_expression_function(t):
     'algebraic_expression       : function'

@@ -1,10 +1,10 @@
-fibonacci = graph(5,)
-numero_1 = graph(1,)
-numero_2 = graph(1,)
-forvertex a in fibonacci
-begin
-temp = numero_1 concat numero_2
-numero_1 = numero_2
-numero_2 = temp
-end
-plot(numero_2)
+graph1 = graph(7,)
+graph2 = graph(5,)
+graph3 = graph([5 6],)
+graph4 = graph1 union graph2 intersection graph3
+graph5 = graph1 union (graph2 intersection graph3)
+plot(graph1)
+plot(graph2)
+plot(graph3)
+plot(graph4)
+plot(graph5)
