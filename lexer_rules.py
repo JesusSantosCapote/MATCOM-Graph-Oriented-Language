@@ -30,6 +30,8 @@ keywords = {
     'k_color_plot' : 'K_COLOR_PLOT',
     'weighted_plot' : 'WEIGHTED_PLOT',
     'kruskal' : 'KRUSKAL',
+    'prim' : 'PRIM',
+    'bfs' : 'BFS'
 }
 
 tokens = [

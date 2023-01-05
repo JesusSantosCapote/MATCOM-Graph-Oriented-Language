@@ -85,11 +85,12 @@ class Unary_graph_operation(Node):
         graph = self.graph_expression_object.evaluate(st)
         return Graph_Operations[self.operation](graph)
 
-#TODO: Finish Kruskal_Graph.evaluate() implementation
-class Kruskal_Graph(Node):
+#TODO: Finish MST.evaluate() implementation
+class MST(Node):
     
-    def __init__(self, graph_expression_object, line) :
+    def __init__(self, graph_expression_object, operation, line) :
         self.graph_expression_object = graph_expression_object
+        self.operation = operation
         self.line = line
         
     def evaluate(self, st):
