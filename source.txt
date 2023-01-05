@@ -1,15 +1,4 @@
-if (5 > 10)
-begin
 un_grafo = graph(3, (0,1)(1,2)(0,2) )
-un_grafo add ( 3 4 , (0,3) (3,4))
-otro_grafo =  graph([0 1 2],)
-grafo_direrencia = un_grafo difference otro_grafo
+grafo2 = graph(un_grafo.nodes_count + 1, (0,1) )
 plot(un_grafo)
-plot(otro_grafo)
-plot(grafo_direrencia)
-end
-else
-begin
-este_grafo = graph(5, (0,1)(1,2)(2,3)(3,4))
-plot(este_grafo)
-end
+plot(grafo2)

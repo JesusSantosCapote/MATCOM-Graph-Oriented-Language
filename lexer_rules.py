@@ -20,7 +20,9 @@ keywords = {
     'intersection' : 'INTERSECTION',
     'difference' : 'DIFFERENCE',
     'complement' : 'COMPLEMENT',
-    'add' : 'ADD'
+    'add' : 'ADD',
+    'nodes_count' : 'NODES_COUNT',
+    'concat' : 'CONCAT'
 }
 
 tokens = [
@@ -43,7 +45,8 @@ tokens = [
     'STRING',
     'COMMA',
     'OBR',
-    'CBR'
+    'CBR',
+    'POINT'
  ] + list(keywords.values())
 
 #TOKENS
@@ -64,6 +67,7 @@ t_NEQUAL = r'!='
 t_COMMA = r','
 t_OBR = r'\['
 t_CBR = r'\]'
+t_POINT = r'.'
 
 def t_FLOAT (t):
     r'\d+\.\d+'

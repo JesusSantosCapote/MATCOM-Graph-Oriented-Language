@@ -65,6 +65,10 @@ def complement(graph1):
     return graph_compl
 
 
+def nodes_count(graph : nx.Graph):
+    return graph.number_of_nodes()
+
+
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,
@@ -84,5 +88,11 @@ Arithmetic_Operations={
 Graph_Operations={
     'union' : union,
     'intersection' : intersection,
-    'difference' : difference
+    'difference' : difference,
+    'concat' : concat
 }
+
+Graph_Unary_Functions={
+    'nodes_count' : nodes_count
+}
+
