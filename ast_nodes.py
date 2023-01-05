@@ -85,7 +85,7 @@ class Unary_graph_operation(Node):
         graph = self.graph_expression_object.evaluate(st)
         return Graph_Operations[self.operation](graph)
 
-#TODO: Finish MST.evaluate() implementation
+
 class MST(Node):
     
     def __init__(self, graph_expression_object, operation, line) :
@@ -98,6 +98,9 @@ class MST(Node):
         if graph.is_directed():
             raise TypeError(f"At line {self.line}. Kruskal can't recive digraph object.")
         
+        mst = nx.tree.minimum_spanning_tree(graph, algorithm=self.operation)
+
+        return mst
 
 
 class BFS(Node):
@@ -109,6 +112,18 @@ class BFS(Node):
     def evaluate(self, st):
         graph = self.graph_expression_object.evaluate(st)
         source = self.value_expression_object.evaluate(st)
+        bfs = nx.traversal.bfs_tree(graph, source)
+
+        for node,d in graph.nodes(data=True):
+            bfs.add_nodes_from([(node, d)])
+
+        for u,v in bfs.edges():
+            attr = graph.get_edge_data(u, v)
+            for key, value in attr.items():
+                bfs[u][v][key] = value
+
+        return bfs
+
 
 class Dijkstra(Node):
     
@@ -132,7 +147,9 @@ class Dijkstra(Node):
             dijkstra_path_graph.add_edge(node_list[i], node_list[i+1])
             dijkstra_path_graph[i][i+1]['weight'] = graph[i][i+1]['weight']
         return dijkstra_path_graph
-        
+
+
+
 class Binary_graph_operation(Node):
     
     def __init__(self, graph_expression_object1, graph_expression_object2, operation, line):
