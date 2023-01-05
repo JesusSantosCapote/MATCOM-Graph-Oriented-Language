@@ -343,3 +343,9 @@ class Bool_Operation(Node):
         solved_exp1 = self.exp1.evaluate(st)
         solved_exp2 = self.exp2.evaluate(st)
         return Bool_Operations[self.operator](solved_exp1,solved_exp2)
+
+class Solve(Node):
+    def __init__(self, item) :
+        self.item = item
+    def evaluate(self, st):
+        return self.item.evaluate(st)

@@ -160,8 +160,14 @@ def p_value_expression(t):
 def p_algebraic_expression_number(t):
     '''algebraic_expression      : INT
                                 | FLOAT'''
-
     t[0] = Numerical_value(t[1])
+    
+
+def p_algebraic_expression_function(t):
+    'algebraic_expression       : function'
+
+    t[0] = Solve(t[1])
+
 
 def p_algebraic_expression(t):
     '''algebraic_expression     : algebraic_expression PLUS algebraic_expression
