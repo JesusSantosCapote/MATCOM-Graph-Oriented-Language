@@ -69,6 +69,11 @@ def nodes_count(graph : nx.Graph):
     return graph.number_of_nodes()
 
 
+def k_color(graph):
+    colors = nx.coloring.greedy_color(graph)
+    return colors
+
+
 Bool_Operations={
     '==' : lambda x,y : x==y,
     '>' : lambda x,y : x>y,
