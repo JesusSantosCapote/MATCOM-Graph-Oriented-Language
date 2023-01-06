@@ -1,0 +1,10 @@
+fibonacci = graph(5,)
+numero_1 = graph(1,)
+numero_2 = graph(1,)
+forvertex a in fibonacci
+begin
+temp = numero_1 concat numero_2
+numero_1 = numero_2
+numero_2 = temp
+end
+plot(numero_2)

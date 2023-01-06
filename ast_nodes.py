@@ -409,7 +409,6 @@ class For_vertex(Node) :
         graph_data = st.get(self.graph, self.line)
         if graph_data.data_type == "graph" or graph_data.data_type == "digraph":
             for vertex in list(st.symbols[self.graph].value.nodes):
-                print(vertex)
                 new_st.add(Symbol(self.iterator,"vertex",vertex))
                 for instruction in self.instructions.node_list:
                     instruction.evaluate(new_st)

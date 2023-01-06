@@ -22,7 +22,8 @@ class DSL:
         print(st.symbols)
 
 my_DSL = DSL()
-my_DSL.main("source.txt")
+source = f"input_codes/{input()}.txt"
+my_DSL.main(source)
 
 
 
