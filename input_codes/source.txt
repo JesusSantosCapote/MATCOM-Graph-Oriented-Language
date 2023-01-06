@@ -1,2 +1,0 @@
-un_gra, fo  = graph([1, 2, 3], (1,2,5))
-plot(un_gra)
