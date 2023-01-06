@@ -47,3 +47,6 @@ El análisis sintáctico se lleva a cabo en el archivo **parser_rules.py**. Para
 
 ### Intérprete:
 Este se implementa en el archivo **matgol.py**. En dicho archivo además, se lee el código a parsear, importado de la carpeta **input_codes** en formato .txt. Además para ejecutar el intérprete se utiliza una tabla de símbolos, que permite el almacenamiento y recuperación de los valores de las variables, la implementación de esta como una clase, y de sus componentes está en el archivo **symbol_table.py**. En el intérprete se itera por las instrucciones en un ámbito y estas son ejecutadas.
+
+## Ejecución:
+Para correr la aplicación se debe ejecutar el archivo matgol.py, durante la ejecución de dicho programa es pedido el nombre del fichero, que debe estar contenido en la carpeta **input_codes** con el código a compilar y ejecutar.
