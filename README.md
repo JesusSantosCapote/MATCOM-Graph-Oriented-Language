@@ -23,6 +23,16 @@ Los valores dentro de los corchetes representan vértices de un grafo. Esta expr
 ### Edge Expression
 Las edge_expression tienen la siguiente sintaxis: (u1, v1)(u2, v2)...(un, vn). Son utilizadas para crear grafos con aristas predefinidas o para añadir aristas a un grafo.
 
+### Logic Expression
+Las logic_expression son operaciones booleanas de la forma:
+1. **_value_expression <operador lógico> value_expression_**, donde una value_expression representa un valor númerico, ya sea con una expresión algebraica o con una propiedad de los grafos que retorna un valor numérico.
+2. Query sobre un grafo: _**graph.contain_vertex vertex**_ o _**graph.contain_edges edge_expression**_.
+
+### Condicionales
+* #### **_if (logic_expression) begin \<instructions> end_**
+* #### **_if (logic_expression) begin \<instructions> end else begin \<instructions> end_**
+
+
 ### Funciones built-in
 #### **_graph(num_vertex , edge_expression)_**
 Crea un grafo no dirigido, con cantidad de vértices igual a num_vertex. Los vértices son los números 0, 1, …, num_vertex - 1. Y con las aristas especificadas en edge_expression.
@@ -98,7 +108,7 @@ Los grafos tienen 3 propiedades: **node_count**, **edge_count** y **weight_sum**
 Devuelve un INT con la cantidad de vértices de **graph**.
 
 ####  _**graph.edge_count**_
-Devuelve un INT con la cantidad de vértices de **graph**.
+Devuelve un INT con la cantidad de aristas de **graph**.
 
 ####  _**graph.weight_sum**_
 Devuelve un INT o FLOAT con la suma de los pesos de las aristas de **graph**.
@@ -112,7 +122,7 @@ Devuelve True si **graph** contiene al vértice  **vertex**
 Devuelve True si **graph** contiene a todas las aristas de **edge_expression**
 
 ### Aristas Ponderadas
-Por defecto todas las aristas creadas tienen un atributo peso. Si el usuario no especifica el peso de una arista se por defecto en cero.
+Todas las aristas creadas tienen un atributo peso. Si el usuario no especifica el peso de una arista se por defecto en cero.
 
 Para especificar el peso de una arista, en las edge_expression usadas en la creacion de los grafos, añada al final el peso de la arista. Ejemplo:
 **graph1 = graph(5, (0,1,40)(2, 4, 3.5))**

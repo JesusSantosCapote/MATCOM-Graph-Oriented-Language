@@ -1,0 +1,12 @@
+graph1 = graph([1 2 3], (1,2,10) (2,3,20) (3,1,30))
+graph2 = graph(5, (0,1,15) (1,2,10) (2,3,20))
+if ((graph1 intersection graph2).nodes_count == 2)
+begin
+plot(graph1)
+plot(graph2)
+end
+else
+begin
+weighted_plot(graph1)
+weighted_plot(graph2)
+end
