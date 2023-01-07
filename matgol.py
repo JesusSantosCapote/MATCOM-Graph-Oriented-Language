@@ -27,11 +27,11 @@ class DSL:
 
 if __name__ == "__main__":
     usage = "matgol.py source"
-    parser = OptionParser(usage=usage)
+    optparser = OptionParser(usage=usage)
 
-    options, args = parser.parse_args()
+    options, args = optparser.parse_args()
     if len(args) != 1:
-        parser.error("Incorrect number of arguments")
+        optparser.error("Incorrect number of arguments")
 
     source = args[0]
     print(source)
