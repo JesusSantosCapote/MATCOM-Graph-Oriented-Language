@@ -145,7 +145,7 @@ class Dijkstra(Node):
         dijkstra_path_graph.add_nodes_from(node_list)
         for i in range (len(node_list)-1):
             dijkstra_path_graph.add_edge(node_list[i], node_list[i+1])
-            dijkstra_path_graph[i][i+1]['weight'] = graph[i][i+1]['weight']
+            dijkstra_path_graph[node_list[i]][node_list[i+1]]['weight'] = graph[node_list[i]][node_list[i+1]]['weight']
         return dijkstra_path_graph
 
 
